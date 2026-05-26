@@ -1352,17 +1352,18 @@ async function confirmBooking() {
   endObj.setDate(endObj.getDate() + (currentFareData.days - 1));
   const endDate = endObj.toISOString().split('T')[0];
 
+ const customerToken = localStorage.getItem("fcmToken");
+
   const payload = {
-  pickupLocation: currentFareData.pickup,
-  dropLocation:   currentFareData.drop,
-  startDate,
-  endDate,
-  customerMobile: currentFareData.phone,
-  customerFcmToken: customerToken
-};
+    pickupLocation: currentFareData.pickup,
+    dropLocation:   currentFareData.drop,
+    startDate,
+    endDate,
+    customerMobile: currentFareData.phone,
+    customerFcmToken: customerToken
+  };
+
   try {
-  
-  const customerToken = localStorage.getItem("fcmToken");
     const res = await fetch(`${API}/api/bookings`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
