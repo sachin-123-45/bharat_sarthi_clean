@@ -96,30 +96,19 @@ public class DriverController {
     
     
     
-//    @PostMapping("/save-token")
-//    public ResponseEntity<?> saveDriverToken(@RequestBody Map<String, String> body) {
-//
-//        String driverId = body.get("driverId");
-//
-//        String token = body.get("token");
-//        
-//        
-//        
-//        System.out.println("DriverId: " + driverId);
-//        System.out.println("Token##################################################: " + token);
-//
-//        driverService.saveDriverToken(driverId, token);
-//
-//        return ResponseEntity.ok("Token saved");
-//    }
-//    
-    
-    
     @PostMapping("/save-token")
     public ResponseEntity<?> saveDriverToken(@RequestBody Map<String, String> body) {
-
-        System.out.println("🔥 API HIT HO GAYI");
-
-        return ResponseEntity.ok("OK");
+        String driverId = body.get("driverId");
+        String token = body.get("token");
+        
+        if (driverId == null || token == null) {
+            return ResponseEntity.badRequest().body(Map.of("error", "driverId aur token dono chahiye"));
+        }
+        
+        driverService.saveDriverToken(driverId, token);  // ye method already exist karta hai!
+        return ResponseEntity.ok(Map.of("message", "Token save ho gaya", "driverId", driverId));
     }
+    
+    
+    
 }
