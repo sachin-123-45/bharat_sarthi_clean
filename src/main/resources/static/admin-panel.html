@@ -903,9 +903,18 @@ async function doAdminLogin() {
 
     document.getElementById('sb-adminName').textContent = '👤 ' + (adminSession.username || 'Admin');
     document.getElementById('sb-adminFullName').textContent = adminSession.fullName || 'Super Admin';
+    
+    
+    
+    // Admin FCM token save karo
+if (window.AndroidBridge) {
+    window.AndroidBridge.onAdminLoggedIn(String(adminSession.adminId));
+}
 
     loadDashboard();
     showToast('Welcome back, ' + (adminSession.fullName || adminSession.username) + '! 👑', 'success');
+    
+    
 
   } catch (e) {
     showLoginError('Server se connect nahi ho pa raha. Backend chalu hai?');

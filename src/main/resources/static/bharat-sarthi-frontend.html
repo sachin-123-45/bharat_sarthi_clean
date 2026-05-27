@@ -29,6 +29,30 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .page.active{display:flex}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
+/* ===== SESSION RESTORE SPLASH ===== */
+#pg-restore{background:#0F1F5C;align-items:center;justify-content:center;position:fixed;inset:0;z-index:9999;display:none;flex-direction:column;gap:20px}
+#pg-restore.active{display:flex}
+.restore-logo{font-family:'Bebas Neue';font-size:36px;letter-spacing:4px;background:linear-gradient(135deg,#FF9933,#fff,#138808);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.restore-spinner{width:44px;height:44px;border:4px solid rgba(255,255,255,.2);border-top-color:#FF9933;border-radius:50%;animation:spin .7s linear infinite}
+.restore-msg{font-size:14px;color:rgba(255,255,255,.7);text-align:center;line-height:1.6;padding:0 32px}
+.restore-card{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r);padding:18px 22px;max-width:300px;width:100%;text-align:center}
+.restore-card .rc-label{font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.restore-card .rc-code{font-family:'Baloo 2';font-size:22px;font-weight:800;color:#FF9933;letter-spacing:2px}
+.restore-card .rc-state{font-size:13px;color:rgba(255,255,255,.8);margin-top:4px}
+.restore-btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:300px;padding:0 20px}
+.restore-btn-continue{background:linear-gradient(135deg,#FF9933,#d96e0e);color:#fff;border:none;border-radius:var(--r-sm);padding:14px 24px;font-family:'Baloo 2';font-size:16px;font-weight:700;cursor:pointer;width:100%;letter-spacing:.3px}
+.restore-btn-home{background:transparent;color:rgba(255,255,255,.55);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r-sm);padding:11px 24px;font-family:'Baloo 2';font-size:14px;font-weight:600;cursor:pointer;width:100%}
+@keyframes restorePulse{0%,100%{opacity:.7}50%{opacity:1}}
+
+/* ===== RESUME TOAST ===== */
+.resume-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;border-radius:var(--r);padding:14px 20px;box-shadow:var(--sh-lg);z-index:800;display:flex;align-items:center;gap:12px;min-width:280px;max-width:360px;transition:transform .4s var(--ease);pointer-events:none}
+.resume-toast.show{transform:translateX(-50%) translateY(0);pointer-events:all}
+.rt-ico{font-size:24px;flex-shrink:0}
+.rt-text{flex:1}
+.rt-title{font-family:'Baloo 2';font-size:14px;font-weight:700}
+.rt-sub{font-size:11.5px;color:rgba(255,255,255,.65);margin-top:2px}
+.rt-btn{background:var(--saffron);color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;font-family:'Baloo 2';cursor:pointer;flex-shrink:0;white-space:nowrap}
+
 /* TOPBAR */
 .topbar{background:var(--navy);padding:0 16px;height:60px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(15,31,92,.25)}
 .tb-back{background:rgba(255,255,255,.12);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--dur)}
@@ -39,10 +63,12 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .tb-ham{background:rgba(255,255,255,.12);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background var(--dur)}
 .tb-ham:hover{background:rgba(255,255,255,.22)}
 
+/* ===== ACTIVE BOOKING BADGE on topbar ===== */
+.active-booking-badge{background:#FF9933;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;position:absolute;top:8px;right:8px;font-family:'Baloo 2';animation:badgePulse 2s ease-in-out infinite}
+@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(255,153,51,.6)}50%{box-shadow:0 0 0 6px rgba(255,153,51,0)}}
+
 /* HOME */
 #pg-home{background:#ffffff;align-items:center;justify-content:flex-start;padding:0;position:relative;overflow:hidden}
-#pg-home::before{display:none}
-#pg-home::after{display:none}
 .home-strip{width:100%;height:8px;background:linear-gradient(90deg,#FF9933 33.3%,#fff 33.3%,#fff 66.6%,#138808 66.6%);flex-shrink:0;display:block}
 .home-left-border{position:absolute;left:0;top:0;width:10px;height:100%;background:linear-gradient(180deg,#FF9933 33%,#fff 33%,#fff 66%,#138808 66%);opacity:0.5;z-index:1;pointer-events:none}
 .home-right-border{position:absolute;right:0;top:0;width:10px;height:100%;background:linear-gradient(180deg,#FF9933 33%,#fff 33%,#fff 66%,#138808 66%);opacity:0.5;z-index:1;pointer-events:none}
@@ -55,32 +81,24 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .home-chakra-div{display:flex;align-items:center;gap:10px;margin:14px 0 0;width:85%}
 .home-div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,#FF993366,transparent)}
 .home-btns-row{position:relative;z-index:2;width:100%;display:flex;flex-direction:row;gap:14px;padding:18px 24px 0}
-.home-big-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:20px 10px;border-radius:18px;cursor:pointer;border:none;text-align:center;transition:transform 0.15s;font-family:inherit}
+.home-big-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:20px 10px;border-radius:18px;cursor:pointer;border:none;text-align:center;transition:transform 0.15s;font-family:inherit;position:relative}
 .home-big-btn:active{transform:scale(0.97)}
 .home-big-btn.saffron{background:linear-gradient(160deg,#FF9933,#d96e0e);box-shadow:0 6px 20px #FF993366}
 .home-big-btn.green{background:linear-gradient(160deg,#138808,#0a5c06);box-shadow:0 6px 20px #13880866}
 .home-big-btn-icon{font-size:28px}
 .home-big-btn-label{font-size:14px;font-weight:700;color:#fff;line-height:1.25}
 .home-big-btn-sub{font-size:10px;color:rgba(255,255,255,0.72)}
-.home-logo{width:96px;height:96px;border-radius:var(--r-xl);box-shadow:0 8px 32px rgba(0,0,0,.35);margin-bottom:18px;animation:logoFloat 3.5s ease-in-out infinite;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
-@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.home-title{font-family:'Baloo 2';font-size:30px;font-weight:800;color:#fff;text-align:center;line-height:1.15;letter-spacing:-.3px}
-.home-title em{color:var(--saffron-2);font-style:normal}
-.home-tagline{color:rgba(255,255,255,.58);font-size:13.5px;margin-top:8px;text-align:center}
-.home-bar{width:48px;height:3px;background:linear-gradient(90deg,var(--saffron),transparent);border-radius:2px;margin:24px auto 28px}
-.home-btns{width:100%;display:flex;flex-direction:column;gap:14px}
-.hbtn{width:100%;background:#fff;border-radius:var(--r);padding:22px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;border:2px solid transparent;transition:all var(--dur) var(--ease);box-shadow:var(--sh-sm)}
-.hbtn:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
-.hbtn:active{transform:scale(.97)}
-.hbtn.primary{border-color:var(--saffron)}
-.hbtn.secondary{border-color:#C7D0F0}
-.hbtn-icon{width:58px;height:58px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0}
-.hbtn.primary .hbtn-icon{background:var(--saffron-bg)}
-.hbtn.secondary .hbtn-icon{background:#EEF1FD}
-.hbtn-label{font-family:'Baloo 2';font-size:17px;font-weight:700;color:var(--text-1);line-height:1.2}
-.hbtn-sub{font-size:12px;color:var(--text-3);margin-top:3px}
-.hbtn-arrow{margin-left:auto;font-size:20px;color:var(--text-3)}
-.home-footer{color:rgba(255,255,255,.3);font-size:11px;margin-top:32px;text-align:center}
+
+/* ===== ACTIVE BOOKING RESUME CARD on Home ===== */
+.home-resume-card{position:relative;z-index:2;width:calc(100% - 48px);margin:16px 24px 0;background:linear-gradient(135deg,#0F1F5C,#1A2F7A);border-radius:var(--r);padding:16px;box-shadow:0 8px 28px rgba(15,31,92,.35);overflow:hidden;cursor:pointer;transition:transform .15s}
+.home-resume-card:active{transform:scale(.98)}
+.home-resume-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(255,153,51,.15));pointer-events:none}
+.hrc-eyebrow{font-size:10px;color:rgba(255,255,255,.55);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.hrc-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;box-shadow:0 0 8px rgba(74,222,128,.8);animation:badgePulse 2s ease-in-out infinite}
+.hrc-code{font-family:'Baloo 2';font-size:15px;font-weight:800;color:#FF9933;letter-spacing:1px;margin-bottom:6px}
+.hrc-route{font-size:13px;color:rgba(255,255,255,.85);font-weight:500;margin-bottom:10px}
+.hrc-state-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600;color:#fff;margin-bottom:10px}
+.hrc-action{background:var(--saffron);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-family:'Baloo 2';font-size:14px;font-weight:700;cursor:pointer;width:100%}
 
 /* FORM */
 .pb{padding:16px;flex:1}
@@ -101,8 +119,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .fselect{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:11px 13px;font-size:14px;font-family:inherit;color:var(--text-1);outline:none;transition:border-color var(--dur)}
 .fselect:focus{border-color:var(--navy-3);background:#fff}
-
-/* BUTTONS */
 .btn{border:none;border-radius:var(--r-sm);padding:13px 16px;font-size:15px;font-weight:700;font-family:'Baloo 2';cursor:pointer;transition:all var(--dur) var(--ease);letter-spacing:.2px;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .btn:active{transform:scale(.97)}
 .btn-saffron{background:var(--saffron);color:#fff;box-shadow:0 4px 16px rgba(232,96,10,.35)}
@@ -146,6 +162,7 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .sbanner.waiting{background:linear-gradient(135deg,#FFFBF0,#FFF3D8);border:2px solid #F5C518}
 .sbanner.accepted{background:linear-gradient(135deg,#F0FDF6,#DCFCE8);border:2px solid var(--green)}
 .sbanner.confirmed{background:linear-gradient(135deg,#F0FDF6,#DCFCE8);border:2px solid var(--green)}
+.sbanner.pending-payment{background:linear-gradient(135deg,#FFF8E1,#FFF3D8);border:2px solid #F59F00}
 .sbanner h3{font-family:'Baloo 2';font-size:18px;font-weight:800;color:var(--text-1)}
 .sbanner p{font-size:13px;color:var(--text-2);margin-top:5px}
 .spinner{width:32px;height:32px;border:3.5px solid var(--border);border-top-color:var(--saffron);border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 10px}
@@ -153,6 +170,12 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .bid-pill{background:#fff;border:1.5px dashed var(--saffron);border-radius:var(--r-sm);padding:12px 16px;text-align:center;margin-bottom:12px;box-shadow:var(--sh-xs)}
 .bid-pill .bpl{font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .bid-pill .bpv{font-family:'Baloo 2';font-size:22px;font-weight:800;color:var(--saffron);letter-spacing:2px;margin-top:2px}
+
+/* ===== RESTORED BADGE on status page ===== */
+.session-restored-badge{background:linear-gradient(135deg,#1A2F7A,#0F1F5C);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:10px;animation:fadeIn .4s ease}
+.srb-ico{font-size:20px;flex-shrink:0}
+.srb-text{font-size:12.5px;color:rgba(255,255,255,.8);font-weight:500}
+.srb-text strong{color:#FF9933;display:block;font-size:13px;margin-bottom:2px}
 
 /* INFO CARD */
 .icard{background:#fff;border-radius:var(--r);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:12px;border:1px solid var(--border)}
@@ -163,7 +186,7 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .irow-lbl{font-size:10.5px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
 .irow-val{font-size:14px;color:var(--text-1);font-weight:600;margin-top:2px}
 
-/* DRIVER CONFIRMED CARD on status page */
+/* DRIVER CONFIRMED CARD */
 .drv-confirmed-card{background:linear-gradient(135deg,#F0FDF6,#E8F5EE);border:2px solid var(--green);border-radius:var(--r);padding:16px;margin-bottom:12px;display:none}
 .drv-confirmed-card.show{display:block}
 .drv-confirmed-card .dc-head{font-family:'Baloo 2';font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
@@ -173,7 +196,7 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .drv-confirmed-card .dc-lbl{font-size:11px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
 .drv-confirmed-card .dc-val{font-size:14px;color:var(--text-1);font-weight:700;margin-top:1px}
 
-/* DRIVER ACCEPTED POPUP MODAL */
+/* DRIVER ACCEPTED POPUP */
 .drv-popup-head{background:linear-gradient(135deg,var(--green),#0a7832);padding:22px 20px 18px;text-align:center}
 .drv-popup-head .dp-checkmark{font-size:40px;margin-bottom:8px;display:block}
 .drv-popup-head h3{font-family:'Baloo 2';font-size:20px;font-weight:800;color:#fff;line-height:1.2}
@@ -186,9 +209,8 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .drv-popup-dcard .dpd-ico{font-size:18px;flex-shrink:0}
 .drv-popup-dcard .dpd-lbl{font-size:10.5px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
 .drv-popup-dcard .dpd-val{font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px}
-.drv-popup-note{font-size:12px;color:var(--text-3);text-align:center;margin-bottom:16px;line-height:1.6;padding:0 4px}
 
-/* DRIVER AUTH */
+/* AUTH */
 .auth-tabs{display:flex;background:#fff;border-radius:var(--r-sm);padding:4px;box-shadow:var(--sh-xs);margin-bottom:14px;border:1px solid var(--border)}
 .atab{flex:1;padding:9px;border:none;border-radius:10px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;background:transparent;color:var(--text-3);transition:all var(--dur)}
 .atab.active{background:var(--navy);color:#fff;box-shadow:0 2px 8px rgba(15,31,92,.25)}
@@ -213,8 +235,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .online-txt{font-size:14px;font-weight:700}
 .online-dot{width:9px;height:9px;border-radius:50%;background:#fff;opacity:.4;margin-left:auto;transition:all .2s}
 .online-dot.on{background:#4ADE80;opacity:1;box-shadow:0 0 8px rgba(74,222,128,.6)}
-
-/* TABS */
 .dtabs{display:flex;background:#fff;border-radius:var(--r-sm);padding:4px;box-shadow:var(--sh-xs);margin-bottom:14px;border:1px solid var(--border)}
 .dtab{flex:1;padding:9px;border:none;border-radius:10px;font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;background:transparent;color:var(--text-3);transition:all var(--dur)}
 .dtab.active{background:var(--navy);color:#fff}
@@ -278,57 +298,23 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .stat-num{font-family:'Baloo 2';font-size:28px;font-weight:800;color:var(--navy);line-height:1}
 .stat-lbl{font-size:11.5px;color:var(--text-3);margin-top:4px;font-weight:500}
 .stat.orange .stat-num{color:var(--saffron)}.stat.green .stat-num{color:var(--green)}
-.abr{display:flex;align-items:flex-start;padding:13px 16px;border-bottom:1px solid var(--border);gap:12px}
-.abr:last-child{border-bottom:none}
-.abr-s{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:20px;flex-shrink:0;margin-top:2px}
-.abr-s.PENDING{background:#FEF3C7;color:#92400E}.abr-s.ACCEPTED{background:var(--green-bg);color:var(--green)}.abr-s.CANCELLED{background:var(--red-bg);color:var(--red)}
-.abr-route{font-size:13.5px;font-weight:600;color:var(--text-1)}
-.abr-meta{font-size:11.5px;color:var(--text-3);margin-top:2px}
-.drv-row{display:flex;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border);gap:12px}
-.drv-row:last-child{border-bottom:none}
-.dr-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--saffron-2));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.dr-name{font-size:14px;font-weight:700;color:var(--text-1)}
-.dr-id{font-size:11.5px;color:var(--text-3)}
-.dr-on{margin-left:auto;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
-.dr-on.on{background:var(--green-bg);color:var(--green)}.dr-on.off{background:var(--bg);color:var(--text-3);border:1px solid var(--border)}
 
-/* FLAG BOX */
-.flag-box{
-  background: linear-gradient(to bottom,#B45309 0%,#F5F5F5 50%,#064E3B 100%);
-}
-.flag-box::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,0.25) 50%,transparent 100%);
-  transform:skewX(-20deg);
-}
-.car{font-size:42px;color:#111;z-index:2;text-shadow:0 3px 8px rgba(0,0,0,0.6);}
-
-
-/* ===== PAYMENT SECTION ===== */
+/* PAYMENT */
 .pay-section{display:none;margin-top:16px}
 .pay-section.show{display:block}
-
 .pay-card{background:#fff;border-radius:var(--r);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:12px;border:1px solid var(--border)}
 .pay-card-head{background:var(--navy);color:#fff;padding:13px 16px;font-family:'Baloo 2';font-size:14px;font-weight:700;letter-spacing:.4px;display:flex;align-items:center;gap:8px}
-
 .pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px}
 .pay-method-btn{border:2px solid var(--border);border-radius:var(--r-sm);padding:18px 12px;background:#fff;cursor:pointer;text-align:center;transition:all var(--dur) var(--ease);display:flex;flex-direction:column;align-items:center;gap:6px}
-.pay-method-btn:hover{border-color:var(--navy-3);background:#EEF1FD;transform:translateY(-2px)}
-.pay-method-btn:active{transform:scale(.97)}
 .pay-method-btn.selected{border-color:var(--saffron);background:var(--saffron-bg);box-shadow:0 4px 14px rgba(232,96,10,.2)}
 .pm-ico{font-size:30px}
 .pm-label{font-family:'Baloo 2';font-size:15px;font-weight:700;color:var(--text-1)}
 .pm-sub{font-size:11px;color:var(--text-3)}
-
 .upi-section{display:none;padding:0 16px 16px}
 .upi-section.show{display:block}
-.cash-section{display:none;padding:0 16px 16px}
-.cash-section.show{display:block}
-
 .pay-amount-box{background:var(--saffron-bg);border:2px solid var(--saffron);border-radius:var(--r-sm);padding:14px;text-align:center;margin-bottom:14px}
 .pay-amount-lbl{font-size:11px;color:#7A3200;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .pay-amount-val{font-family:'Baloo 2';font-size:30px;font-weight:800;color:var(--saffron);margin-top:2px}
-
 .qr-box{background:var(--bg);border:2px dashed var(--border);border-radius:var(--r-sm);padding:20px;text-align:center;margin-bottom:14px}
 .qr-img-wrap{width:168px;height:168px;background:#fff;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--border);padding:10px}
 .qr-img-wrap img{width:100%;height:100%;object-fit:contain}
@@ -336,19 +322,15 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .qr-upi-name{font-size:12px;color:var(--text-3);margin-top:3px}
 .copy-upi-btn{margin-top:10px;background:#fff;border:1.5px solid var(--navy);border-radius:var(--r-sm);padding:8px 18px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;color:var(--navy);transition:all var(--dur);display:inline-flex;align-items:center;gap:6px}
 .copy-upi-btn:hover{background:var(--navy);color:#fff}
-
 .upi-steps{background:var(--bg);border-radius:var(--r-sm);padding:12px 14px;margin-bottom:14px;border:1px solid var(--border)}
 .upi-step{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-2);padding:5px 0;font-weight:500}
 .step-num{width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-
 .ride-confirmed-banner{display:none;background:linear-gradient(135deg,#F0FDF6,#DCFCE8);border:2.5px solid var(--green);border-radius:var(--r);padding:26px 20px;text-align:center;margin-bottom:14px}
 .ride-confirmed-banner.show{display:block}
 .rc-emoji{font-size:54px;margin-bottom:10px;display:block}
 .rc-title{font-family:'Baloo 2';font-size:23px;font-weight:800;color:var(--green)}
 .rc-sub{font-size:14px;color:#0a5c28;margin-top:6px;font-weight:600}
 .rc-note{font-size:12.5px;color:var(--text-2);margin-top:8px;line-height:1.7;padding:0 8px}
-
-/* === ADVANCE PAYMENT INFO BOX === */
 .advance-info-box{background:#FFF3E0;border:2px solid var(--saffron);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:14px}
 .advance-info-box .adv-title{font-family:'Baloo 2';font-size:13px;font-weight:700;color:#7A3200;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px}
 .advance-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(232,96,10,.15)}
@@ -359,8 +341,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .advance-val.cash{color:var(--green)}
 .advance-msg{background:#E8F5E9;border:1.5px solid var(--green);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#1B5E20;line-height:1.7}
 .advance-msg strong{display:block;font-size:13px;margin-bottom:2px;color:var(--green)}
-
-/* === SCREENSHOT UPLOAD === */
 .screenshot-upload-box{background:var(--bg);border:2px dashed var(--border);border-radius:var(--r-sm);padding:18px;text-align:center;margin-bottom:14px}
 .screenshot-upload-box.has-file{border-color:var(--green);background:#F0FDF6}
 .upload-ico{font-size:36px;margin-bottom:8px}
@@ -372,42 +352,34 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .screenshot-preview.show{display:block}
 .upload-filename{font-size:12px;color:var(--green);margin-top:6px;font-weight:600;display:none}
 .upload-filename.show{display:block}
-
-/* === PENDING VERIFICATION BANNER === */
 .pending-verify-banner{display:none;background:#FFF8E1;border:2px solid #F59F00;border-radius:var(--r);padding:20px;text-align:center;margin-bottom:14px}
 .pending-verify-banner.show{display:block}
 .pv-emoji{font-size:40px;margin-bottom:8px;display:block}
 .pv-title{font-family:'Baloo 2';font-size:18px;font-weight:800;color:#7d4a00}
 .pv-sub{font-size:13px;color:#7d4a00;margin-top:6px;line-height:1.6}
+.driver-locked-box{background:linear-gradient(135deg,#FFF8E1,#FFFBF0);border:2px dashed #F59F00;border-radius:var(--r);padding:20px;text-align:center;margin-bottom:12px}
+.driver-locked-box .dlb-icon{font-size:40px;margin-bottom:8px}
+.driver-locked-box h4{font-family:'Baloo 2';font-size:16px;font-weight:800;color:#7d4a00}
+.driver-locked-box p{font-size:12.5px;color:#92400E;margin-top:6px;line-height:1.6}
 
-
-/* ========== MY BOOKING PAGE ========== */
+/* MY BOOKING */
 .mb-loader{text-align:center;padding:48px 20px}
 .mb-loader .spinner{margin:0 auto 12px}
 .mb-loader p{font-size:13px;color:var(--text-3)}
-
 .mb-empty-state{text-align:center;padding:60px 20px}
 .mb-empty-state .me-ico{font-size:56px;margin-bottom:16px}
 .mb-empty-state h3{font-family:'Baloo 2';font-size:18px;font-weight:700;color:var(--text-2)}
 .mb-empty-state p{font-size:13px;color:var(--text-3);margin-top:6px;line-height:1.6}
-
 .mb-error-state{text-align:center;padding:40px 20px}
-.mb-error-state .me-ico{font-size:48px;margin-bottom:12px}
-.mb-error-state p{font-size:13px;color:var(--text-3);line-height:1.6}
-
-/* Booking code pill */
 .mb-code-pill{background:var(--navy);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:12px;text-align:center}
 .mb-code-lbl{font-size:10.5px;color:rgba(255,255,255,.55);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .mb-code-val{font-family:'Baloo 2';font-size:20px;font-weight:800;color:#fff;letter-spacing:2px;margin-top:3px}
-
-/* Status badge */
 .mb-status-badge{display:inline-block;font-size:13px;font-weight:700;padding:7px 16px;border-radius:20px;margin-bottom:14px;font-family:'Baloo 2'}
 .mb-badge-pending{background:#FEF3C7;color:#92400E}
 .mb-badge-accepted{background:var(--green-bg);color:var(--green)}
+.mb-badge-confirmed{background:#EEF1FD;color:var(--navy)}
 .mb-badge-completed{background:#EEF1FD;color:var(--navy)}
 .mb-badge-cancelled{background:var(--red-bg);color:var(--red)}
-
-/* Driver section in My Booking */
 .mb-driver-card{background:linear-gradient(135deg,var(--green-bg),#F0FDF6);border:2px solid var(--green);border-radius:var(--r);padding:16px;margin-bottom:12px}
 .mb-driver-card .mdc-head{font-family:'Baloo 2';font-size:13px;font-weight:700;color:var(--green);margin-bottom:12px;letter-spacing:.3px}
 .mb-driver-row{display:flex;align-items:center;gap:12px;padding:7px 0;border-bottom:1px solid rgba(15,143,60,.15)}
@@ -415,14 +387,37 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .mb-driver-row .mdr-ico{font-size:17px;flex-shrink:0}
 .mb-driver-row .mdr-lbl{font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
 .mb-driver-row .mdr-val{font-size:14px;color:var(--text-1);font-weight:700;margin-top:2px}
-
-/* Refresh button */
 .mb-refresh-btn{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:11px;font-size:13px;font-weight:600;font-family:'Baloo 2';cursor:pointer;color:var(--navy);transition:all var(--dur);display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-bottom:10px}
 .mb-refresh-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
-
 </style>
 </head>
 <body>
+
+<!-- ===== SESSION RESTORE SPLASH ===== -->
+<div id="pg-restore" class="page">
+  <div class="restore-logo">Bharat Sarthi</div>
+  <div class="restore-spinner" id="restore-spinner"></div>
+  <div class="restore-msg" id="restore-msg">Aapki booking dhundh rahe hain...</div>
+  <div class="restore-card" id="restore-card" style="display:none">
+    <div class="rc-label">Active Booking Mili</div>
+    <div class="rc-code" id="restore-code">—</div>
+    <div class="rc-state" id="restore-state">—</div>
+  </div>
+  <div class="restore-btns" id="restore-btns" style="display:none">
+    <button class="restore-btn-continue" id="restore-continue-btn">▶ Wahan Se Shuru Karein</button>
+    <button class="restore-btn-home" onclick="dismissRestore()">Nahi, Home Jaao</button>
+  </div>
+</div>
+
+<!-- ===== RESUME TOAST ===== -->
+<div class="resume-toast" id="resumeToast">
+  <div class="rt-ico" id="rt-ico">🚗</div>
+  <div class="rt-text">
+    <div class="rt-title" id="rt-title">Active Booking Hai!</div>
+    <div class="rt-sub" id="rt-sub">Tap karein resume karne ke liye</div>
+  </div>
+  <button class="rt-btn" id="rt-btn" onclick="resumeFromToast()">Resume →</button>
+</div>
 
 <!-- ========== PAGE: HOME ========== -->
 <div id="pg-home" class="page active">
@@ -430,108 +425,58 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
   <div class="home-left-border"></div>
   <div class="home-right-border"></div>
 
-  <!-- Hamburger menu -->
   <div style="position:absolute;top:16px;right:16px;z-index:10;">
     <button class="tb-ham" onclick="openSidebar()">☰</button>
   </div>
 
-  <!-- India Gate + Driver SVG -->
   <svg class="gate-svg" viewBox="0 0 400 420" preserveAspectRatio="xMidYTop meet" xmlns="http://www.w3.org/2000/svg">
-    <!-- Left tricolor ribbon -->
     <path d="M-10,40 Q70,200 155,390" stroke="#FF9933" stroke-width="56" fill="none" stroke-linecap="round" opacity="0.80"/>
     <path d="M-10,40 Q70,200 155,390" stroke="#ffffff" stroke-width="36" fill="none" stroke-linecap="round"/>
     <path d="M-10,40 Q70,200 155,390" stroke="#138808" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.80"/>
-    <!-- Right tricolor ribbon -->
     <path d="M410,40 Q330,200 245,390" stroke="#FF9933" stroke-width="56" fill="none" stroke-linecap="round" opacity="0.80"/>
     <path d="M410,40 Q330,200 245,390" stroke="#ffffff" stroke-width="36" fill="none" stroke-linecap="round"/>
     <path d="M410,40 Q330,200 245,390" stroke="#138808" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.80"/>
-    <!-- Gate base -->
     <rect x="80" y="375" width="240" height="16" rx="3" fill="#D4A462"/>
     <rect x="95" y="355" width="210" height="22" rx="3" fill="#C8915A"/>
     <rect x="108" y="341" width="184" height="16" rx="2" fill="#D4A462"/>
-    <!-- Pillars -->
     <rect x="88" y="200" width="52" height="145" rx="3" fill="#D4A462"/>
     <rect x="260" y="200" width="52" height="145" rx="3" fill="#D4A462"/>
     <rect x="88" y="315" width="52" height="10" fill="#C8915A"/>
     <rect x="260" y="315" width="52" height="10" fill="#C8915A"/>
     <rect x="82" y="185" width="64" height="18" rx="2" fill="#C8915A"/>
     <rect x="254" y="185" width="64" height="18" rx="2" fill="#C8915A"/>
-    <!-- Arch -->
     <path d="M140,200 Q200,115 260,200" stroke="#D4A462" stroke-width="44" fill="none"/>
     <path d="M144,200 Q200,127 256,200" stroke="#E8C070" stroke-width="22" fill="none"/>
     <path d="M148,200 Q200,139 252,200 L252,275 L148,275 Z" fill="#ffffff"/>
-    <!-- Gate top levels -->
     <rect x="88" y="177" width="224" height="16" rx="2" fill="#BF8040"/>
     <rect x="100" y="161" width="200" height="18" rx="2" fill="#C8915A"/>
     <rect x="108" y="133" width="184" height="30" rx="4" fill="#D4A462"/>
     <rect x="120" y="113" width="160" height="24" rx="3" fill="#C8915A"/>
     <rect x="110" y="95" width="180" height="22" rx="4" fill="#BF8040"/>
     <rect x="128" y="83" width="144" height="14" rx="3" fill="#D4A462"/>
-    <!-- Pillar circles -->
     <circle cx="114" cy="245" r="12" fill="none" stroke="#BF8040" stroke-width="4"/>
-    <circle cx="114" cy="245" r="5" fill="#BF8040" opacity="0.3"/>
     <circle cx="286" cy="245" r="12" fill="none" stroke="#BF8040" stroke-width="4"/>
-    <circle cx="286" cy="245" r="5" fill="#BF8040" opacity="0.3"/>
-    <!-- Driver glow -->
     <circle cx="200" cy="238" r="34" fill="#FF9933" opacity="0.07"/>
-    <!-- Driver cap -->
     <rect x="185" y="204" width="30" height="7" rx="3" fill="#1C2B4A"/>
     <ellipse cx="200" cy="204" rx="15" ry="3.5" fill="#1C2B4A"/>
-    <path d="M185,211 Q181,215 179,213 Q183,210 185,211Z" fill="#1C2B4A"/>
-    <rect x="185" y="208" width="30" height="2.5" fill="#FF9933"/>
-    <!-- Face -->
     <ellipse cx="200" cy="222" rx="13" ry="14" fill="#C8845A"/>
-    <ellipse cx="197" cy="219" rx="5" ry="6" fill="#D99A72" opacity="0.35"/>
-    <ellipse cx="195" cy="220" rx="2.4" ry="2.4" fill="#1a1a1a"/>
-    <ellipse cx="205" cy="220" rx="2.4" ry="2.4" fill="#1a1a1a"/>
-    <circle cx="194.5" cy="219.3" r="0.8" fill="#fff"/>
-    <circle cx="204.5" cy="219.3" r="0.8" fill="#fff"/>
-    <path d="M192.5,215.5 Q195.5,213.5 198.5,215.5" stroke="#4a2505" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M201.5,215.5 Q204.5,213.5 207.5,215.5" stroke="#4a2505" stroke-width="1.5" fill="none" stroke-linecap="round"/>
     <path d="M196,225.5 Q200,228 204,225.5" stroke="#2a1000" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <path d="M196,225.5 Q193.5,223 191.5,224" stroke="#2a1000" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M204,225.5 Q206.5,223 208.5,224" stroke="#2a1000" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <!-- Neck -->
     <rect x="196" y="235" width="8" height="6" rx="2" fill="#C8845A"/>
-    <!-- Uniform -->
     <path d="M183,243 Q186,238 196,237 L200,241 L204,237 Q214,238 217,243 L219,272 L181,272 Z" fill="#7A6840"/>
     <path d="M196,237 L200,245 L204,237" fill="#f0ede8" opacity="0.95"/>
-    <line x1="196" y1="237" x2="200" y2="245" stroke="#ccc" stroke-width="0.8"/>
-    <line x1="204" y1="237" x2="200" y2="245" stroke="#ccc" stroke-width="0.8"/>
-    <line x1="200" y1="246" x2="200" y2="269" stroke="#5a4a28" stroke-width="1" stroke-dasharray="2,2.5"/>
-    <rect x="185" y="248" width="9" height="7" rx="1.5" fill="none" stroke="#5a4a28" stroke-width="1"/>
-    <circle cx="189.5" cy="251.5" r="3" fill="#FF9933"/>
-    <circle cx="189.5" cy="251.5" r="2" fill="#ffffff"/>
-    <circle cx="189.5" cy="251.5" r="1" fill="#138808"/>
-    <!-- Epaulettes -->
-    <rect x="181" y="241" width="10" height="5" rx="2.5" fill="#BF8040"/>
-    <line x1="182" y1="243.5" x2="190" y2="243.5" stroke="#FFD700" stroke-width="1.2"/>
-    <rect x="209" y="241" width="10" height="5" rx="2.5" fill="#BF8040"/>
-    <line x1="210" y1="243.5" x2="218" y2="243.5" stroke="#FFD700" stroke-width="1.2"/>
-    <!-- Arms -->
-    <path d="M183,244 Q175,250 172,260 Q174,264 178,262 Q180,254 185,249" fill="#7A6840"/>
     <ellipse cx="171" cy="262" rx="4" ry="3.5" fill="#C8845A"/>
-    <path d="M217,244 Q225,250 228,260 Q226,264 222,262 Q220,254 215,249" fill="#7A6840"/>
     <ellipse cx="229" cy="262" rx="4" ry="3.5" fill="#C8845A"/>
-    <!-- Steering wheel -->
     <circle cx="200" cy="265" r="16" fill="none" stroke="#1C1005" stroke-width="4"/>
     <circle cx="200" cy="265" r="5" fill="#1C1005"/>
     <circle cx="200" cy="265" r="3" fill="#FF9933" opacity="0.8"/>
     <line x1="200" y1="249" x2="200" y2="260" stroke="#1C1005" stroke-width="3" stroke-linecap="round"/>
     <line x1="185.5" y1="273" x2="195" y2="267" stroke="#1C1005" stroke-width="3" stroke-linecap="round"/>
     <line x1="214.5" y1="273" x2="205" y2="267" stroke="#1C1005" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="200" cy="265" r="16" fill="none" stroke="#FF9933" stroke-width="1.2" opacity="0.45" stroke-dasharray="4,4"/>
   </svg>
 
-  <!-- Brand section -->
   <div class="home-mid">
     <div class="home-logo-area">
       <svg width="100" height="66" viewBox="0 0 110 72" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="6" r="2" fill="#FF9933" opacity="0.7"/>
-        <circle cx="35" cy="4" r="2.5" fill="#FF9933" opacity="0.9"/>
-        <circle cx="55" cy="3" r="3" fill="#FF9933"/>
-        <circle cx="75" cy="4" r="2.5" fill="#FF9933" opacity="0.9"/>
-        <circle cx="90" cy="6" r="2" fill="#FF9933" opacity="0.7"/>
         <rect x="8" y="32" width="94" height="26" rx="6" fill="#1a1a1a"/>
         <path d="M28,32 Q30,14 42,12 L68,12 Q80,14 82,32 Z" fill="#1a1a1a"/>
         <path d="M31,30 Q33,19 42,17 L68,17 Q77,19 79,30 Z" fill="#87CEEB" opacity="0.7"/>
@@ -546,8 +491,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
         <rect x="40" y="38" width="30" height="14" rx="3" fill="#333"/>
         <circle cx="55" cy="45" r="5" fill="none" stroke="#000080" stroke-width="1.2"/>
         <circle cx="55" cy="45" r="1.2" fill="#000080"/>
-        <line x1="55" y1="40" x2="55" y2="50" stroke="#000080" stroke-width="0.8"/>
-        <line x1="50" y1="45" x2="60" y2="45" stroke="#000080" stroke-width="0.8"/>
         <circle cx="26" cy="60" r="10" fill="#222"/>
         <circle cx="26" cy="60" r="6" fill="#444"/>
         <circle cx="26" cy="60" r="3" fill="#888"/>
@@ -577,7 +520,15 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
     </div>
   </div>
 
-  <!-- Action Buttons -->
+  <!-- Active Booking Resume Card (shown when booking exists) -->
+  <div class="home-resume-card" id="homeResumeCard" style="display:none" onclick="resumeActiveBooking()">
+    <div class="hrc-eyebrow"><div class="hrc-dot"></div>Active Booking Chal Rahi Hai</div>
+    <div class="hrc-code" id="hrc-code">—</div>
+    <div class="hrc-route" id="hrc-route">—</div>
+    <div class="hrc-state-badge" id="hrc-state">⏳ Status check ho raha hai...</div>
+    <button class="hrc-action">▶ Wahan Se Shuru Karein Jahan Chhhoda Tha</button>
+  </div>
+
   <div class="home-btns-row">
     <button class="home-big-btn saffron" onclick="goTo('pg-book')">
       <span class="home-big-btn-icon">🚗</span>
@@ -591,7 +542,7 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
     </button>
   </div>
 
-  <p class="home-footer" style="position:relative;z-index:2;font-size:10px;color:#aaa;text-align:center;padding:14px 0 4px;margin-top:auto;">Bharat Sarthi · Vishwasniya Driver Sewa · v2.0</p>
+  <p style="position:relative;z-index:2;font-size:10px;color:#aaa;text-align:center;padding:14px 0 4px;margin-top:auto;">Bharat Sarthi · Vishwasniya Driver Sewa · v2.2</p>
   <div class="home-strip"></div>
 </div>
 
@@ -610,15 +561,16 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
     <div class="sb-item" onclick="closeSidebar();goTo('pg-book')">
       <div class="sb-ico">👨‍✈️</div><span class="sb-label">Driver Book Karein</span>
     </div>
-    <div class="sb-item" onclick="closeSidebar();goTo('pg-drv-auth')">
+    <div class="sb-item" onclick="closeSidebar();loggedInDriver ? goTo('pg-drv-dash') : goTo('pg-drv-auth')">
       <div class="sb-ico">🪪</div><span class="sb-label">ड्राइवर पैनल</span>
     </div>
     <div class="sb-item" onclick="closeSidebar();openMyBooking()">
-      <div class="sb-ico">📋</div><span class="sb-label">My Booking</span>
+      <div class="sb-ico" style="position:relative">📋<span id="sb-booking-dot" style="display:none;position:absolute;top:0;right:0;width:8px;height:8px;border-radius:50%;background:#FF9933"></span></div>
+      <span class="sb-label">My Booking</span>
     </div>
     <div class="sb-divider"></div>
     <div class="sb-section">Admin</div>
-   <div class="sb-item admin-item" onclick="window.location.href='admin-panel.html'">
+    <div class="sb-item admin-item" onclick="window.location.href='admin-panel.html'">
       <div class="sb-ico">🔐</div><span class="sb-label">Admin Panel</span>
     </div>
   </div>
@@ -712,6 +664,15 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
   </div>
   <div class="pb">
 
+    <!-- Session Restored Badge -->
+    <div class="session-restored-badge" id="sessionRestoredBadge" style="display:none">
+      <div class="srb-ico">🔄</div>
+      <div class="srb-text">
+        <strong>Session Restore Hua</strong>
+        Aapki booking wahan se shuru ho gayi jahan aapne chhhodi thi.
+      </div>
+    </div>
+
     <div class="sbanner waiting" id="statusBanner">
       <div class="spinner" id="statusSpinner"></div>
       <h3 id="statusTitle">Driver Dhundh Rahe Hain...</h3>
@@ -723,29 +684,17 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
       <div class="bpv" id="bookingCode">BS-0000</div>
     </div>
 
+    <div class="driver-locked-box" id="driverLockedBox" style="display:none">
+      <div class="dlb-icon">🔒</div>
+      <h4>Driver Details Locked</h4>
+      <p>Payment complete karne ke baad driver ka naam, number aur licence dikhai dega.</p>
+    </div>
+
     <div class="drv-confirmed-card" id="drvConfirmedCard">
       <div class="dc-head">✅ Driver Assign Ho Gaya</div>
-      <div class="dc-row">
-        <div class="dc-ico">👨‍✈️</div>
-        <div>
-          <div class="dc-lbl">Driver ka Naam</div>
-          <div class="dc-val" id="sc-drvName">—</div>
-        </div>
-      </div>
-      <div class="dc-row">
-        <div class="dc-ico">📱</div>
-        <div>
-          <div class="dc-lbl">Mobile Number</div>
-          <div class="dc-val" id="sc-drvMobile">—</div>
-        </div>
-      </div>
-      <div class="dc-row">
-        <div class="dc-ico">🪪</div>
-        <div>
-          <div class="dc-lbl">Licence Number</div>
-          <div class="dc-val" id="sc-drvLicence">—</div>
-        </div>
-      </div>
+      <div class="dc-row"><div class="dc-ico">👨‍✈️</div><div><div class="dc-lbl">Driver ka Naam</div><div class="dc-val" id="sc-drvName">—</div></div></div>
+      <div class="dc-row"><div class="dc-ico">📱</div><div><div class="dc-lbl">Mobile Number</div><div class="dc-val" id="sc-drvMobile">—</div></div></div>
+      <div class="dc-row"><div class="dc-ico">🪪</div><div><div class="dc-lbl">Licence Number</div><div class="dc-val" id="sc-drvLicence">—</div></div></div>
     </div>
 
     <div class="icard">
@@ -760,97 +709,71 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 
     <button class="btn btn-red-o btn-full" id="cancelBtn" onclick="goTo('pg-home')">❌ Booking Raddh Karein</button>
   </div>
- <!-- ===== PAYMENT SECTION ===== -->
-<div class="pay-section" id="paySection">
 
-  <div class="pending-verify-banner" id="pendingVerifyBanner">
-    <span class="pv-emoji">⏳</span>
-    <div class="pv-title">Screenshot Submit Ho Gayi!</div>
-    <div class="pv-sub">
-      Admin aapki payment verify kar raha hai.<br>
-      Verify hone ke baad aapko confirmation milega.<br>
-      <strong>Kripya wait karein...</strong>
+  <!-- PAYMENT SECTION -->
+  <div class="pay-section" id="paySection">
+    <div class="pending-verify-banner" id="pendingVerifyBanner">
+      <span class="pv-emoji">⏳</span>
+      <div class="pv-title">Screenshot Submit Ho Gayi!</div>
+      <div class="pv-sub">Admin aapki payment verify kar raha hai.<br>Verify hone ke baad aapko confirmation milega.<br><strong>Kripya wait karein...</strong></div>
+    </div>
+
+    <div class="ride-confirmed-banner" id="rideConfirmedBanner">
+      <span class="rc-emoji">✅</span>
+      <div class="rc-title">Ride Confirmed!</div>
+      <div class="rc-sub">Driver Se Contact kre 🚗</div>
+      <div class="rc-note">Payment verify ho gayi hai.<br>Baaki ₹<span id="rc-remaining">0</span> driver ko trip ke time CASH mein dein.</div>
+    </div>
+
+    <div class="pay-card" id="payCard">
+      <div class="pay-card-head">💳 Advance Payment Karein</div>
+      <div style="padding:16px 16px 0">
+        <div class="advance-info-box">
+          <div class="adv-title">💰 Payment Breakdown</div>
+          <div class="advance-row"><span class="advance-lbl">Total Kiraya</span><span class="advance-val" id="adv-total">₹0</span></div>
+          <div class="advance-row"><span class="advance-lbl">Online Advance (15%)</span><span class="advance-val highlight" id="adv-advance">₹0</span></div>
+          <div class="advance-row"><span class="advance-lbl">Driver ko Cash (Trip pe)</span><span class="advance-val cash" id="adv-remaining">₹0</span></div>
+        </div>
+        <div class="advance-msg">
+          <strong>📢 Zaroori Jaankari</strong>
+          Booking confirm karne ke liye <strong id="adv-msg-amount">₹0</strong> advance online pay karein.<br>
+          Baaki payment driver ko trip ke time <strong>CASH</strong> mein dein.
+        </div>
+      </div>
+      <div class="upi-section show" id="upiSection" style="padding:0 16px 16px">
+        <div class="pay-amount-box">
+          <div class="pay-amount-lbl">Yeh Amount Pay Karein</div>
+          <div class="pay-amount-val" id="pay-upi-amount">₹0</div>
+        </div>
+        <div class="qr-box">
+          <div class="qr-img-wrap">
+            <img src="https://i.ibb.co/gMGk9mcr/Whats-App-Image-2026-05-18-at-6-10-29-AM.jpg" width="200" height="200" style="border-radius:8px;object-fit:contain;">
+          </div>
+          <div class="qr-upi-id">9536671722@okptaxis</div>
+          <div class="qr-upi-name">Bharat Sarthi</div>
+          <button class="copy-upi-btn" onclick="copyUPI()">📋 UPI ID Copy Karein</button>
+        </div>
+        <div class="upi-steps">
+          <div class="upi-step"><div class="step-num">1</div>GPay / PhonePe / Paytm kholo</div>
+          <div class="upi-step"><div class="step-num">2</div>QR scan karo ya UPI ID type karo</div>
+          <div class="upi-step"><div class="step-num">3</div>Sirf <strong id="step3-amount">₹0</strong> (advance) pay karo</div>
+          <div class="upi-step"><div class="step-num">4</div>Screenshot lo aur neeche upload karo</div>
+        </div>
+        <div class="screenshot-upload-box" id="screenshotUploadBox">
+          <div class="upload-ico">📷</div>
+          <div class="upload-title">Payment Screenshot Upload Karein</div>
+          <div class="upload-sub">JPG, PNG — Max 10MB</div>
+          <label class="upload-btn-label" for="screenshotInput">📂 File Choose Karein</label>
+          <input type="file" id="screenshotInput" accept="image/*" style="display:none" onchange="onScreenshotSelected(this)">
+          <img id="screenshotPreview" class="screenshot-preview" alt="Preview">
+          <div id="uploadFilename" class="upload-filename"></div>
+        </div>
+        <button class="btn btn-green btn-full" style="font-size:15px;padding:14px;margin-top:4px" onclick="submitPaymentProof()" id="submitProofBtn">
+          📤 Submit Payment Proof
+        </button>
+      </div>
     </div>
   </div>
-
-  <div class="ride-confirmed-banner" id="rideConfirmedBanner">
-    <span class="rc-emoji">✅</span>
-    <div class="rc-title">Ride Confirmed!</div>
-    <div class="rc-sub">Driver Se Contact kre 🚗</div>
-    <div class="rc-note">
-      Payment verify ho gayi hai.<br>
-      Baaki ₹<span id="rc-remaining">0</span> driver ko trip ke time CASH mein dein.
-    </div>
-  </div>
-
-  <div class="pay-card" id="payCard">
-    <div class="pay-card-head">💳 Advance Payment Karein</div>
-
-    <div style="padding:16px 16px 0">
-      <div class="advance-info-box">
-        <div class="adv-title">💰 Payment Breakdown</div>
-        <div class="advance-row">
-          <span class="advance-lbl">Total Kiraya</span>
-          <span class="advance-val" id="adv-total">₹0</span>
-        </div>
-        <div class="advance-row">
-          <span class="advance-lbl">Online Advance (15%)</span>
-          <span class="advance-val highlight" id="adv-advance">₹0</span>
-        </div>
-        <div class="advance-row">
-          <span class="advance-lbl">Driver ko Cash (Trip pe)</span>
-          <span class="advance-val cash" id="adv-remaining">₹0</span>
-        </div>
-      </div>
-
-      <div class="advance-msg">
-        <strong>📢 Zaroori Jaankari</strong>
-        Booking confirm karne ke liye <strong id="adv-msg-amount">₹0</strong> advance online pay karein.<br>
-        Baaki payment driver ko trip ke time <strong>CASH</strong> mein dein.
-      </div>
-    </div>
-
-    <div class="upi-section show" id="upiSection" style="padding:0 16px 16px">
-      <div class="pay-amount-box">
-        <div class="pay-amount-lbl">Yeh Amount Pay Karein</div>
-        <div class="pay-amount-val" id="pay-upi-amount">₹0</div>
-      </div>
-
-      <div class="qr-box">
-        <div class="qr-img-wrap">
-         <img src="https://i.ibb.co/gMGk9mcr/Whats-App-Image-2026-05-18-at-6-10-29-AM.jpg" width="200" height="200" style="border-radius:8px;object-fit:contain;">
-        </div>
-        <div class="qr-upi-id">9536671722@okptaxis</div>
-        <div class="qr-upi-name">Bharat Sarthi</div>
-        <button class="copy-upi-btn" onclick="copyUPI()">📋 UPI ID Copy Karein</button>
-      </div>
-
-      <div class="upi-steps">
-        <div class="upi-step"><div class="step-num">1</div>GPay / PhonePe / Paytm kholo</div>
-        <div class="upi-step"><div class="step-num">2</div>QR scan karo ya UPI ID type karo</div>
-        <div class="upi-step"><div class="step-num">3</div>Sirf <strong id="step3-amount">₹0</strong> (advance) pay karo</div>
-        <div class="upi-step"><div class="step-num">4</div>Screenshot lo aur neeche upload karo</div>
-      </div>
-
-      <div class="screenshot-upload-box" id="screenshotUploadBox">
-        <div class="upload-ico">📷</div>
-        <div class="upload-title">Payment Screenshot Upload Karein</div>
-        <div class="upload-sub">JPG, PNG — Max 10MB</div>
-        <label class="upload-btn-label" for="screenshotInput">📂 File Choose Karein</label>
-        <input type="file" id="screenshotInput" accept="image/*" style="display:none" onchange="onScreenshotSelected(this)">
-        <img id="screenshotPreview" class="screenshot-preview" alt="Preview">
-        <div id="uploadFilename" class="upload-filename"></div>
-      </div>
-
-      <button class="btn btn-green btn-full" style="font-size:15px;padding:14px;margin-top:4px" onclick="submitPaymentProof()" id="submitProofBtn">
-        📤 Submit Payment Proof
-      </button>
-    </div>
-
-  </div><!-- /payCard -->
-</div><!-- /paySection -->
-  
-  
 </div>
 
 <!-- ========== PAGE: DRIVER AUTH ========== -->
@@ -951,109 +874,56 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
     </div>
     <div class="tb-right"><button class="tb-ham" onclick="openSidebar()">☰</button></div>
   </div>
-
   <div class="pb">
-
     <div class="mb-loader" id="mb-loading" style="display:none">
       <div class="spinner"></div>
       <p>Booking dhundh rahe hain...</p>
     </div>
-
     <div class="mb-empty-state" id="mb-empty" style="display:none">
       <div class="me-ico">📋</div>
       <h3>Koi Active Booking Nahi Mili</h3>
-      <p>Abhi koi booking active nahi hai.<br>Naya driver book karein neeche se.</p>
+      <p>Abhi koi booking nahi hai.<br>Nayi booking karein!</p>
       <button class="btn btn-saffron" style="margin-top:20px;padding:13px 28px" onclick="goTo('pg-book')">
         👨‍✈️ Driver Book Karein
       </button>
     </div>
-
     <div class="mb-error-state" id="mb-error" style="display:none">
-      <div class="me-ico">⚠️</div>
+      <div style="font-size:48px;margin-bottom:12px">⚠️</div>
       <p>Booking load nahi ho payi.<br>Internet check karein ya dobara try karein.</p>
-      <button class="mb-refresh-btn" style="margin-top:16px" onclick="openMyBooking()">
-        🔄 Dobara Try Karein
-      </button>
+      <button class="mb-refresh-btn" style="margin-top:16px" onclick="openMyBooking()">🔄 Dobara Try Karein</button>
     </div>
-
     <div id="mb-content" style="display:none">
-
       <div class="mb-code-pill">
         <div class="mb-code-lbl">Booking ID</div>
         <div class="mb-code-val" id="mb-code">—</div>
       </div>
-
       <div style="text-align:center;margin-bottom:4px">
-        <span class="mb-status-badge mb-badge-pending" id="mb-status">—</span>
+        <span class="mb-status-badge" id="mb-status">—</span>
       </div>
-
       <div class="icard" style="margin-bottom:12px">
         <div class="icard-head">📋 Booking Details</div>
-        <div class="irow">
-          <div class="irow-ico">📍</div>
-          <div><div class="irow-lbl">Pickup</div><div class="irow-val" id="mb-pickup">—</div></div>
-        </div>
-        <div class="irow">
-          <div class="irow-ico">🏁</div>
-          <div><div class="irow-lbl">Drop</div><div class="irow-val" id="mb-drop">—</div></div>
-        </div>
-        <div class="irow">
-          <div class="irow-ico">📅</div>
-          <div><div class="irow-lbl">Start Date</div><div class="irow-val" id="mb-start">—</div></div>
-        </div>
-        <div class="irow">
-          <div class="irow-ico">📅</div>
-          <div><div class="irow-lbl">End Date</div><div class="irow-val" id="mb-end">—</div></div>
-        </div>
-        <div class="irow">
-          <div class="irow-ico">💰</div>
-          <div><div class="irow-lbl">Total Kiraya</div><div class="irow-val" id="mb-total">—</div></div>
-        </div>
-        <div class="irow">
-          <div class="irow-ico">💳</div>
-          <div><div class="irow-lbl">Payment Status</div><div class="irow-val" id="mb-pay-status">—</div></div>
-        </div>
+        <div class="irow"><div class="irow-ico">📍</div><div><div class="irow-lbl">Pickup</div><div class="irow-val" id="mb-pickup">—</div></div></div>
+        <div class="irow"><div class="irow-ico">🏁</div><div><div class="irow-lbl">Drop</div><div class="irow-val" id="mb-drop">—</div></div></div>
+        <div class="irow"><div class="irow-ico">📅</div><div><div class="irow-lbl">Start Date</div><div class="irow-val" id="mb-start">—</div></div></div>
+        <div class="irow"><div class="irow-ico">📅</div><div><div class="irow-lbl">End Date</div><div class="irow-val" id="mb-end">—</div></div></div>
+        <div class="irow"><div class="irow-ico">💰</div><div><div class="irow-lbl">Total Kiraya</div><div class="irow-val" id="mb-total">—</div></div></div>
+        <div class="irow"><div class="irow-ico">💳</div><div><div class="irow-lbl">Payment Status</div><div class="irow-val" id="mb-pay-status">—</div></div></div>
       </div>
-
       <div class="mb-driver-card" id="mb-driver-section" style="display:none">
         <div class="mdc-head">✅ Aapka Driver</div>
         <div style="text-align:center;padding:12px 0 6px">
-          <img id="mb-drv-photo" src="" alt="Driver"
-            style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--green);display:none;margin:0 auto 4px">
+          <img id="mb-drv-photo" src="" alt="Driver" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--green);display:none;margin:0 auto 4px">
           <div id="mb-drv-photo-placeholder" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-3));display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 4px">👨‍✈️</div>
         </div>
-        <div class="mb-driver-row">
-          <div class="mdr-ico">👨‍✈️</div>
-          <div>
-            <div class="mdr-lbl">Naam</div>
-            <div class="mdr-val" id="mb-drv-name">—</div>
-          </div>
-        </div>
-        <div class="mb-driver-row">
-          <div class="mdr-ico">📱</div>
-          <div>
-            <div class="mdr-lbl">Mobile</div>
-            <div class="mdr-val" id="mb-drv-mobile">—</div>
-          </div>
-        </div>
-        <div class="mb-driver-row">
-          <div class="mdr-ico">🪪</div>
-          <div>
-            <div class="mdr-lbl">Licence</div>
-            <div class="mdr-val" id="mb-drv-licence">—</div>
-          </div>
-        </div>
+        <div class="mb-driver-row"><div class="mdr-ico">👨‍✈️</div><div><div class="mdr-lbl">Naam</div><div class="mdr-val" id="mb-drv-name">—</div></div></div>
+        <div class="mb-driver-row"><div class="mdr-ico">📱</div><div><div class="mdr-lbl">Mobile</div><div class="mdr-val" id="mb-drv-mobile">—</div></div></div>
+        <div class="mb-driver-row"><div class="mdr-ico">🪪</div><div><div class="mdr-lbl">Licence</div><div class="mdr-val" id="mb-drv-licence">—</div></div></div>
       </div>
-
-      <button class="mb-refresh-btn" onclick="openMyBooking()">
-        🔄 Status Refresh Karein
+      <button class="mb-refresh-btn" onclick="openMyBooking()">🔄 Status Refresh Karein</button>
+      <button class="btn btn-navy btn-full" style="font-size:14px;padding:13px;margin-bottom:10px" onclick="resumeActiveBooking()">
+        ▶ Status Page Par Jaao
       </button>
-
-      <button class="btn btn-navy btn-full" style="font-size:14px;padding:13px" onclick="goToFullStatus()">
-        📄 Poori Booking Details Dekhein
-      </button>
-
-    </div><!-- /mb-content -->
+    </div>
   </div>
 </div>
 
@@ -1066,7 +936,7 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
         <h3 id="drvName">राजू भैया</h3>
         <p id="drvId">ID: DRV-0042 · ⭐ 4.8</p>
       </div>
-      <button class="drv-out" onclick="goTo('pg-home')">लॉगआउट</button>
+      <button class="drv-out" onclick="loggedInDriver=null;localStorage.removeItem('bs_driver');goTo('pg-home')">लॉगआउट</button>
     </div>
     <div class="online-row">
       <label class="tgl-wrap">
@@ -1084,33 +954,7 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
       <button class="dtab" onclick="dTab(this,'drv-history')">📋 पुरानी सवारी</button>
     </div>
     <div id="drv-new">
-      <div class="req-card">
-        <div class="req-head">
-          <span class="req-badge">🆕 नई</span>
-          <span class="req-time">2 मिनट पहले</span>
-        </div>
-        <div class="req-body">
-          <div class="route">
-            <div class="rpt"><div class="rdot from"></div><div class="rtxt"><h4>Connaught Place, Delhi</h4><p>यहाँ से उठाना है</p></div></div>
-            <div class="rline" style="margin-left:4.5px"></div>
-            <div class="rpt"><div class="rdot to"></div><div class="rtxt"><h4>Agra, Uttar Pradesh</h4><p>यहाँ पहुँचाना है</p></div></div>
-          </div>
-          <div class="chips">
-            <div class="chip">📅 कल, सुबह 8 बजे</div>
-            <div class="chip">📆 2 दिन</div>
-            <div class="chip">🚗 शहर से बाहर</div>
-          </div>
-          <div class="cust-strip">
-            <div class="cm">Rahul S.</div>
-            <div class="cl">📱 98765XXXXX</div>
-          </div>
-          <div class="req-btns">
-            <button class="btn btn-red-o" style="font-size:13px;padding:11px">❌ नहीं जाना</button>
-            <button class="btn btn-green" style="font-size:13px;padding:11px" onclick="acceptReq(this)">✅ मंजूर है</button>
-          </div>
-        </div>
-      </div>
-      <div class="empty" id="noReqMsg" style="display:none">
+      <div class="empty" id="noReqMsg">
         <div class="eico">🔔</div>
         <h3>अभी कोई नई सवारी नहीं</h3>
         <p>ऑनलाइन रहें, सवारी आने पर यहाँ दिखेगी</p>
@@ -1137,21 +981,20 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
   </div>
 </div>
 
-
-<!-- ========== RIDE COMPLETE POPUP ========== -->
+<!-- RIDE COMPLETE POPUP -->
 <div class="overlay" id="rideCompleteOverlay" style="z-index:700">
-  <div class="modal" style="max-width:320px;text-align:center">
+  <div class="modal" style="max-width:320px;text-align:center;padding:32px 24px">
     <div style="font-size:64px;margin-bottom:12px">✅</div>
     <h3 style="font-family:'Baloo 2';font-size:22px;font-weight:800;color:var(--green);margin-bottom:8px">Aapki Ride Complete Ho Gayi!</h3>
     <p style="font-size:14px;color:var(--text-2);margin-bottom:24px;line-height:1.6">Dhanyavaad! Aasha hai aapka safar accha raha. 🙏</p>
     <button class="btn btn-green btn-full" style="font-size:15px;padding:14px"
-      onclick="document.getElementById('rideCompleteOverlay').classList.remove('show'); goTo('pg-book')">
+      onclick="document.getElementById('rideCompleteOverlay').classList.remove('show'); clearAllBookingState(); goTo('pg-book')">
       🚗 Nayi Ride Book Karein
     </button>
   </div>
 </div>
 
-<!-- ========== FARE MODAL ========== -->
+<!-- FARE MODAL -->
 <div class="overlay" id="fareOverlay">
   <div class="modal">
     <div class="fare-head">
@@ -1162,22 +1005,10 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
       </div>
     </div>
     <div class="fare-body">
-      <div class="fare-row">
-        <span class="fare-lbl">👨‍✈️ Driver Rate</span>
-        <span class="fare-val" id="fm-drate">—</span>
-      </div>
-      <div class="fare-row">
-        <span class="fare-lbl">📆 Din ki Sankhya</span>
-        <span class="fare-val" id="fm-days">—</span>
-      </div>
-      <div class="fare-row">
-        <span class="fare-lbl">🚗 Safar Prakar</span>
-        <span class="fare-val" id="fm-type">—</span>
-      </div>
-      <div class="fare-row">
-        <span class="fare-lbl">🌙 Raat ka Bhatta</span>
-        <span class="fare-val" id="fm-night">—</span>
-      </div>
+      <div class="fare-row"><span class="fare-lbl">👨‍✈️ Driver Rate</span><span class="fare-val" id="fm-drate">—</span></div>
+      <div class="fare-row"><span class="fare-lbl">📆 Din ki Sankhya</span><span class="fare-val" id="fm-days">—</span></div>
+      <div class="fare-row"><span class="fare-lbl">🚗 Safar Prakar</span><span class="fare-val" id="fm-type">—</span></div>
+      <div class="fare-row"><span class="fare-lbl">🌙 Raat ka Bhatta</span><span class="fare-val" id="fm-night">—</span></div>
       <div class="fare-total">
         <div class="fare-total-lbl">Kul Driver Kiraya</div>
         <div class="fare-total-amt" id="fm-total">₹0</div>
@@ -1189,7 +1020,7 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
         ⛽ Petrol / Diesel / CNG ka kharcha bhi alag rahega.<br>
         🛣️ Toll aur parking bhi alag se deni hogi.
       </div>
-      <div class="fare-note">Yah sirf driver ki service ka estimate hai. Final kiraya booking confirm hone par tay hoga.</div>
+      <div class="fare-note">Yah sirf driver ki service ka estimate hai.</div>
       <div class="fare-btns">
         <button class="btn btn-outline" onclick="closeFare()">← Wapas</button>
         <button class="btn btn-green" onclick="confirmBooking()">✅ Confirm Karein</button>
@@ -1198,80 +1029,213 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
   </div>
 </div>
 
-<!-- ========== DRIVER ACCEPTED POPUP ========== -->
+<!-- DRIVER ACCEPTED POPUP -->
 <div class="overlay" id="drvAcceptedOverlay" style="z-index:600">
   <div class="modal" style="max-width:340px">
-
     <div class="drv-popup-head">
       <span class="dp-checkmark">✅</span>
       <h3>Driver Mil Gaya!</h3>
       <p>Aapki booking confirm ho gayi hai</p>
     </div>
-
     <div class="drv-popup-body">
-
-   <div class="drv-popup-dcard">
-  <div class="dpd-head">👨‍✈️ AAPKA DRIVER — Pehle Payment Karein</div>
-
-  <!-- Photo + Naam only -->
-  <div class="dpd-row" style="justify-content:center;padding:16px">
-    <div style="text-align:center">
-      <img id="popup-drvPhoto" src="" alt="Driver Photo"
-        style="width:80px;height:80px;border-radius:50%;object-fit:cover;
-               border:3px solid var(--green);display:none;margin:0 auto 8px">
-      <div id="popup-drvPhotoPlaceholder"
-        style="width:80px;height:80px;border-radius:50%;
-               background:linear-gradient(135deg,var(--navy),var(--navy-3));
-               display:flex;align-items:center;justify-content:center;
-               font-size:36px;margin:0 auto 8px">👨‍✈️</div>
-      <div id="popup-drvNameBadge"
-        style="font-family:'Baloo 2';font-size:15px;font-weight:700;color:var(--navy)">—</div>
-    </div>
-  </div>
-
-  <!-- Hidden spans — JS data store karne ke liye -->
-  <span id="popup-drvName"    style="display:none">—</span>
-  <span id="popup-drvMobile"  style="display:none">—</span>
-  <span id="popup-drvLicence" style="display:none">—</span>
-  <span id="popup-drvVehicle" style="display:none">—</span>
-
-  <!-- Notice -->
- <!-- Notice -->
-  <div style="background:#FFF3E9;border-radius:10px;padding:10px 14px;
-              margin:0 14px 14px;font-size:12.5px;color:#7A3200;
-              text-align:center;line-height:1.6">
-    🔒 App ka Driver Mil Gya hai <br> Payment verify kre
-  </div>
-</div>
-
+      <div class="drv-popup-dcard">
+        <div class="dpd-head">👨‍✈️ AAPKA DRIVER — Pehle Payment Karein</div>
+        <div class="dpd-row" style="justify-content:center;padding:16px">
+          <div style="text-align:center">
+            <img id="popup-drvPhoto" src="" alt="" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--green);display:none;margin:0 auto 8px">
+            <div id="popup-drvPhotoPlaceholder" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-3));display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 8px">👨‍✈️</div>
+            <div id="popup-drvNameBadge" style="font-family:'Baloo 2';font-size:15px;font-weight:700;color:var(--navy)">—</div>
+          </div>
+        </div>
+        <span id="popup-drvName" style="display:none">—</span>
+        <span id="popup-drvMobile" style="display:none">—</span>
+        <span id="popup-drvLicence" style="display:none">—</span>
+        <span id="popup-drvVehicle" style="display:none">—</span>
+        <div style="background:#FFF3E9;border-radius:10px;padding:10px 14px;margin:0 14px 14px;font-size:12.5px;color:#7A3200;text-align:center;line-height:1.6">
+          🔒 Driver details payment verify hone ke baad milegi
+        </div>
+      </div>
       <div style="padding:0 20px 20px">
         <button class="btn btn-green btn-full" style="font-size:15px;padding:14px"
           onclick="document.getElementById('drvAcceptedOverlay').classList.remove('show'); onDriverAcceptedOK()">
           💳 Aage Badho — Payment Karein
         </button>
       </div>
-
+    </div>
   </div>
 </div>
-</div>
- 
 
 <script>
+/* =========================================================
+   BHARAT SARTHI v2.2 — Full Session Restore System
+   
+   STATE MACHINE (localStorage):
+     bs_bookingSession = {
+       bookingId,          // always
+       status,             // PENDING | ACCEPTED | SCREENSHOT_UPLOADED | CONFIRMED | COMPLETED
+       pickup, drop,       // route info (for display on home card)
+       name,               // customer name
+       grandTotal,         // fare
+       days,
+       time,
+       savedAt             // timestamp
+     }
+   
+   KEY RULE:
+     - bs_confirmedBookingId = set ONLY when paymentStatus === 'VERIFIED'
+     - bs_pendingBookingId   = set when booking created, cleared on confirm
+     - bs_bookingSession     = comprehensive session state, always updated
+   
+   RESTORE LOGIC on app open:
+     1. Check bs_bookingSession
+     2. If exists and not COMPLETED/CANCELLED → show restore splash
+     3. Fetch latest status from server
+     4. Resume correct screen
+========================================================= */
+
 const API = window.location.origin;
 let days = 1;
 let currentFareData = {};
 let loggedInDriver = null;
 let currentBookingId = null;
 let statusPollingInterval = null;
+let verifyPollingInterval = null;
+let _sessionRestoredThisSession = false;
 
-// ---- Navigation ----
+// ============================================================
+// SESSION STATE MANAGER
+// Single source of truth for booking state
+// ============================================================
+const SESSION_KEY = 'bs_bookingSession';
+
+function saveSession(patch) {
+  let session = getSession() || {};
+  session = Object.assign(session, patch, { savedAt: Date.now() });
+  try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch(e) {}
+}
+
+function getSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+function clearSession() {
+  localStorage.removeItem(SESSION_KEY);
+  localStorage.removeItem('bs_pendingBookingId');
+  localStorage.removeItem('bs_confirmedBookingId');
+  localStorage.removeItem('bs_bookingFare');
+}
+
+function clearAllBookingState() {
+  clearSession();
+  updateHomeResumeCard(null);
+  updateSidebarDot(false);
+}
+
+function isSessionActive(session) {
+  if (!session || !session.bookingId) return false;
+  const inactive = ['COMPLETED','CANCELLED'];
+  return !inactive.includes(session.status);
+}
+
+// ============================================================
+// HOME RESUME CARD
+// ============================================================
+function updateHomeResumeCard(session) {
+  const card = document.getElementById('homeResumeCard');
+  if (!card) return;
+  if (!session || !isSessionActive(session)) {
+    card.style.display = 'none';
+    updateSidebarDot(false);
+    return;
+  }
+  card.style.display = 'block';
+  document.getElementById('hrc-code').textContent = session.bookingId || '—';
+  document.getElementById('hrc-route').textContent = [session.pickup, session.drop].filter(Boolean).join(' → ') || '—';
+
+  const stateEl = document.getElementById('hrc-state');
+  switch(session.status) {
+    case 'PENDING':
+      stateEl.textContent = '⏳ Driver dhundh raha hai...'; break;
+    case 'ACCEPTED':
+      stateEl.textContent = '✅ Driver mila! Payment baaki hai'; break;
+    case 'SCREENSHOT_UPLOADED':
+      stateEl.textContent = '📋 Screenshot verify ho raha hai...'; break;
+    case 'CONFIRMED':
+      stateEl.textContent = '🎉 Ride confirmed! Driver ready hai'; break;
+    default:
+      stateEl.textContent = '🚗 Active booking'; break;
+  }
+  updateSidebarDot(true);
+}
+
+function updateSidebarDot(show) {
+  const dot = document.getElementById('sb-booking-dot');
+  if (dot) dot.style.display = show ? 'block' : 'none';
+}
+
+// ============================================================
+// RESUME TOAST (bottom notification)
+// ============================================================
+let _toastTimeout;
+function showResumeToast(session) {
+  if (!session) return;
+  const toast = document.getElementById('resumeToast');
+  const ico = document.getElementById('rt-ico');
+  const title = document.getElementById('rt-title');
+  const sub = document.getElementById('rt-sub');
+
+  ico.textContent = session.status === 'CONFIRMED' ? '✅' : session.status === 'SCREENSHOT_UPLOADED' ? '⏳' : '🚗';
+  title.textContent = 'Active Booking: ' + (session.bookingId || '—');
+  sub.textContent = session.status === 'PENDING' ? 'Driver dhundh raha hai — tap to track' :
+                    session.status === 'ACCEPTED' ? 'Driver mila! Payment complete karein' :
+                    session.status === 'SCREENSHOT_UPLOADED' ? 'Payment verify ho raha hai' :
+                    'Ride confirmed! Driver ready';
+
+  toast.classList.add('show');
+  clearTimeout(_toastTimeout);
+  _toastTimeout = setTimeout(() => toast.classList.remove('show'), 8000);
+}
+
+function resumeFromToast() {
+  document.getElementById('resumeToast').classList.remove('show');
+  resumeActiveBooking();
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
 function goTo(id) {
+  // Driver session check
+  if (id === 'pg-drv-dash') {
+    if (!loggedInDriver) {
+      const saved = localStorage.getItem('bs_driver');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.driverId && parsed.name) {
+            loggedInDriver = parsed;
+          } else {
+            localStorage.removeItem('bs_driver');
+            id = 'pg-drv-auth';
+          }
+        } catch(e) { localStorage.removeItem('bs_driver'); id = 'pg-drv-auth'; }
+      } else { id = 'pg-drv-auth'; }
+    }
+    if (loggedInDriver && id === 'pg-drv-dash') {
+      document.getElementById('drvName').textContent = loggedInDriver.name;
+      document.getElementById('drvId').textContent = 'ID: ' + loggedInDriver.driverId;
+      loadPendingBookings();
+    }
+  }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
   window.scrollTo(0, 0);
 }
 
-// ---- Sidebar ----
 function openSidebar() {
   document.getElementById('sidebar').classList.add('open');
   document.getElementById('sbOverlay').classList.add('show');
@@ -1280,14 +1244,248 @@ function closeSidebar() {
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sbOverlay').classList.remove('show');
 }
-
-// ---- Days counter ----
 function changeDays(d) {
   days = Math.max(1, Math.min(30, days + d));
   document.getElementById('daysNum').textContent = days;
 }
 
-// ---- Fare Rates ----
+// ============================================================
+// APP RESTORE — main entry point
+// ============================================================
+async function checkAndRestoreSession() {
+  // Check driver session first
+  const savedDriver = localStorage.getItem('bs_driver');
+  if (savedDriver) {
+    try {
+      const parsed = JSON.parse(savedDriver);
+      if (parsed && parsed.driverId) {
+        loggedInDriver = parsed;
+        dismissRestore();
+        document.getElementById('drvName').textContent = loggedInDriver.name;
+        document.getElementById('drvId').textContent = 'ID: ' + loggedInDriver.driverId;
+        goTo('pg-drv-dash');
+        loadPendingBookings();
+        return;
+      }
+    } catch(e) { localStorage.removeItem('bs_driver'); }
+  }
+
+  const session = getSession();
+
+  if (!isSessionActive(session)) {
+    // No active session — go to home normally
+    if (session && !isSessionActive(session)) {
+      clearSession(); // cleanup stale
+    }
+    dismissRestore();
+    goTo('pg-home');
+    return;
+  }
+
+  // We have an active session!
+  // Show restore splash with booking info
+  document.getElementById('restore-spinner').style.display = 'block';
+  document.getElementById('restore-msg').textContent = 'Aapki booking dhundh rahe hain...';
+  document.getElementById('restore-card').style.display = 'none';
+  document.getElementById('restore-btns').style.display = 'none';
+
+  // Fetch latest status from server
+  try {
+    const res = await fetch(`${API}/api/bookings/${session.bookingId}`);
+    if (!res.ok) throw new Error('not found');
+    const data = await res.json();
+
+    // Update session with latest server state
+    let serverStatus = data.status;
+    if (data.status === 'ACCEPTED' && data.paymentStatus === 'VERIFIED') serverStatus = 'CONFIRMED';
+    else if (data.status === 'ACCEPTED' && data.paymentStatus === 'SCREENSHOT_UPLOADED') serverStatus = 'SCREENSHOT_UPLOADED';
+    else if (data.status === 'ACCEPTED') serverStatus = 'ACCEPTED';
+
+    if (data.status === 'COMPLETED' || data.status === 'CANCELLED') {
+      clearSession();
+      dismissRestore();
+      goTo('pg-home');
+      return;
+    }
+
+    saveSession({ status: serverStatus });
+
+    // Show restore card with latest info
+    document.getElementById('restore-spinner').style.display = 'none';
+    document.getElementById('restore-code').textContent = session.bookingId;
+    document.getElementById('restore-state').textContent =
+      serverStatus === 'PENDING' ? '⏳ Driver ka intezaar hai...' :
+      serverStatus === 'ACCEPTED' ? '✅ Driver mila — payment baaki' :
+      serverStatus === 'SCREENSHOT_UPLOADED' ? '📋 Payment verify ho raha hai' :
+      serverStatus === 'CONFIRMED' ? '🎉 Ride confirmed!' : serverStatus;
+    document.getElementById('restore-card').style.display = 'block';
+    document.getElementById('restore-msg').textContent = 'Kya aap wahan se jaari rakhna chahte hain?';
+
+    const continueBtn = document.getElementById('restore-continue-btn');
+    continueBtn.textContent =
+      serverStatus === 'PENDING' ? '▶ Driver Dhundhna Jaari Rakho' :
+      serverStatus === 'ACCEPTED' ? '💳 Payment Karein' :
+      serverStatus === 'SCREENSHOT_UPLOADED' ? '⏳ Verification Status Dekho' :
+      '🚗 Ride Status Dekho';
+
+    document.getElementById('restore-btns').style.display = 'flex';
+
+    continueBtn.onclick = () => {
+      dismissRestore();
+      _sessionRestoredThisSession = true;
+      doResumeBooking(session.bookingId, serverStatus, data, session);
+    };
+
+  } catch(e) {
+    // Server not reachable — still show option to continue from local state
+    document.getElementById('restore-spinner').style.display = 'none';
+    document.getElementById('restore-code').textContent = session.bookingId;
+    document.getElementById('restore-state').textContent = '⚠️ Server se connect nahi ho paya';
+    document.getElementById('restore-card').style.display = 'block';
+    document.getElementById('restore-msg').textContent = 'Internet check karein. Last known state restore karein?';
+
+    const continueBtn = document.getElementById('restore-continue-btn');
+    continueBtn.textContent = '▶ Last State Se Shuru Karein';
+    document.getElementById('restore-btns').style.display = 'flex';
+
+    continueBtn.onclick = () => {
+      dismissRestore();
+      _sessionRestoredThisSession = true;
+      doResumeBooking(session.bookingId, session.status, null, session);
+    };
+  }
+}
+
+function dismissRestore() {
+  const pg = document.getElementById('pg-restore');
+  pg.classList.remove('active');
+  pg.style.display = 'none';
+}
+
+// ============================================================
+// CORE RESUME — restores the correct screen based on state
+// Called both from splash and from home resume card
+// ============================================================
+async function resumeActiveBooking() {
+  const session = getSession();
+  if (!session || !isSessionActive(session)) {
+    goTo('pg-book');
+    return;
+  }
+
+  // If server reachable, fetch fresh state
+  try {
+    const res = await fetch(`${API}/api/bookings/${session.bookingId}`);
+    const data = res.ok ? await res.json() : null;
+
+    if (data) {
+      let serverStatus = data.status;
+      if (data.status === 'ACCEPTED' && data.paymentStatus === 'VERIFIED') serverStatus = 'CONFIRMED';
+      else if (data.status === 'ACCEPTED' && data.paymentStatus === 'SCREENSHOT_UPLOADED') serverStatus = 'SCREENSHOT_UPLOADED';
+      else if (data.status === 'ACCEPTED') serverStatus = 'ACCEPTED';
+      saveSession({ status: serverStatus });
+      doResumeBooking(session.bookingId, serverStatus, data, session);
+    } else {
+      doResumeBooking(session.bookingId, session.status, null, session);
+    }
+  } catch(e) {
+    doResumeBooking(session.bookingId, session.status, null, session);
+  }
+}
+
+function doResumeBooking(bookingId, status, serverData, session) {
+  currentBookingId = bookingId;
+
+  // Restore fare data from session
+  if (session) {
+    currentFareData = {
+      grandTotal: session.grandTotal || 0,
+      days: session.days || 1,
+      name: session.name || '',
+      time: session.time || '',
+      pickup: session.pickup || '',
+      drop: session.drop || ''
+    };
+  }
+
+  // Populate status page fields
+  document.getElementById('bookingCode').textContent = bookingId;
+  document.getElementById('s-name').textContent = session?.name || '—';
+  document.getElementById('s-pickup').textContent = session?.pickup || serverData?.pickupLocation || '—';
+  document.getElementById('s-drop').textContent = session?.drop || serverData?.dropLocation || '—';
+  document.getElementById('s-dt').textContent = (serverData?.startDate || '') + (session?.time ? ' at ' + session.time : '');
+  document.getElementById('s-days').textContent = (session?.days || 1) + ' din';
+  if (currentFareData.grandTotal) {
+    document.getElementById('s-fare').textContent = '₹' + currentFareData.grandTotal.toLocaleString('en-IN');
+  }
+
+  // Show session restored badge
+  if (_sessionRestoredThisSession) {
+    const badge = document.getElementById('sessionRestoredBadge');
+    if (badge) badge.style.display = 'flex';
+  }
+
+  // Now restore the correct UI state
+  resetStatusPageUI();
+
+  if (status === 'PENDING') {
+    // Still waiting for driver
+    goTo('pg-status');
+    startStatusPolling(bookingId);
+
+  } else if (status === 'ACCEPTED') {
+    // Driver accepted, payment not yet done
+    goTo('pg-status');
+    showStatusDriverAssignedLocked();
+    initPaymentSection();
+    document.getElementById('paySection').classList.add('show');
+
+  } else if (status === 'SCREENSHOT_UPLOADED') {
+    // Screenshot submitted, waiting admin verification
+    goTo('pg-status');
+    showStatusDriverAssignedLocked();
+    document.getElementById('cancelBtn').style.display = 'none';
+    initPaymentSection();
+    document.getElementById('paySection').classList.add('show');
+    document.getElementById('payCard').style.display = 'none';
+    document.getElementById('pendingVerifyBanner').classList.add('show');
+    startPollingForVerification();
+
+  } else if (status === 'CONFIRMED') {
+    // Payment verified — full details available
+    goTo('pg-status');
+    if (serverData && serverData.driver) {
+      showRideConfirmed(serverData);
+    } else {
+      // Show partial confirmed state
+      const banner = document.getElementById('statusBanner');
+      banner.className = 'sbanner confirmed';
+      document.getElementById('statusSpinner').style.display = 'none';
+      document.getElementById('statusTitle').textContent = '🚗 Ride Confirmed!';
+      document.getElementById('statusMsg').textContent = 'Driver Se contact kre. Shubh Yatra! 🙏';
+      document.getElementById('cancelBtn').style.display = 'none';
+      document.getElementById('driverLockedBox').style.display = 'none';
+      document.getElementById('paySection').classList.add('show');
+      document.getElementById('payCard').style.display = 'none';
+      document.getElementById('rideConfirmedBanner').classList.add('show');
+    }
+  }
+}
+
+function showStatusDriverAssignedLocked() {
+  const banner = document.getElementById('statusBanner');
+  banner.className = 'sbanner pending-payment';
+  document.getElementById('statusSpinner').style.display = 'none';
+  document.getElementById('statusTitle').textContent = '💳 Payment Karein';
+  document.getElementById('statusMsg').textContent = 'Driver assign ho gaya. Payment ke baad details milegi 👇';
+  document.getElementById('cancelBtn').style.display = 'none';
+  document.getElementById('driverLockedBox').style.display = 'block';
+  document.getElementById('drvConfirmedCard').classList.remove('show');
+}
+
+// ============================================================
+// FARE CALCULATION
+// ============================================================
 const DRIVER_RATES = {
   local:      { label: 'Sheher ke andar (Local)',      dayRate: 1000, nightAllowance: 0 },
   outstation: { label: 'Outstation (Sheher se bahar)', dayRate: 1000, nightAllowance: 0 },
@@ -1295,7 +1493,6 @@ const DRIVER_RATES = {
   hills:      { label: 'Pahad / Hill Station',          dayRate: 1000, nightAllowance: 0 },
 };
 
-// ---- Fare Calculate ----
 function calculateFare() {
   let valid = true;
   function chk(id, errId, test) {
@@ -1314,28 +1511,26 @@ function calculateFare() {
   const tripType = document.getElementById('tripType').value;
   const rate = DRIVER_RATES[tripType];
   const nightTotal = days * rate.nightAllowance;
-  const baseTotal  = rate.dayRate * days;
+  const baseTotal = rate.dayRate * days;
   const grandTotal = baseTotal + nightTotal;
 
   currentFareData = {
-    name:         document.getElementById('custName').value.trim(),
-    phone:        document.getElementById('custPhone').value.trim(),
-    pickup:       document.getElementById('pickup').value.trim(),
-    drop:         document.getElementById('drop').value.trim(),
-    date:         document.getElementById('tripDate').value,
-    time:         document.getElementById('tripTime').value,
-    days, tripType,
-    driverDayRate: rate.dayRate, nightTotal, grandTotal,
-    tripLabel: rate.label,
+    name: document.getElementById('custName').value.trim(),
+    phone: document.getElementById('custPhone').value.trim(),
+    pickup: document.getElementById('pickup').value.trim(),
+    drop: document.getElementById('drop').value.trim(),
+    date: document.getElementById('tripDate').value,
+    time: document.getElementById('tripTime').value,
+    days, tripType, driverDayRate: rate.dayRate, nightTotal, grandTotal, tripLabel: rate.label,
   };
 
   document.getElementById('fm-pickup').textContent = currentFareData.pickup || '—';
-  document.getElementById('fm-drop').textContent   = currentFareData.drop   || '—';
-  document.getElementById('fm-drate').textContent  = '₹' + rate.dayRate + '/din';
-  document.getElementById('fm-days').textContent   = days + ' din';
-  document.getElementById('fm-type').textContent   = rate.label;
-  document.getElementById('fm-night').textContent  = 'Food or Night Alag Se';
-  document.getElementById('fm-total').textContent  = '₹' + grandTotal.toLocaleString('en-IN');
+  document.getElementById('fm-drop').textContent = currentFareData.drop || '—';
+  document.getElementById('fm-drate').textContent = '₹' + rate.dayRate + '/din';
+  document.getElementById('fm-days').textContent = days + ' din';
+  document.getElementById('fm-type').textContent = rate.label;
+  document.getElementById('fm-night').textContent = 'Food or Night Alag Se';
+  document.getElementById('fm-total').textContent = '₹' + grandTotal.toLocaleString('en-IN');
   document.getElementById('fareOverlay').classList.add('show');
 }
 
@@ -1343,7 +1538,9 @@ function closeFare() {
   document.getElementById('fareOverlay').classList.remove('show');
 }
 
-// ---- Booking Confirm ----
+// ============================================================
+// CONFIRM BOOKING
+// ============================================================
 async function confirmBooking() {
   closeFare();
 
@@ -1352,15 +1549,12 @@ async function confirmBooking() {
   endObj.setDate(endObj.getDate() + (currentFareData.days - 1));
   const endDate = endObj.toISOString().split('T')[0];
 
- const customerToken = localStorage.getItem("fcmToken");
-
   const payload = {
     pickupLocation: currentFareData.pickup,
-    dropLocation:   currentFareData.drop,
-    startDate,
-    endDate,
+    dropLocation: currentFareData.drop,
+    startDate, endDate,
     customerMobile: currentFareData.phone,
-    customerFcmToken: customerToken
+    customerFcmToken: localStorage.getItem("fcmToken")
   };
 
   try {
@@ -1369,142 +1563,127 @@ async function confirmBooking() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-
-    if (!res.ok) {
-      const err = await res.json();
-      alert('Booking fail hui: ' + (err.error || 'Unknown error'));
-      return;
-    }
+    if (!res.ok) { const err = await res.json(); alert('Booking fail hui: ' + (err.error || 'Unknown error')); return; }
 
     const data = await res.json();
     currentBookingId = data.id;
 
-    localStorage.setItem('bs_bookingId', data.id);
-    localStorage.setItem('bs_bookingFare', JSON.stringify({
-      name: currentFareData.name || '',
-      grandTotal: currentFareData.grandTotal || 0,
-      days: currentFareData.days || 1,
-      time: currentFareData.time || ''
-    }));
+    // Save comprehensive session
+    saveSession({
+      bookingId: data.id,
+      status: 'PENDING',
+      pickup: currentFareData.pickup,
+      drop: currentFareData.drop,
+      name: currentFareData.name,
+      grandTotal: currentFareData.grandTotal,
+      days: currentFareData.days,
+      time: currentFareData.time,
+    });
+    localStorage.setItem('bs_pendingBookingId', data.id);
+    localStorage.removeItem('bs_confirmedBookingId');
 
+    // Populate status page
     document.getElementById('bookingCode').textContent = data.id;
-    document.getElementById('s-name').textContent      = currentFareData.name || '—';
-    document.getElementById('s-pickup').textContent    = data.pickupLocation;
-    document.getElementById('s-drop').textContent      = data.dropLocation;
-    document.getElementById('s-dt').textContent        = startDate + (currentFareData.time ? ' at ' + currentFareData.time : '');
-    document.getElementById('s-days').textContent      = currentFareData.days + ' din';
-    document.getElementById('s-fare').textContent      = '₹' + currentFareData.grandTotal.toLocaleString('en-IN') + ' (estimate)';
+    document.getElementById('s-name').textContent = currentFareData.name || '—';
+    document.getElementById('s-pickup').textContent = data.pickupLocation;
+    document.getElementById('s-drop').textContent = data.dropLocation;
+    document.getElementById('s-dt').textContent = startDate + (currentFareData.time ? ' at ' + currentFareData.time : '');
+    document.getElementById('s-days').textContent = currentFareData.days + ' din';
+    document.getElementById('s-fare').textContent = '₹' + currentFareData.grandTotal.toLocaleString('en-IN') + ' (estimate)';
 
+    resetStatusPageUI();
+    updateHomeResumeCard(getSession());
     goTo('pg-status');
     startStatusPolling(data.id);
 
-  } catch (e) {
+  } catch(e) {
     alert('Server se connect nahi ho pa raha. Spring Boot chal raha hai?');
   }
 }
 
-// ---- Status Polling ----
+function resetStatusPageUI() {
+  const banner = document.getElementById('statusBanner');
+  banner.className = 'sbanner waiting';
+  document.getElementById('statusSpinner').style.display = '';
+  document.getElementById('statusTitle').textContent = 'Driver Dhundh Rahe Hain...';
+  document.getElementById('statusMsg').textContent = 'Aapki request send ho gayi hai. Thoda intezaar karein.';
+  document.getElementById('cancelBtn').style.display = '';
+  document.getElementById('driverLockedBox').style.display = 'none';
+  document.getElementById('drvConfirmedCard').classList.remove('show');
+  document.getElementById('paySection').classList.remove('show');
+  document.getElementById('pendingVerifyBanner').classList.remove('show');
+  document.getElementById('rideConfirmedBanner').classList.remove('show');
+  document.getElementById('payCard').style.display = '';
+  document.getElementById('sessionRestoredBadge').style.display = 'none';
+  const revealCard = document.getElementById('driverRevealCard');
+  if (revealCard) revealCard.remove();
+}
+
+// ============================================================
+// STATUS POLLING
+// ============================================================
 function startStatusPolling(bookingId) {
   if (statusPollingInterval) clearInterval(statusPollingInterval);
-
   statusPollingInterval = setInterval(async () => {
     try {
-      const res  = await fetch(`${API}/api/bookings/${bookingId}`);
+      const res = await fetch(`${API}/api/bookings/${bookingId}`);
       const data = await res.json();
-
-     if (data.status === 'ACCEPTED' && data.driver) {
-        clearInterval(statusPollingInterval);
-        statusPollingInterval = null;
+      if (data.status === 'ACCEPTED' && data.driver) {
+        clearInterval(statusPollingInterval); statusPollingInterval = null;
+        saveSession({ status: 'ACCEPTED' });
+        updateHomeResumeCard(getSession());
         showDriverAcceptedPopup(data.driver);
       }
-
       if (data.status === 'COMPLETED') {
-        clearInterval(statusPollingInterval);
-        statusPollingInterval = null;
-        localStorage.removeItem('bs_bookingId');
-        localStorage.removeItem('bs_bookingFare');
+        clearInterval(statusPollingInterval); statusPollingInterval = null;
+        clearAllBookingState();
         showRideCompletePopup();
       }
-    } catch (e) {
-      console.warn('Polling error:', e);
-    }
+    } catch(e) { console.warn('Polling error:', e); }
   }, 5000);
 }
 
-// ---- Driver Accepted Popup ----
+// ============================================================
+// DRIVER ACCEPTED POPUP
+// ============================================================
 function showDriverAcceptedPopup(driver) {
-  // Data save karo hidden spans mein — payment ke baad kaam aayega
-  document.getElementById('popup-drvName').textContent    = driver.name    || '—';
-  document.getElementById('popup-drvMobile').textContent  = driver.mobile  || driver.phone || '—';
+  document.getElementById('popup-drvName').textContent = driver.name || '—';
+  document.getElementById('popup-drvMobile').textContent = driver.mobile || driver.phone || '—';
   document.getElementById('popup-drvLicence').textContent = driver.licenceNumber || driver.licence || driver.driverId || '—';
-  document.getElementById('popup-drvVehicle').textContent = driver.vehicle || driver.vehicleNumber || 'Uplabdh nahi';
-
-  // Naam badge update karo
+  document.getElementById('popup-drvVehicle').textContent = driver.vehicle || 'Uplabdh nahi';
   const nameBadge = document.getElementById('popup-drvNameBadge');
   if (nameBadge) nameBadge.textContent = driver.name || 'Driver';
-
-  // Photo dikhao agar available ho
-  const photoEl     = document.getElementById('popup-drvPhoto');
+  const photoEl = document.getElementById('popup-drvPhoto');
   const placeholder = document.getElementById('popup-drvPhotoPlaceholder');
-  const photoUrl    = driver.photoUrl ||
-    (driver.driverId ? `${API}/api/drivers/${driver.driverId}/photo` : null);
-
+  const photoUrl = driver.photoUrl || (driver.driverId ? `${API}/api/drivers/${driver.driverId}/photo` : null);
   if (photoEl && photoUrl) {
-    photoEl.src = photoUrl;
-    photoEl.style.display = 'block';
+    photoEl.src = photoUrl; photoEl.style.display = 'block';
     if (placeholder) placeholder.style.display = 'none';
-    photoEl.onerror = () => {
-      photoEl.style.display = 'none';
-      if (placeholder) placeholder.style.display = 'flex';
-    };
+    photoEl.onerror = () => { photoEl.style.display = 'none'; if (placeholder) placeholder.style.display = 'flex'; };
   } else {
     if (photoEl) photoEl.style.display = 'none';
     if (placeholder) placeholder.style.display = 'flex';
   }
-
   document.getElementById('drvAcceptedOverlay').classList.add('show');
 }
 
-// ---- OK Button ----
 function onDriverAcceptedOK() {
-
-
-
-
-
- // Driver card — sirf tab update karo jab element exist kare
-  const scName    = document.getElementById('sc-drvName');
-  const scMobile  = document.getElementById('sc-drvMobile');
-  const scLicence = document.getElementById('sc-drvLicence');
-  const drvCard   = document.getElementById('drvConfirmedCard');
-
-  const banner = document.getElementById('statusBanner');
-  banner.classList.remove('waiting');
-  banner.classList.add('accepted');
-  const spinner = document.getElementById('statusSpinner');
-  if (spinner) spinner.style.display = 'none';
-  document.getElementById('statusTitle').textContent = '✅ Driver Assign Ho Gaya!';
-  document.getElementById('statusMsg').textContent   = 'Ab payment complete karein neeche 👇';
-
-  
-  const cancelBtn = document.getElementById('cancelBtn');
-  if (cancelBtn) cancelBtn.style.display = 'none';
-
+  showStatusDriverAssignedLocked();
   initPaymentSection();
-
   document.getElementById('paySection').classList.add('show');
   setTimeout(() => {
-    document.getElementById('paySection')
-      .scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('paySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 350);
 }
 
-// ---- Auth Tab ----
+// ============================================================
+// AUTH
+// ============================================================
 function switchAuthTab(tab) {
   document.getElementById('auth-login').style.display = tab === 'login' ? '' : 'none';
-  document.getElementById('auth-reg').style.display   = tab === 'reg'   ? '' : 'none';
+  document.getElementById('auth-reg').style.display = tab === 'reg' ? '' : 'none';
   document.getElementById('tab-login').classList.toggle('active', tab === 'login');
-  document.getElementById('tab-reg').classList.toggle('active',   tab === 'reg');
+  document.getElementById('tab-reg').classList.toggle('active', tab === 'reg');
 }
 
 function togglePw(id) {
@@ -1512,177 +1691,87 @@ function togglePw(id) {
   el.type = el.type === 'password' ? 'text' : 'password';
 }
 
-// ---- Driver Login ----
 async function driverLogin() {
   const username = document.getElementById('loginPhone').value.trim();
   const pw = document.getElementById('loginPw').value;
-
-  if (!username || !pw) {
-    alert('मोबाइल नंबर और पासवर्ड डालें।');
-    return;
-  }
-
+  if (!username || !pw) { alert('मोबाइल नंबर और पासवर्ड डालें।'); return; }
   try {
-
     const res = await fetch(`${API}/api/drivers/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username,
-        password: pw
-      })
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password: pw, fcmToken: localStorage.getItem("fcmToken") })
     });
-
-    if (!res.ok) {
-      const err = await res.json();
-      alert('लॉगिन नहीं हुआ: ' + (err.error || 'गलत नंबर या पासवर्ड'));
-      return;
-    }
-
+    if (!res.ok) { const err = await res.json(); alert('लॉगिन नहीं हुआ: ' + (err.error || 'गलत नंबर या पासवर्ड')); return; }
     loggedInDriver = await res.json();
-
-    const fcmToken = localStorage.getItem("fcmToken");
-
-    await fetch(`${API}/api/drivers/save-token`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        driverId: loggedInDriver.driverId,
-        token: fcmToken
-      })
-    });
-
+    localStorage.setItem('bs_driver', JSON.stringify(loggedInDriver));
     document.getElementById('drvName').textContent = loggedInDriver.name;
     document.getElementById('drvId').textContent = 'ID: ' + loggedInDriver.driverId;
-
-    goTo('pg-drv-dash');
-
-    loadPendingBookings();
-
-  } catch (e) {
-    alert('सर्वर से जुड़ नहीं पाया।');
-  }
+    goTo('pg-drv-dash'); loadPendingBookings();
+  } catch(e) { alert('सर्वर से जुड़ नहीं पाया।'); }
 }
 
-// ---- Driver Register Photo Preview ----
 function onRegPhotoSelected(input) {
   const file = input.files[0];
   if (!file) return;
   const wrap = document.getElementById('regPhotoPreviewWrap');
-  const img  = document.getElementById('regPhotoPreview');
+  const img = document.getElementById('regPhotoPreview');
   const name = document.getElementById('regPhotoName');
   const label = document.getElementById('regPhotoLabel');
   img.src = URL.createObjectURL(file);
   name.textContent = '✅ ' + file.name;
-  wrap.style.display = 'flex';
-  wrap.style.alignItems = 'center';
-  wrap.style.gap = '10px';
-  label.style.borderColor = 'var(--green)';
-  label.style.background = 'var(--green-bg)';
+  wrap.style.display = 'flex'; wrap.style.alignItems = 'center'; wrap.style.gap = '10px';
+  label.style.borderColor = 'var(--green)'; label.style.background = 'var(--green-bg)';
 }
 
-// ---- Driver Register ----
 async function driverRegister() {
-  const name    = document.getElementById('regName').value.trim();
-  const mobile  = document.getElementById('regPhone').value.trim();
-  const pw      = document.getElementById('regPw').value;
+  const name = document.getElementById('regName').value.trim();
+  const mobile = document.getElementById('regPhone').value.trim();
+  const pw = document.getElementById('regPw').value;
   const licenceNo = document.getElementById('regId').value.trim();
   const photoFile = document.getElementById('regPhoto').files[0];
-
-  if (name.length < 2 || mobile.length < 10 || !pw) {
-    alert('नाम, मोबाइल और पासवर्ड सही भरें।');
-    return;
-  }
-  if (!photoFile) {
-    alert('अपनी फ़ोटो लगाना जरूरी है 📷');
-    return;
-  }
-
-  const payload = {
-    name, mobile,
-    address: 'Not provided',
-    aadhaarNumber: '0000-0000-0000',
-    licenceNumber: licenceNo || 'NOT-PROVIDED',
-    username: mobile,
-    password: pw
-  };
-
+  if (name.length < 2 || mobile.length < 10 || !pw) { alert('नाम, मोबाइल और पासवर्ड सही भरें।'); return; }
+  if (!photoFile) { alert('अपनी फ़ोटो लगाना जरूरी है 📷'); return; }
+  const payload = { name, mobile, address: 'Not provided', aadhaarNumber: '0000-0000-0000', licenceNumber: licenceNo || 'NOT-PROVIDED', username: mobile, password: pw };
   try {
-    const res = await fetch(`${API}/api/drivers/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-
-    if (!res.ok) {
-      const err = await res.json();
-      alert('रजिस्टर नहीं हुआ: ' + (err.error || 'कुछ गड़बड़ हुई'));
-      return;
-    }
-
+    const res = await fetch(`${API}/api/drivers/register`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    if (!res.ok) { const err = await res.json(); alert('रजिस्टर नहीं हुआ: ' + (err.error || 'कुछ गड़बड़ हुई')); return; }
     loggedInDriver = await res.json();
-
+    localStorage.setItem('bs_driver', JSON.stringify(loggedInDriver));
     try {
       const photoForm = new FormData();
       photoForm.append('photo', photoFile);
-      await fetch(`${API}/api/drivers/${loggedInDriver.driverId}/upload-photo`, {
-        method: 'POST',
-        body: photoForm
-      });
+      await fetch(`${API}/api/drivers/${loggedInDriver.driverId}/upload-photo`, { method: 'POST', body: photoForm });
       loggedInDriver.photoUrl = URL.createObjectURL(photoFile);
-    } catch(pe) {
-      console.warn('Photo upload fail:', pe);
-      loggedInDriver.photoUrl = null;
-    }
-
+    } catch(pe) { console.warn('Photo upload fail:', pe); loggedInDriver.photoUrl = null; }
     document.getElementById('drvName').textContent = loggedInDriver.name;
-    document.getElementById('drvId').textContent   = 'ID: ' + loggedInDriver.driverId;
-    goTo('pg-drv-dash');
-    loadPendingBookings();
-
-  } catch (e) {
-    alert('सर्वर से जुड़ नहीं पाया।');
-  }
+    document.getElementById('drvId').textContent = 'ID: ' + loggedInDriver.driverId;
+    goTo('pg-drv-dash'); loadPendingBookings();
+  } catch(e) { alert('सर्वर से जुड़ नहीं पाया।'); }
 }
 
-// ---- Load Pending Bookings ----
+// ============================================================
+// DRIVER DASHBOARD
+// ============================================================
 async function loadPendingBookings() {
   try {
     const res = await fetch(`${API}/api/bookings?status=PENDING`);
     const bookings = await res.json();
     const container = document.getElementById('drv-new');
-
     container.querySelectorAll('.req-card').forEach(c => c.remove());
-
-    if (bookings.length === 0) {
-      document.getElementById('noReqMsg').style.display = '';
-      return;
-    }
-
+    if (bookings.length === 0) { document.getElementById('noReqMsg').style.display = ''; return; }
     document.getElementById('noReqMsg').style.display = 'none';
-
     bookings.forEach(b => {
       const card = document.createElement('div');
       card.className = 'req-card';
       card.innerHTML = `
-        <div class="req-head">
-          <span class="req-badge">🆕 नई</span>
-          <span class="req-time">${b.id}</span>
-        </div>
+        <div class="req-head"><span class="req-badge">🆕 नई</span><span class="req-time">${b.id}</span></div>
         <div class="req-body">
           <div class="route">
             <div class="rpt"><div class="rdot from"></div><div class="rtxt"><h4>${b.pickupLocation}</h4><p>यहाँ से उठाना है</p></div></div>
             <div class="rline" style="margin-left:4.5px"></div>
             <div class="rpt"><div class="rdot to"></div><div class="rtxt"><h4>${b.dropLocation}</h4><p>यहाँ पहुँचाना है</p></div></div>
           </div>
-          <div class="chips">
-            <div class="chip">📅 ${b.startDate}</div>
-            <div class="chip">📆 ${b.endDate} तक</div>
-          </div>
-          <div class="cust-strip">
-            <div class="cm">सवारी</div>
-            <div class="cl">📱 ${b.customerMobile}</div>
-          </div>
+          <div class="chips"><div class="chip">📅 ${b.startDate}</div><div class="chip">📆 ${b.endDate} तक</div></div>
+          <div class="cust-strip"><div class="cm">सवारी</div><div class="cl">📱 ${b.customerMobile}</div></div>
           <div class="req-btns">
             <button class="btn btn-red-o" style="font-size:13px;padding:11px" onclick="declineReq(this,'${b.id}')">❌ नहीं जाना</button>
             <button class="btn btn-green" style="font-size:13px;padding:11px" onclick="acceptReq(this,'${b.id}')">✅ मंजूर है</button>
@@ -1690,208 +1779,124 @@ async function loadPendingBookings() {
         </div>`;
       container.insertBefore(card, document.getElementById('noReqMsg'));
     });
-
-  } catch (e) {
-    console.error('Bookings load nahi hui:', e);
-  }
+  } catch(e) { console.error('Bookings load nahi hui:', e); }
 }
 
-// ---- Driver Dashboard Tabs ----
 function dTab(btn, tabId) {
   document.querySelectorAll('.dtab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
   ['drv-new','drv-active','drv-history'].forEach(id => {
     document.getElementById(id).style.display = id === tabId ? '' : 'none';
   });
-  if (tabId === 'drv-new')     loadPendingBookings();
-  if (tabId === 'drv-active')  loadDriverActiveBookings();
+  if (tabId === 'drv-new') loadPendingBookings();
+  if (tabId === 'drv-active') loadDriverActiveBookings();
   if (tabId === 'drv-history') loadDriverHistory();
 }
 
-// ---- Accept Booking ----
 async function acceptReq(btn, bookingId) {
   if (!loggedInDriver) { alert('पहले लॉगिन करें!'); return; }
-
   try {
     const res = await fetch(`${API}/api/bookings/${bookingId}/accept`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ driverId: loggedInDriver.driverId })
     });
-
-    if (!res.ok) {
-      const err = await res.json();
-      alert('मंजूर नहीं हुआ: ' + (err.error || 'कुछ गड़बड़ हुई'));
-      return;
-    }
-
+    if (!res.ok) { const err = await res.json(); alert('मंजूर नहीं हुआ: ' + (err.error || 'कुछ गड़बड़ हुई')); return; }
     const card = btn.closest('.req-card');
     card.querySelector('.req-badge').textContent = '✅ मंजूर हो गई';
     card.querySelector('.req-badge').style.background = 'var(--green)';
-    btn.textContent = '✅ मंजूर हो गई';
-    btn.disabled = true;
+    btn.textContent = '✅ मंजूर हो गई'; btn.disabled = true;
     card.querySelector('.btn-red-o').style.display = 'none';
     alert('सवारी ' + bookingId + ' मंजूर हो गई! 🎉');
-
-  } catch (e) {
-    alert('सर्वर से जुड़ नहीं पाया।');
-  }
+  } catch(e) { alert('सर्वर से जुड़ नहीं पाया।'); }
 }
 
-// ---- Decline Booking ----
-async function declineReq(btn, bookingId) {
+function declineReq(btn, bookingId) {
   const card = btn.closest('.req-card');
-  card.style.opacity = '0.4';
-  btn.textContent = '❌ मना किया';
-  btn.disabled = true;
+  card.style.opacity = '0.4'; btn.textContent = '❌ मना किया'; btn.disabled = true;
   card.querySelector('.btn-green').style.display = 'none';
 }
 
-
-// ---- Driver Active Bookings Load ----
 async function loadDriverActiveBookings() {
   if (!loggedInDriver) return;
-  const list   = document.getElementById('drv-active-list');
-  const empty  = document.getElementById('drv-active-empty');
-
+  const list = document.getElementById('drv-active-list');
+  const empty = document.getElementById('drv-active-empty');
   try {
-    const res  = await fetch(`${API}/api/bookings/driver/${loggedInDriver.driverId}/active`);
+    const res = await fetch(`${API}/api/bookings/driver/${loggedInDriver.driverId}/active`);
     const data = await res.json();
-
     list.querySelectorAll('.active-booking-card').forEach(c => c.remove());
-
-    if (!data.length) {
-      empty.style.display = '';
-      return;
-    }
+    if (!data.length) { empty.style.display = ''; return; }
     empty.style.display = 'none';
-
     data.forEach(b => {
       const card = document.createElement('div');
       card.className = 'active-booking-card req-card';
       card.style.marginBottom = '14px';
       card.innerHTML = `
-        <div class="req-head">
-          <span class="req-badge" style="background:var(--green)">✅ चालू सवारी</span>
-          <span class="req-time">${b.id}</span>
-        </div>
+        <div class="req-head"><span class="req-badge" style="background:var(--green)">✅ चालू सवारी</span><span class="req-time">${b.id}</span></div>
         <div class="req-body">
           <div class="route">
-            <div class="rpt"><div class="rdot from"></div><div class="rtxt"><h4>${b.pickupLocation}</h4><p>यहाँ से उठाना है</p></div></div>
+            <div class="rpt"><div class="rdot from"></div><div class="rtxt"><h4>${b.pickupLocation}</h4></div></div>
             <div class="rline" style="margin-left:4.5px"></div>
-            <div class="rpt"><div class="rdot to"></div><div class="rtxt"><h4>${b.dropLocation}</h4><p>यहाँ पहुँचाना है</p></div></div>
+            <div class="rpt"><div class="rdot to"></div><div class="rtxt"><h4>${b.dropLocation}</h4></div></div>
           </div>
-          <div class="chips">
-            <div class="chip">📅 ${b.startDate}</div>
-            <div class="chip">🏁 ${b.endDate} तक</div>
-            <div class="chip">📱 ${b.customerMobile}</div>
-          </div>
+          <div class="chips"><div class="chip">📅 ${b.startDate}</div><div class="chip">🏁 ${b.endDate}</div><div class="chip">📱 ${b.customerMobile}</div></div>
           ${b.totalAmount ? `<div class="chip" style="margin:8px 0;background:var(--green-bg);color:var(--green);font-weight:600">💰 ₹${b.totalAmount.toLocaleString('en-IN')}</div>` : ''}
           <div class="req-btns" style="margin-top:10px">
-            <button class="btn btn-green btn-full" style="font-size:14px;padding:13px"
-              onclick="completeRide('${b.id}', this)">
-              🏁 सवारी पूरी हुई
-            </button>
+            <button class="btn btn-green btn-full" style="font-size:14px;padding:13px" onclick="completeRide('${b.id}', this)">🏁 सवारी पूरी हुई</button>
           </div>
         </div>`;
       list.insertBefore(card, empty);
     });
-  } catch (e) {
-    console.error('Active bookings load error:', e);
-  }
+  } catch(e) { console.error('Active bookings load error:', e); }
 }
 
-// ---- Complete Ride ----
 async function completeRide(bookingId, btn) {
   if (!loggedInDriver) { alert('पहले लॉगिन करें!'); return; }
   if (!confirm('क्या आप पक्का बोल रहे हैं? सवारी पूरी हुई?')) return;
-
-  btn.disabled = true;
-  btn.textContent = '⏳ रुकें...';
-
+  btn.disabled = true; btn.textContent = '⏳ रुकें...';
   try {
     const res = await fetch(`${API}/api/bookings/${bookingId}/complete`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ driverId: loggedInDriver.driverId })
     });
-
-    if (!res.ok) {
-      const err = await res.json();
-      alert('गड़बड़ हुई: ' + (err.error || 'पूरी नहीं हुई'));
-      btn.disabled = false;
-      btn.textContent = '🏁 सवारी पूरी हुई';
-      return;
-    }
-
+    if (!res.ok) { const err = await res.json(); alert('गड़बड़ हुई: ' + (err.error || 'पूरी नहीं हुई')); btn.disabled = false; btn.textContent = '🏁 सवारी पूरी हुई'; return; }
     const card = btn.closest('.active-booking-card');
     if (card) card.remove();
-
-    const list = document.getElementById('drv-active-list');
-    if (!list.querySelectorAll('.active-booking-card').length) {
-      document.getElementById('drv-active-empty').style.display = '';
-    }
-
-    alert('✅ सवारी पूरी हो गई! पुरानी सवारी में देख सकते हैं।');
-
-  } catch (e) {
-    alert('सर्वर से जुड़ नहीं पाया।');
-    btn.disabled = false;
-    btn.textContent = '🏁 सवारी पूरी हुई';
-  }
+    const listEl = document.getElementById('drv-active-list');
+    if (!listEl.querySelectorAll('.active-booking-card').length) document.getElementById('drv-active-empty').style.display = '';
+    alert('✅ सवारी पूरी हो गई!');
+  } catch(e) { alert('सर्वर से जुड़ नहीं पाया।'); btn.disabled = false; btn.textContent = '🏁 सवारी पूरी हुई'; }
 }
 
-// ---- Driver History Load ----
 async function loadDriverHistory() {
   if (!loggedInDriver) return;
-  const list  = document.getElementById('drv-history-list');
+  const list = document.getElementById('drv-history-list');
   const empty = document.getElementById('drv-history-empty');
-
   try {
-    const res  = await fetch(`${API}/api/bookings/driver/${loggedInDriver.driverId}/history`);
+    const res = await fetch(`${API}/api/bookings/driver/${loggedInDriver.driverId}/history`);
     const data = await res.json();
-
     list.querySelectorAll('.history-card').forEach(c => c.remove());
-
-    if (!data.length) {
-      empty.style.display = '';
-      return;
-    }
+    if (!data.length) { empty.style.display = ''; return; }
     empty.style.display = 'none';
-
     data.forEach(b => {
       const card = document.createElement('div');
       card.className = 'history-card icard';
       card.style.marginBottom = '12px';
       card.innerHTML = `
-        <div class="icard-head" style="display:flex;justify-content:space-between;align-items:center">
-          <span>📋 ${b.id}</span>
-          <span style="font-size:11px;background:var(--green-bg);color:var(--green);padding:3px 8px;border-radius:12px;font-weight:600">✅ पूरी हुई</span>
-        </div>
+        <div class="icard-head" style="display:flex;justify-content:space-between;align-items:center"><span>📋 ${b.id}</span><span style="font-size:11px;background:var(--green-bg);color:var(--green);padding:3px 8px;border-radius:12px;font-weight:600">✅ पूरी हुई</span></div>
         <div class="irow"><div class="irow-ico">📍</div><div><div class="irow-lbl">Pickup</div><div class="irow-val">${b.pickupLocation}</div></div></div>
         <div class="irow"><div class="irow-ico">🏁</div><div><div class="irow-lbl">Drop</div><div class="irow-val">${b.dropLocation}</div></div></div>
         <div class="irow"><div class="irow-ico">📅</div><div><div class="irow-lbl">तारीख</div><div class="irow-val">${b.startDate} → ${b.endDate}</div></div></div>
-        <div class="irow"><div class="irow-ico">📱</div><div><div class="irow-lbl">सवारी का नंबर</div><div class="irow-val">${b.customerMobile}</div></div></div>
         ${b.totalAmount ? `<div class="irow"><div class="irow-ico">💰</div><div><div class="irow-lbl">कुल किराया</div><div class="irow-val" style="color:var(--green);font-weight:700">₹${b.totalAmount.toLocaleString('en-IN')}</div></div></div>` : ''}`;
       list.insertBefore(card, empty);
     });
-  } catch (e) {
-    console.error('History load error:', e);
-  }
+  } catch(e) { console.error('History load error:', e); }
 }
 
-// ---- Toggle Online ----
 function toggleOnline(el) {
   const dot = document.getElementById('onlineDot');
   const txt = document.getElementById('onlineTxt');
-  if (el.checked) {
-    dot.classList.add('on');
-    txt.textContent = 'ऑनलाइन — सवारी आ सकती है';
-    loadPendingBookings();
-  } else {
-    dot.classList.remove('on');
-    txt.textContent = 'ऑफलाइन';
-  }
+  if (el.checked) { dot.classList.add('on'); txt.textContent = 'ऑनलाइन — सवारी आ सकती है'; loadPendingBookings(); }
+  else { dot.classList.remove('on'); txt.textContent = 'ऑफलाइन'; }
 }
 
 function copyUPI() {
@@ -1901,48 +1906,40 @@ function copyUPI() {
     .catch(() => alert('Manually type karein: ' + upiId));
 }
 
-// === ADVANCE PAYMENT SYSTEM ===
-
-function calculateAdvance(total) {
-  return 150;
-}
+// ============================================================
+// PAYMENT
+// ============================================================
+function calculateAdvance(total) { return 150; }
 
 async function initPaymentSection() {
   const total = currentFareData ? (currentFareData.grandTotal || 0) : 0;
   const advance = calculateAdvance(total);
   const remaining = total - advance;
 
-  document.getElementById('adv-total').textContent    = '₹' + total;
-  document.getElementById('adv-advance').textContent  = '₹' + advance;
+  document.getElementById('adv-total').textContent = '₹' + total;
+  document.getElementById('adv-advance').textContent = '₹' + advance;
   document.getElementById('adv-remaining').textContent = '₹' + remaining;
   document.getElementById('adv-msg-amount').textContent = '₹' + advance;
   document.getElementById('pay-upi-amount').textContent = '₹' + advance;
-  document.getElementById('step3-amount').textContent   = '₹' + advance;
+  document.getElementById('step3-amount').textContent = '₹' + advance;
 
   if (currentBookingId) {
     try {
       await fetch(`${API}/api/bookings/${currentBookingId}/set-fare`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ totalAmount: total })
       });
-    } catch (e) {
-      console.warn('Set fare error:', e);
-    }
+    } catch(e) { console.warn('Set fare error:', e); }
   }
 }
 
 function onScreenshotSelected(input) {
   const file = input.files[0];
   if (!file) return;
-
-  const box = document.getElementById('screenshotUploadBox');
-  box.classList.add('has-file');
-
+  document.getElementById('screenshotUploadBox').classList.add('has-file');
   const preview = document.getElementById('screenshotPreview');
   preview.src = URL.createObjectURL(file);
   preview.classList.add('show');
-
   const fname = document.getElementById('uploadFilename');
   fname.textContent = '✅ ' + file.name;
   fname.classList.add('show');
@@ -1950,40 +1947,30 @@ function onScreenshotSelected(input) {
 
 async function submitPaymentProof() {
   const fileInput = document.getElementById('screenshotInput');
-  if (!fileInput.files || fileInput.files.length === 0) {
-    alert('Pehle payment screenshot choose karein 📷');
-    return;
-  }
+  if (!fileInput.files || fileInput.files.length === 0) { alert('Pehle payment screenshot choose karein 📷'); return; }
 
   const btn = document.getElementById('submitProofBtn');
-  btn.disabled = true;
-  btn.textContent = '⏳ Upload ho rahi hai...';
+  btn.disabled = true; btn.textContent = '⏳ Upload ho rahi hai...';
 
   const formData = new FormData();
   formData.append('screenshot', fileInput.files[0]);
 
   try {
-    const res = await fetch(`${API}/api/bookings/${currentBookingId}/upload-screenshot`, {
-      method: 'POST',
-      body: formData
-    });
-
+    const res = await fetch(`${API}/api/bookings/${currentBookingId}/upload-screenshot`, { method: 'POST', body: formData });
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}));
       alert('Upload fail: ' + (errData.error || 'Server error'));
-      btn.disabled = false;
-      btn.textContent = '📤 Submit Payment Proof';
+      btn.disabled = false; btn.textContent = '📤 Submit Payment Proof';
       return;
     }
-
+    // Update session state
+    saveSession({ status: 'SCREENSHOT_UPLOADED' });
+    updateHomeResumeCard(getSession());
     showPendingVerification();
     startPollingForVerification();
-
-  } catch (e) {
-    console.warn('Upload error:', e);
+  } catch(e) {
     alert('Network error. Dobara try karein.');
-    btn.disabled = false;
-    btn.textContent = '📤 Submit Payment Proof';
+    btn.disabled = false; btn.textContent = '📤 Submit Payment Proof';
   }
 }
 
@@ -1993,384 +1980,254 @@ function showPendingVerification() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-let pollingInterval = null;
 function startPollingForVerification() {
-  pollingInterval = setInterval(async () => {
+  if (verifyPollingInterval) clearInterval(verifyPollingInterval);
+  verifyPollingInterval = setInterval(async () => {
     try {
       const res = await fetch(`${API}/api/bookings/${currentBookingId}`);
       if (!res.ok) return;
       const data = await res.json();
       if (data.paymentStatus === 'VERIFIED') {
-        clearInterval(pollingInterval);
+        clearInterval(verifyPollingInterval); verifyPollingInterval = null;
+        // Mark as CONFIRMED in session
+        saveSession({ status: 'CONFIRMED' });
+        localStorage.setItem('bs_confirmedBookingId', currentBookingId);
+        localStorage.removeItem('bs_pendingBookingId');
+        updateHomeResumeCard(getSession());
         showRideConfirmed(data);
       }
-    } catch (e) {
-      console.warn('Polling error:', e);
-    }
+    } catch(e) { console.warn('Verify polling error:', e); }
   }, 5000);
 }
 
+// ============================================================
+// RIDE CONFIRMED
+// ============================================================
 function showRideConfirmed(bookingData) {
   document.getElementById('pendingVerifyBanner').classList.remove('show');
   document.getElementById('payCard').style.display = 'none';
 
-  const remaining = bookingData && bookingData.remainingCashAmount
-    ? bookingData.remainingCashAmount
-    : (currentFareData ? (currentFareData.grandTotal - calculateAdvance(currentFareData.grandTotal)) : 0);
+  const total = currentFareData ? currentFareData.grandTotal : 0;
+  const advance = calculateAdvance(total);
+  const remaining = bookingData?.remainingCashAmount ?? (total - advance);
   document.getElementById('rc-remaining').textContent = remaining;
 
   document.getElementById('rideConfirmedBanner').classList.add('show');
 
   const banner = document.getElementById('statusBanner');
   banner.className = 'sbanner confirmed';
+  document.getElementById('statusSpinner').style.display = 'none';
   document.getElementById('statusTitle').textContent = '🚗 Ride Confirmed!';
-  document.getElementById('statusMsg').textContent   = 'Driver Se contact kre . Shubh Yatra! 🙏';
+  document.getElementById('statusMsg').textContent = 'Driver Se contact kre. Shubh Yatra! 🙏';
+  document.getElementById('bookingCode').textContent = (currentBookingId || '') + ' ✅';
+  document.getElementById('driverLockedBox').style.display = 'none';
+  document.getElementById('cancelBtn').style.display = 'none';
 
-  document.getElementById('bookingCode').textContent =
-    (currentBookingId || '') + ' ✅';
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  
-  
-  // ✅ PAYMENT VERIFY HONE KE BAAD — driver ki poori details dikhao
-  if (bookingData && bookingData.driver) {
+  if (bookingData?.driver) {
     const d = bookingData.driver;
-
-    // Status page par driver card dikhao
-  
-
-    // Ek alag "driver revealed" section dikhao
+    document.getElementById('sc-drvName').textContent = d.name || '—';
+    document.getElementById('sc-drvMobile').textContent = d.mobile || d.phone || '—';
+    document.getElementById('sc-drvLicence').textContent = d.licenceNumber || d.licence || '—';
+    document.getElementById('drvConfirmedCard').classList.add('show');
     showDriverRevealedSection(d);
   }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-
-
-
-// Payment verify hone ke baad driver ki poori details reveal karo
 function showDriverRevealedSection(driver) {
-  // Pehle check karo — element exist karta hai?
   let revealCard = document.getElementById('driverRevealCard');
-
-  // Agar nahi hai toh banao (paySection ke andar)
   if (!revealCard) {
     revealCard = document.createElement('div');
     revealCard.id = 'driverRevealCard';
-    revealCard.style.cssText = `
-      background: linear-gradient(135deg, #F0FDF6, #E8F5EE);
-      border: 2px solid var(--green);
-      border-radius: var(--r);
-      padding: 16px;
-      margin-bottom: 14px;
-      animation: fadeIn .3s ease;
-    `;
+    revealCard.style.cssText = 'background:linear-gradient(135deg,#F0FDF6,#E8F5EE);border:2px solid var(--green);border-radius:var(--r);padding:16px;margin-bottom:14px;animation:fadeIn .3s ease;';
     revealCard.innerHTML = `
-      <div style="font-family:'Baloo 2';font-size:13px;font-weight:700;color:var(--green);
-                  text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px;
-                  display:flex;align-items:center;gap:6px">
-        🎉 Payment Confirmed — Aapka Driver
-      </div>
-
-      <!-- Driver Photo -->
+      <div style="font-family:'Baloo 2';font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px">🎉 Payment Confirmed — Aapka Driver</div>
       <div style="text-align:center;margin-bottom:12px">
-        <img id="reveal-drvPhoto" src="" alt=""
-          style="width:72px;height:72px;border-radius:50%;object-fit:cover;
-                 border:3px solid var(--green);display:none;margin:0 auto 6px">
-        <div id="reveal-drvPhotoPlaceholder"
-          style="width:72px;height:72px;border-radius:50%;
-                 background:linear-gradient(135deg,var(--navy),var(--navy-3));
-                 display:flex;align-items:center;justify-content:center;
-                 font-size:32px;margin:0 auto 6px">👨‍✈️</div>
+        <img id="reveal-drvPhoto" src="" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--green);display:none;margin:0 auto 6px">
+        <div id="reveal-drvPhotoPlaceholder" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-3));display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 6px">👨‍✈️</div>
       </div>
-
-      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;
-                  border-bottom:1px solid rgba(15,143,60,.15)">
-        <span style="font-size:16px">👤</span>
-        <div>
-          <div style="font-size:10.5px;color:var(--green);font-weight:600;
-                      text-transform:uppercase;letter-spacing:.3px">Driver ka Naam</div>
-          <div id="reveal-drvName" style="font-size:15px;color:var(--text-1);
-                                          font-weight:700;margin-top:2px">—</div>
-        </div>
-      </div>
-
-      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;
-                  border-bottom:1px solid rgba(15,143,60,.15)">
-        <span style="font-size:16px">📱</span>
-        <div>
-          <div style="font-size:10.5px;color:var(--green);font-weight:600;
-                      text-transform:uppercase;letter-spacing:.3px">Mobile Number</div>
-          <div id="reveal-drvMobile" style="font-size:15px;color:var(--text-1);
-                                             font-weight:700;margin-top:2px">—</div>
-        </div>
-      </div>
-
-      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;
-                  border-bottom:1px solid rgba(15,143,60,.15)">
-        <span style="font-size:16px">🪪</span>
-        <div>
-          <div style="font-size:10.5px;color:var(--green);font-weight:600;
-                      text-transform:uppercase;letter-spacing:.3px">Licence Number</div>
-          <div id="reveal-drvLicence" style="font-size:15px;color:var(--text-1);
-                                              font-weight:700;margin-top:2px">—</div>
-        </div>
-      </div>
-
-      <div style="display:flex;align-items:center;gap:10px;padding:8px 0">
-        <span style="font-size:16px">🚗</span>
-        <div>
-          <div style="font-size:10.5px;color:var(--green);font-weight:600;
-                      text-transform:uppercase;letter-spacing:.3px">Vehicle</div>
-          <div id="reveal-drvVehicle" style="font-size:15px;color:var(--text-1);
-                                              font-weight:700;margin-top:2px">—</div>
-        </div>
-      </div>
-
-      <div style="background:#E8F5E9;border-radius:10px;padding:10px 12px;
-                  margin-top:12px;font-size:12.5px;color:#1B5E20;line-height:1.6;
-                  text-align:center">
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,143,60,.15)"><span style="font-size:16px">👤</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Driver ka Naam</div><div id="reveal-drvName" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,143,60,.15)"><span style="font-size:16px">📱</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Mobile Number</div><div id="reveal-drvMobile" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,143,60,.15)"><span style="font-size:16px">🪪</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Licence Number</div><div id="reveal-drvLicence" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0"><span style="font-size:16px">🚗</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Vehicle</div><div id="reveal-drvVehicle" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div>
+      <div style="background:#E8F5E9;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:12.5px;color:#1B5E20;line-height:1.6;text-align:center">
         📞 Ab aap driver se seedha baat kar sakte hain.<br>
         <strong>Baaki ₹<span id="reveal-cashAmount">—</span> driver ko CASH mein dein.</strong>
-      </div>
-    `;
-
-    // paySection ke andar, rideConfirmedBanner ke baad insert karo
+      </div>`;
     const paySection = document.getElementById('paySection');
     const confirmedBanner = document.getElementById('rideConfirmedBanner');
-    if (confirmedBanner && confirmedBanner.nextSibling) {
-      paySection.insertBefore(revealCard, confirmedBanner.nextSibling);
-    } else if (paySection) {
-      paySection.appendChild(revealCard);
-    }
+    if (confirmedBanner?.nextSibling) paySection.insertBefore(revealCard, confirmedBanner.nextSibling);
+    else if (paySection) paySection.appendChild(revealCard);
   }
-
-  // Fields fill karo
-  document.getElementById('reveal-drvName').textContent    = driver.name    || '—';
-  document.getElementById('reveal-drvMobile').textContent  = driver.mobile  || driver.phone || '—';
+  document.getElementById('reveal-drvName').textContent = driver.name || '—';
+  document.getElementById('reveal-drvMobile').textContent = driver.mobile || driver.phone || '—';
   document.getElementById('reveal-drvLicence').textContent = driver.licenceNumber || driver.licence || '—';
   document.getElementById('reveal-drvVehicle').textContent = driver.vehicle || driver.vehicleNumber || 'Uplabdh nahi';
-
-  // Cash amount
   const cashEl = document.getElementById('reveal-cashAmount');
-  if (cashEl && currentFareData) {
-    const remaining = currentFareData.grandTotal - calculateAdvance(currentFareData.grandTotal);
-    cashEl.textContent = remaining.toLocaleString('en-IN');
-  }
-
-  // Photo dikhao
+  if (cashEl && currentFareData) cashEl.textContent = (currentFareData.grandTotal - calculateAdvance(currentFareData.grandTotal)).toLocaleString('en-IN');
   const photoEl = document.getElementById('reveal-drvPhoto');
   const placeholder = document.getElementById('reveal-drvPhotoPlaceholder');
-  const photoUrl = driver.photoUrl ||
-    (driver.driverId ? `${API}/api/drivers/${driver.driverId}/photo` : null);
+  const photoUrl = driver.photoUrl || (driver.driverId ? `${API}/api/drivers/${driver.driverId}/photo` : null);
   if (photoEl && photoUrl) {
-    photoEl.src = photoUrl;
-    photoEl.style.display = 'block';
+    photoEl.src = photoUrl; photoEl.style.display = 'block';
     if (placeholder) placeholder.style.display = 'none';
-    photoEl.onerror = () => {
-      photoEl.style.display = 'none';
-      if (placeholder) placeholder.style.display = 'flex';
-    };
+    photoEl.onerror = () => { photoEl.style.display = 'none'; if (placeholder) placeholder.style.display = 'flex'; };
   }
 }
 
 function showRideCompletePopup() {
   document.getElementById('rideCompleteOverlay').classList.add('show');
-  const pay = document.getElementById('paySection');
-  if (pay) pay.classList.remove('show');
-  const banner = document.getElementById('statusBanner');
-  if (banner) {
-    banner.className = 'sbanner confirmed';
-    document.getElementById('statusTitle').textContent = '🏁 Ride Complete!';
-    document.getElementById('statusMsg').textContent   = 'Safar poora ho gaya. Dhanyavaad!';
-  }
 }
 
-// ========== MY BOOKING FEATURE ==========
-
+// ============================================================
+// MY BOOKING — shows active booking regardless of payment state
+// ============================================================
 function openMyBooking() {
-  const savedId = localStorage.getItem('bs_bookingId');
-  if (!savedId) {
-    showMyBookingEmpty();
+  const session = getSession();
+
+  // If no session or session completed/cancelled — show empty
+  if (!session || !isSessionActive(session)) {
     goTo('pg-my-booking');
+    document.getElementById('mb-loading').style.display = 'none';
+    document.getElementById('mb-content').style.display = 'none';
+    document.getElementById('mb-error').style.display = 'none';
+    document.getElementById('mb-empty').style.display = 'block';
     return;
   }
-  restoreBookingFromStorage(savedId);
+
+  goTo('pg-my-booking');
+  fetchAndShowMyBooking(session.bookingId);
 }
 
-async function restoreBookingFromStorage(bookingId) {
-  goTo('pg-my-booking');
+async function fetchAndShowMyBooking(bookingId) {
   document.getElementById('mb-loading').style.display = 'block';
   document.getElementById('mb-content').style.display = 'none';
-  document.getElementById('mb-empty').style.display   = 'none';
-  document.getElementById('mb-error').style.display   = 'none';
+  document.getElementById('mb-empty').style.display = 'none';
+  document.getElementById('mb-error').style.display = 'none';
 
   try {
-  const res = await fetch(`${API}/api/bookings/${bookingId}`);
+    const res = await fetch(`${API}/api/bookings/${bookingId}`);
     if (!res.ok) throw new Error('not found');
     const data = await res.json();
-
     document.getElementById('mb-loading').style.display = 'none';
 
     if (data.status === 'COMPLETED' || data.status === 'CANCELLED') {
-      localStorage.removeItem('bs_bookingId');
-      localStorage.removeItem('bs_bookingFare');
-      showMyBookingEmpty();
+      clearAllBookingState();
+      document.getElementById('mb-empty').style.display = 'block';
       return;
     }
 
     showMyBookingContent(data);
-
-  } catch (e) {
+  } catch(e) {
     document.getElementById('mb-loading').style.display = 'none';
-    document.getElementById('mb-error').style.display   = 'block';
+    document.getElementById('mb-error').style.display = 'block';
   }
-}
-
-function showMyBookingEmpty() {
-  document.getElementById('mb-loading').style.display = 'none';
-  document.getElementById('mb-content').style.display = 'none';
-  document.getElementById('mb-error').style.display   = 'none';
-  document.getElementById('mb-empty').style.display   = 'block';
 }
 
 function showMyBookingContent(data) {
   document.getElementById('mb-content').style.display = 'block';
-
   document.getElementById('mb-code').textContent = data.id || '—';
   document.getElementById('mb-pickup').textContent = data.pickupLocation || '—';
-  document.getElementById('mb-drop').textContent   = data.dropLocation   || '—';
+  document.getElementById('mb-drop').textContent = data.dropLocation || '—';
   document.getElementById('mb-start').textContent = data.startDate || '—';
-  document.getElementById('mb-end').textContent   = data.endDate   || '—';
+  document.getElementById('mb-end').textContent = data.endDate || '—';
+  document.getElementById('mb-total').textContent = data.totalAmount ? '₹' + data.totalAmount.toLocaleString('en-IN') : '—';
 
   const statusEl = document.getElementById('mb-status');
-  const statusMap = {
-    'PENDING':   { label: '⏳ Driver Dhundh Rahe Hain', cls: 'mb-badge-pending' },
-    'ACCEPTED':  { label: '✅ Driver Mil Gaya',         cls: 'mb-badge-accepted' },
-    'COMPLETED': { label: '🏁 Safar Poora',             cls: 'mb-badge-completed' },
-    'CANCELLED': { label: '❌ Cancel Ho Gayi',          cls: 'mb-badge-cancelled' },
-    'REJECTED':  { label: '❌ Reject Ho Gayi',          cls: 'mb-badge-cancelled' },
-  };
-  const s = statusMap[data.status] || { label: data.status, cls: 'mb-badge-pending' };
-  statusEl.textContent = s.label;
-  statusEl.className   = 'mb-status-badge ' + s.cls;
+  const payStatus = data.paymentStatus;
+  let statusLabel, statusClass;
 
-  const payEl = document.getElementById('mb-pay-status');
-  const payMap = {
-    'PENDING':              '💳 Payment Baaki Hai',
-    'SCREENSHOT_UPLOADED':  '⏳ Screenshot Verify Ho Rahi Hai',
-    'VERIFIED':             '✅ Payment Confirmed',
-    'REJECTED':             '❌ Payment Reject — Dobara Upload Karein',
-  };
-  payEl.textContent = payMap[data.paymentStatus] || (data.paymentStatus || '—');
+  if (data.status === 'PENDING') {
+    statusLabel = '⏳ Driver Dhundh Raha Hai'; statusClass = 'mb-badge-pending';
+    document.getElementById('mb-pay-status').textContent = '— Abhi payment nahi';
+  } else if (data.status === 'ACCEPTED' && payStatus === 'VERIFIED') {
+    statusLabel = '✅ Ride Confirmed'; statusClass = 'mb-badge-confirmed';
+    document.getElementById('mb-pay-status').textContent = '✅ Payment Verified';
+  } else if (data.status === 'ACCEPTED' && payStatus === 'SCREENSHOT_UPLOADED') {
+    statusLabel = '📋 Screenshot Verify Ho Raha Hai'; statusClass = 'mb-badge-accepted';
+    document.getElementById('mb-pay-status').textContent = '⏳ Verification Pending';
+  } else if (data.status === 'ACCEPTED') {
+    statusLabel = '✅ Driver Mila — Payment Baaki'; statusClass = 'mb-badge-accepted';
+    document.getElementById('mb-pay-status').textContent = '⚠️ Advance Baaki Hai';
+  } else {
+    statusLabel = data.status; statusClass = 'mb-badge-pending';
+    document.getElementById('mb-pay-status').textContent = payStatus || '—';
+  }
 
-  document.getElementById('mb-total').textContent =
-    data.totalAmount ? '₹' + data.totalAmount.toLocaleString('en-IN') : '—';
+  statusEl.textContent = statusLabel;
+  statusEl.className = 'mb-status-badge ' + statusClass;
 
+  // Show driver ONLY if payment verified
   const drvSection = document.getElementById('mb-driver-section');
-  if (data.driver && data.status === 'ACCEPTED') {
+  if (data.driver && payStatus === 'VERIFIED') {
     drvSection.style.display = 'block';
-    document.getElementById('mb-drv-name').textContent    = data.driver.name    || '—';
-    document.getElementById('mb-drv-mobile').textContent  = data.driver.mobile  || '—';
+    document.getElementById('mb-drv-name').textContent = data.driver.name || '—';
+    document.getElementById('mb-drv-mobile').textContent = data.driver.mobile || '—';
     document.getElementById('mb-drv-licence').textContent = data.driver.licenceNumber || data.driver.licence || '—';
-
     const mbPhoto = document.getElementById('mb-drv-photo');
     const mbPlaceholder = document.getElementById('mb-drv-photo-placeholder');
     const photoUrl = data.driver.photoUrl || (data.driver.driverId ? `${API}/api/drivers/${data.driver.driverId}/photo` : null);
     if (photoUrl) {
-      mbPhoto.src = photoUrl;
-      mbPhoto.style.display = 'block';
-      mbPlaceholder.style.display = 'none';
-      mbPhoto.onerror = () => {
-        mbPhoto.style.display = 'none';
-        mbPlaceholder.style.display = 'flex';
-      };
+      mbPhoto.src = photoUrl; mbPhoto.style.display = 'block'; mbPlaceholder.style.display = 'none';
+      mbPhoto.onerror = () => { mbPhoto.style.display = 'none'; mbPlaceholder.style.display = 'flex'; };
     } else {
-      mbPhoto.style.display = 'none';
-      mbPlaceholder.style.display = 'flex';
+      mbPhoto.style.display = 'none'; mbPlaceholder.style.display = 'flex';
     }
   } else {
     drvSection.style.display = 'none';
   }
 }
 
-function goToFullStatus() {
-  const savedId = localStorage.getItem('bs_bookingId');
-  if (!savedId) { goTo('pg-home'); return; }
-
-  const savedFare = localStorage.getItem('bs_bookingFare');
-  if (savedFare) {
-    try {
-      const f = JSON.parse(savedFare);
-      currentFareData = { grandTotal: f.grandTotal || 0, days: f.days || 1, name: f.name || '', time: f.time || '' };
-    } catch(e) {}
-  }
-  currentBookingId = savedId;
-
-  document.getElementById('bookingCode').textContent = savedId;
-  document.getElementById('s-name').textContent = currentFareData.name || '—';
-
- fetch(`${API}/api/bookings/${savedId}`)
-    .then(r => r.ok ? r.json() : null)
-    .then(data => {
-      if (!data) return;
-      document.getElementById('s-pickup').textContent = data.pickupLocation || '—';
-      document.getElementById('s-drop').textContent   = data.dropLocation   || '—';
-      document.getElementById('s-dt').textContent     = (data.startDate || '') + (currentFareData.time ? ' at ' + currentFareData.time : '');
-      document.getElementById('s-days').textContent   = (data.endDate || '') + ' tak';
-      if (data.totalAmount) {
-        document.getElementById('s-fare').textContent = '₹' + data.totalAmount.toLocaleString('en-IN');
-      } else if (currentFareData.grandTotal) {
-        document.getElementById('s-fare').textContent = '₹' + currentFareData.grandTotal.toLocaleString('en-IN') + ' (estimate)';
-      }
-
-      if (data.status === 'ACCEPTED' && data.driver) {
-        document.getElementById('sc-drvName').textContent    = data.driver.name    || '—';
-        document.getElementById('sc-drvMobile').textContent  = data.driver.mobile  || '—';
-        document.getElementById('sc-drvLicence').textContent = data.driver.licence || '—';
-        document.getElementById('drvConfirmedCard').classList.add('show');
-        const banner = document.getElementById('statusBanner');
-        banner.classList.remove('waiting');
-        banner.classList.add('accepted');
-        document.getElementById('statusSpinner').style.display = 'none';
-        document.getElementById('statusTitle').textContent = '✅ Driver Assign Ho Gaya!';
-        document.getElementById('statusMsg').textContent   = 'Ab payment complete karein neeche 👇';
-        document.getElementById('cancelBtn').style.display = 'none';
-        initPaymentSection();
-        document.getElementById('paySection').classList.add('show');
-      }
-
-      startStatusPolling(savedId);
-    })
-    .catch(() => {});
-
-  goTo('pg-status');
-}
-
-// App open hone par auto-restore
+// ============================================================
+// APP INIT — runs on every page load
+// ============================================================
 window.addEventListener('DOMContentLoaded', () => {
+  // Set defaults
   const today = new Date().toISOString().split('T')[0];
-  if (document.getElementById('tripDate'))
-    document.getElementById('tripDate').value = today;
-  if (document.getElementById('tripTime'))
-    document.getElementById('tripTime').value = '08:00';
+  const tripDateEl = document.getElementById('tripDate');
+  const tripTimeEl = document.getElementById('tripTime');
+  if (tripDateEl) tripDateEl.value = today;
+  if (tripTimeEl) tripTimeEl.value = '08:00';
 
-  const savedId = localStorage.getItem('bs_bookingId');
-  if (savedId) {
-    fetch(`${API}/api/bookings/${savedId}`)
-      .then(r => r.ok ? r.json() : null)
-      .then(data => {
-        if (data && (data.status === 'COMPLETED' || data.status === 'CANCELLED')) {
-          localStorage.removeItem('bs_bookingId');
-          localStorage.removeItem('bs_bookingFare');
-        }
-      })
-      .catch(() => {});
+  // Show restore splash then check session
+  document.getElementById('pg-restore').style.display = 'flex';
+  document.getElementById('pg-restore').classList.add('active');
+  document.querySelectorAll('.page:not(#pg-restore)').forEach(p => p.classList.remove('active'));
+
+  // Small delay for UX (shows the splash briefly before immediate redirect)
+  setTimeout(() => {
+    checkAndRestoreSession().then(() => {
+      // After restore check, update home card if on home
+      const session = getSession();
+      if (session && isSessionActive(session)) {
+        updateHomeResumeCard(session);
+        // Show toast after a moment if user lands on home
+        setTimeout(() => {
+          const activePg = document.querySelector('.page.active');
+          if (activePg && activePg.id === 'pg-home') {
+            showResumeToast(session);
+          }
+        }, 800);
+      }
+    });
+  }, 600);
+});
+
+// Also update resume card whenever home is navigated to
+const _origGoTo = goTo;
+// Ensure home card updates on navigation
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    const session = getSession();
+    updateHomeResumeCard(session);
+    // Show toast if there's an active booking and we're on home
+    const activePg = document.querySelector('.page.active');
+    if (activePg?.id === 'pg-home' && session && isSessionActive(session)) {
+      showResumeToast(session);
+    }
   }
 });
 </script>
 </body>
 </html>
-
-
-
-

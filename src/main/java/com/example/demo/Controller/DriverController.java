@@ -37,7 +37,7 @@ public class DriverController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody DriverDto.LoginRequest req) {
         try {
-            return ResponseEntity.ok(driverService.login(req.getUsername(), req.getPassword()));
+        	return ResponseEntity.ok(driverService.login(req.getUsername(), req.getPassword(), req.getFcmToken()));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
@@ -96,16 +96,30 @@ public class DriverController {
     
     
     
+//    @PostMapping("/save-token")
+//    public ResponseEntity<?> saveDriverToken(@RequestBody Map<String, String> body) {
+//
+//        String driverId = body.get("driverId");
+//
+//        String token = body.get("token");
+//        
+//        
+//        
+//        System.out.println("DriverId: " + driverId);
+//        System.out.println("Token##################################################: " + token);
+//
+//        driverService.saveDriverToken(driverId, token);
+//
+//        return ResponseEntity.ok("Token saved");
+//    }
+//    
+    
+    
     @PostMapping("/save-token")
     public ResponseEntity<?> saveDriverToken(@RequestBody Map<String, String> body) {
 
-        String driverId = body.get("driverId");
+        System.out.println("🔥 API HIT HO GAYI");
 
-        String token = body.get("token");
-
-        driverService.saveDriverToken(driverId, token);
-
-        return ResponseEntity.ok("Token saved");
+        return ResponseEntity.ok("OK");
     }
-    
 }

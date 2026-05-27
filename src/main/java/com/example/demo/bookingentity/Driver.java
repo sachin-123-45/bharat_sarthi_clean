@@ -157,6 +157,7 @@ public class Driver {
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(length = 500)
     private String fcmToken;
     
 
@@ -192,6 +193,11 @@ public class Driver {
 	public void setPhotoPath(String photoPath) {
 		this.photoPath = photoPath;
 	}
+	
+	
+
+	
+	
 	public String getFcmToken() {
 	    return fcmToken;
 	}

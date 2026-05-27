@@ -146,6 +146,15 @@ public class DriverDto {
         private String licenceNumber;
         private String username;
         private String password;
+        
+        
+        
+        
+        
+        private String fcmToken;  // ✅ ye add karo
+
+        public String getFcmToken() { return fcmToken; }
+        public void setFcmToken(String fcmToken) { this.fcmToken = fcmToken; }
 
         public String getName() {
             return name;

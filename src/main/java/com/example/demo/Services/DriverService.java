@@ -45,7 +45,7 @@ public class DriverService {
     }
 
     // ── Login ─────────────────────────────────────────
-    public DriverDto.LoginResponse login(String username, String password) {
+    public DriverDto.LoginResponse login(String username, String password, String fcmToken) {
         Driver d = driverRepo.findByUsernameAndActiveTrue(username)
                 .orElseThrow(() -> new RuntimeException("Driver nahi mila: " + username));
 
@@ -54,7 +54,16 @@ public class DriverService {
         }
 
         d.setLastSeen(LocalDateTime.now());
+        if (fcmToken != null && !fcmToken.isBlank()) {
+            d.setFcmToken(fcmToken);
+        }
         driverRepo.save(d);
+
+        System.out.println("========== DRIVER LOGIN ==========");
+        System.out.println("Driver ID  : " + d.getDriverId());
+        System.out.println("FCM Token  : " + d.getFcmToken());
+        System.out.println("==================================");
+
         return toLoginResponse(d);
     }
 

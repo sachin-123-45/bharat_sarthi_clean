@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.bookingentity.Admin;
 import com.example.demo.bookingentity.Booking;
 import com.example.demo.bookingentity.Driver;
+import com.example.demo.bookingrepository.AdminRepository;
 import com.example.demo.bookingrepository.BookingRepository;
 import com.example.demo.bookingrepository.DriverRepository;
 import com.example.demo.dtos.BookingDto;
@@ -35,12 +37,16 @@ public class BookingService {
     @Autowired
     private DriverRepository driverRepo;
 
+    // ── NEW: Admin notifications ke liye AdminRepository inject kiya ──
+    @Autowired
+    private AdminRepository adminRepo;
+
     private final Random random = new Random();
 
     // Screenshot save karne ki folder
     private final String UPLOAD_DIR = "uploads/payment-screenshots/";
 
-    // ── Create Booking ───────────────────────────────
+    // ── Create Booking ───────────────────────────────────────────────
     @Transactional
     public BookingDto.Response createBooking(BookingDto.CreateRequest req)
             throws FirebaseMessagingException {
@@ -60,7 +66,7 @@ public class BookingService {
 
         bookingRepo.save(b);
 
-        // 🔥 Driver notification
+        // 🔥 Saare online drivers ko notification
         List<Driver> drivers = driverRepo.findAll();
 
         for (Driver driver : drivers) {
@@ -86,7 +92,7 @@ public class BookingService {
         return toResponse(b);
     }
 
-    // ── Get Booking by ID ────────────────────────────
+    // ── Get Booking by ID ────────────────────────────────────────────
     public BookingDto.Response getBooking(String id) {
 
         Booking b = bookingRepo.findById(id)
@@ -96,7 +102,7 @@ public class BookingService {
         return toResponse(b);
     }
 
-    // ── Get All Pending Bookings (for drivers) ───────
+    // ── Get All Pending Bookings (for drivers) ───────────────────────
     public List<BookingDto.Response> getPendingBookings() {
 
         return bookingRepo
@@ -108,7 +114,7 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    // ── Accept Booking (first driver wins) ──────────
+    // ── Accept Booking (first driver wins) ──────────────────────────
     @Transactional
     public synchronized BookingDto.Response acceptBooking(
             String bookingId,
@@ -136,7 +142,7 @@ public class BookingService {
 
         bookingRepo.save(b);
 
-        // 🔥 Customer notification
+        // 🔥 Customer ko notification — driver mil gaya
         String customerToken = b.getCustomerFcmToken();
 
         if (customerToken != null && !customerToken.isEmpty()) {
@@ -160,7 +166,7 @@ public class BookingService {
         return toResponse(b);
     }
 
-    // ── Cancel Booking ───────────────────────────────
+    // ── Cancel Booking ───────────────────────────────────────────────
     @Transactional
     public void cancelBooking(String bookingId) {
 
@@ -176,7 +182,7 @@ public class BookingService {
         }
     }
 
-    // ── STEP 1: Customer ne total fare set kiya ─────
+    // ── STEP 1: Total fare set karo ──────────────────────────────────
     @Transactional
     public BookingDto.Response setTotalAndCalculateAdvance(
             String bookingId,
@@ -208,7 +214,14 @@ public class BookingService {
         return toResponse(b);
     }
 
-    // ── STEP 2: Upload Screenshot ───────────────────
+    // ── STEP 2: Upload Screenshot + Admin ko notification ───────────
+    //
+    // CHANGE: File save hone ke baad saare active admins ko
+    //         FCM push notification bheja jata hai.
+    //         Agar kisi admin ka token null/empty hai to skip karo.
+    //         FirebaseMessagingException ko catch karo — ek admin ka
+    //         failed token baaki admins ki notification nahi rokta.
+    //
     @Transactional
     public BookingDto.Response uploadPaymentScreenshot(
             String bookingId,
@@ -220,6 +233,7 @@ public class BookingService {
                         new RuntimeException(
                                 "Booking not found: " + bookingId));
 
+        // ── File save karo ───────────────────────────────────────────
         File uploadDir = new File(UPLOAD_DIR);
 
         if (!uploadDir.exists()) {
@@ -248,10 +262,13 @@ public class BookingService {
 
         bookingRepo.save(b);
 
+        // ── NEW: Saare active admins ko push notification bhejo ──────
+        sendPaymentNotificationToAdmins(bookingId);
+
         return toResponse(b);
     }
 
-    // ── STEP 3: Verify Payment ──────────────────────
+    // ── STEP 3: Verify Payment ───────────────────────────────────────
     @Transactional
     public BookingDto.Response verifyPayment(String bookingId) {
 
@@ -268,7 +285,7 @@ public class BookingService {
         return toResponse(b);
     }
 
-    // ── Driver Complete Ride ────────────────────────
+    // ── Driver Complete Ride ─────────────────────────────────────────
     @Transactional
     public BookingDto.Response completeRide(
             String bookingId,
@@ -300,7 +317,7 @@ public class BookingService {
         return toResponse(b);
     }
 
-    // ── Driver Active Bookings ──────────────────────
+    // ── Driver Active Bookings ───────────────────────────────────────
     public List<BookingDto.Response> getDriverActiveBookings(
             String driverId
     ) {
@@ -315,7 +332,7 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    // ── Driver Completed Bookings ───────────────────
+    // ── Driver Completed Bookings ────────────────────────────────────
     public List<BookingDto.Response> getDriverCompletedBookings(
             String driverId
     ) {
@@ -330,7 +347,7 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    // ── Admin Pending Screenshots ───────────────────
+    // ── Admin Pending Screenshots ────────────────────────────────────
     public List<BookingDto.Response> getPendingScreenshotBookings() {
 
         return bookingRepo
@@ -341,7 +358,48 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    // ── Helpers ──────────────────────────────────────
+    // ── NEW PRIVATE HELPER: Admin FCM Notification ───────────────────
+    // Saare active admins ko payment notification bhejo.
+    // Har admin ke liye alag try-catch — ek ka failure baaki ko nahi rokta.
+    private void sendPaymentNotificationToAdmins(String bookingId) {
+
+        List<Admin> activeAdmins = adminRepo.findAllByActiveTrue();
+
+        for (Admin admin : activeAdmins) {
+
+            String token = admin.getFcmToken();
+
+            if (token == null || token.isEmpty()) {
+                // Is admin ka FCM token save nahi hai — skip karo
+                continue;
+            }
+
+            try {
+                Message message = Message.builder()
+                        .setToken(token)
+                        .setNotification(
+                                Notification.builder()
+                                        .setTitle("नई Payment Request")
+                                        .setBody("Ek customer ne payment screenshot upload kiya hai")
+                                        .build()
+                        )
+                        .build();
+
+                FirebaseMessaging.getInstance().send(message);
+
+            } catch (FirebaseMessagingException e) {
+                // Log karo lekin exception propagate mat karo —
+                // notification fail hona payment upload ko nahi rokna chahiye
+                System.err.println(
+                        "Admin FCM notification fail: adminId=" +
+                        admin.getId() + ", bookingId=" + bookingId +
+                        ", error=" + e.getMessage()
+                );
+            }
+        }
+    }
+
+    // ── Helpers ──────────────────────────────────────────────────────
     private String generateBookingId() {
 
         String id;

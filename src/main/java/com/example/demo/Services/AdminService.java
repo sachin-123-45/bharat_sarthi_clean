@@ -24,7 +24,7 @@ public class AdminService {
     @Autowired private BookingRepository bookingRepo;
     @Autowired private DriverRepository driverRepo;
 
-    // ── Admin Login (no registration — only DB insert by owner) ──────
+    // ── Admin Login ───────────────────────────────────────────────────
     public Map<String, Object> login(String username, String password) {
         Admin admin = adminRepo.findByUsernameAndActiveTrue(username)
                 .orElseThrow(() -> new RuntimeException("Admin nahi mila ya account inactive hai"));
@@ -37,12 +37,22 @@ public class AdminService {
         adminRepo.save(admin);
 
         Map<String, Object> res = new HashMap<>();
-        res.put("adminId", admin.getId());
-        res.put("username", admin.getUsername());
-        res.put("fullName", admin.getFullName());
-        // Simple token — production mein JWT use karein
-        res.put("token", "ADMIN_" + admin.getId() + "_" + System.currentTimeMillis());
+        res.put("adminId",   admin.getId());
+        res.put("username",  admin.getUsername());
+        res.put("fullName",  admin.getFullName());
+        res.put("token",     "ADMIN_" + admin.getId() + "_" + System.currentTimeMillis());
         return res;
+    }
+
+    // ── NEW: Admin FCM Token Save karo ────────────────────────────────
+    // Admin app login ke baad yeh call karo.
+    // Token refresh hone par bhi yahi call karo (onTokenRefresh callback se).
+    @Transactional
+    public void saveAdminFcmToken(Long adminId, String fcmToken) {
+        Admin admin = adminRepo.findById(adminId)
+                .orElseThrow(() -> new RuntimeException("Admin nahi mila: " + adminId));
+        admin.setFcmToken(fcmToken);
+        adminRepo.save(admin);
     }
 
     // ── Dashboard Statistics ──────────────────────────────────────────
@@ -83,10 +93,6 @@ public class AdminService {
     }
 
     // ── Approve Payment ───────────────────────────────────────────────
-    // Customer ne advance pay kar diya → Admin verify karta hai
-    // paymentStatus: SCREENSHOT_UPLOADED → VERIFIED
-    // bookingStatus: Unchanged (stays ACCEPTED — driver already assigned)
-    // Customer ko: ride confirmed message dikhega (frontend polls VERIFIED)
     @Transactional
     public Map<String, Object> approvePayment(String bookingId) {
         Booking b = bookingRepo.findById(bookingId)
@@ -96,10 +102,7 @@ public class AdminService {
             throw new RuntimeException("Yeh booking verify ke liye ready nahi hai. Current status: " + b.getPaymentStatus());
         }
 
-        // Payment verify kar do — booking status mat badlo (driver ne already accept kiya)
         b.setPaymentStatus("VERIFIED");
-        // Note: b.status stays ACCEPTED — trip abhi complete nahi hui
-        // Jab driver trip complete kare tab COMPLETED hoga
         bookingRepo.save(b);
 
         Map<String, Object> res = new HashMap<>();
@@ -118,7 +121,6 @@ public class AdminService {
 
         b.setPaymentStatus("REJECTED");
         b.setRejectionReason(reason);
-        // Booking status ACCEPTED raho — customer dobara try kar sakta hai
         bookingRepo.save(b);
 
         Map<String, Object> res = new HashMap<>();
@@ -142,10 +144,8 @@ public class AdminService {
             m.put("active",        d.isActive());
             m.put("createdAt",     d.getCreatedAt());
             m.put("lastSeen",      d.getLastSeen());
-            // Booking count for this driver
             long bookingCount = bookingRepo.findByDriver_DriverIdOrderByCreatedAtDesc(d.getDriverId()).size();
             m.put("totalBookings", bookingCount);
-            // Commission earned by this driver's bookings (admin commission, not driver earnings)
             double driverBookingCommission = bookingRepo
                     .findByDriver_DriverIdOrderByCreatedAtDesc(d.getDriverId())
                     .stream()
@@ -163,36 +163,37 @@ public class AdminService {
         Driver d = driverRepo.findByDriverId(driverId)
                 .orElseThrow(() -> new RuntimeException("Driver nahi mila: " + driverId));
         d.setActive(!block);
-        if (block) d.setOnline(false); // Block hone par offline kar do
+        if (block) d.setOnline(false);
         driverRepo.save(d);
 
         Map<String, Object> res = new HashMap<>();
         res.put("driverId", driverId);
         res.put("active",   !block);
-        res.put("message",  block ? "Driver " + driverId + " block kar diya" : "Driver " + driverId + " unblock kar diya");
+        res.put("message",  block
+                ? "Driver " + driverId + " block kar diya"
+                : "Driver " + driverId + " unblock kar diya");
         return res;
     }
 
-    // ── Helper: Booking to Admin Map ──────────────────────────────────
-    // commissionAmount yahan include hai — sirf admin dashboard pe dikhega
+    // ── Helper: Booking → Admin Map ───────────────────────────────────
     private Map<String, Object> toAdminBookingMap(Booking b) {
         Map<String, Object> m = new HashMap<>();
-        m.put("id",                 b.getId());
-        m.put("customerMobile",     b.getCustomerMobile());
-        m.put("pickupLocation",     b.getPickupLocation());
-        m.put("dropLocation",       b.getDropLocation());
-        m.put("startDate",          b.getStartDate());
-        m.put("endDate",            b.getEndDate());
-        m.put("status",             b.getStatus().name());
-        m.put("paymentStatus",      b.getPaymentStatus());
-        m.put("totalAmount",        b.getTotalAmount());
-        m.put("advanceAmount",      b.getAdvanceAmount());       // 15% — admin commission
-        m.put("remainingCashAmount",b.getRemainingCashAmount()); // 85% — driver cash
-        m.put("commissionAmount",   b.getCommissionAmount());    // Admin ko dikhana hai
-        m.put("paymentScreenshot",  b.getPaymentScreenshot());
-        m.put("rejectionReason",    b.getRejectionReason());
-        m.put("createdAt",          b.getCreatedAt());
-        m.put("acceptedAt",         b.getAcceptedAt());
+        m.put("id",                  b.getId());
+        m.put("customerMobile",      b.getCustomerMobile());
+        m.put("pickupLocation",      b.getPickupLocation());
+        m.put("dropLocation",        b.getDropLocation());
+        m.put("startDate",           b.getStartDate());
+        m.put("endDate",             b.getEndDate());
+        m.put("status",              b.getStatus().name());
+        m.put("paymentStatus",       b.getPaymentStatus());
+        m.put("totalAmount",         b.getTotalAmount());
+        m.put("advanceAmount",       b.getAdvanceAmount());
+        m.put("remainingCashAmount", b.getRemainingCashAmount());
+        m.put("commissionAmount",    b.getCommissionAmount());
+        m.put("paymentScreenshot",   b.getPaymentScreenshot());
+        m.put("rejectionReason",     b.getRejectionReason());
+        m.put("createdAt",           b.getCreatedAt());
+        m.put("acceptedAt",          b.getAcceptedAt());
 
         if (b.getDriver() != null) {
             Map<String, Object> drv = new HashMap<>();

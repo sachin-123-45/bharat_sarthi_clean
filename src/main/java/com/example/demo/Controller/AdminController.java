@@ -1,7 +1,5 @@
 package com.example.demo.Controller;
 
-
-
 import com.example.demo.Services.AdminService;
 import com.example.demo.Services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.io.File;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -30,15 +23,15 @@ public class AdminController {
     @Autowired private AdminService adminService;
     @Autowired private BookingService bookingService;
 
-    // ══ POST /api/admin/login ═════════════════════════
-    // Sirf username + password — NO registration endpoint
+    // ══ POST /api/admin/login ═════════════════════════════════════════
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> req) {
         try {
             String username = req.get("username");
             String password = req.get("password");
             if (username == null || password == null) {
-                return ResponseEntity.badRequest().body(Map.of("error", "Username aur password dono zaroori hain"));
+                return ResponseEntity.badRequest()
+                        .body(Map.of("error", "Username aur password dono zaroori hain"));
             }
             Map<String, Object> result = adminService.login(username, password);
             return ResponseEntity.ok(result);
@@ -48,7 +41,39 @@ public class AdminController {
         }
     }
 
-    // ══ GET /api/admin/dashboard ══════════════════════
+    // ══ NEW: POST /api/admin/fcm-token ════════════════════════════════
+    //
+    // Admin app login ke baad apna FCM token yahan save karta hai.
+    // Body: { "adminId": 1, "fcmToken": "device_fcm_token_string" }
+    //
+    // Admin app mein sirf ek baar call karo — login hone ke baad.
+    // FCM token kabhi kabhi refresh hota hai (FirebaseMessaging.onTokenRefresh)
+    // to tab bhi yahi endpoint call karna.
+    //
+    @PostMapping("/fcm-token")
+    public ResponseEntity<?> saveFcmToken(@RequestBody Map<String, Object> req) {
+        try {
+            Long adminId = Long.valueOf(req.get("adminId").toString());
+            String fcmToken = (String) req.get("fcmToken");
+
+            if (fcmToken == null || fcmToken.isBlank()) {
+                return ResponseEntity.badRequest()
+                        .body(Map.of("error", "fcmToken required hai"));
+            }
+
+            adminService.saveAdminFcmToken(adminId, fcmToken);
+
+            return ResponseEntity.ok(Map.of(
+                    "message", "FCM token save ho gaya",
+                    "adminId", adminId
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    // ══ GET /api/admin/dashboard ══════════════════════════════════════
     @GetMapping("/dashboard")
     public ResponseEntity<?> getDashboard() {
         try {
@@ -58,7 +83,7 @@ public class AdminController {
         }
     }
 
-    // ══ GET /api/admin/bookings ═══════════════════════
+    // ══ GET /api/admin/bookings ═══════════════════════════════════════
     @GetMapping("/bookings")
     public ResponseEntity<?> getAllBookings() {
         try {
@@ -68,8 +93,7 @@ public class AdminController {
         }
     }
 
-    // ══ GET /api/admin/bookings/pending-payments ══════
-    // Screenshot upload wali bookings — verify karne ke liye
+    // ══ GET /api/admin/bookings/pending-payments ══════════════════════
     @GetMapping("/bookings/pending-payments")
     public ResponseEntity<?> getPendingPayments() {
         try {
@@ -79,7 +103,7 @@ public class AdminController {
         }
     }
 
-    // ══ POST /api/admin/bookings/{id}/approve ════════
+    // ══ POST /api/admin/bookings/{id}/approve ═════════════════════════
     @PostMapping("/bookings/{id}/approve")
     public ResponseEntity<?> approvePayment(@PathVariable String id) {
         try {
@@ -89,7 +113,7 @@ public class AdminController {
         }
     }
 
-    // ══ POST /api/admin/bookings/{id}/reject ══════════
+    // ══ POST /api/admin/bookings/{id}/reject ══════════════════════════
     @PostMapping("/bookings/{id}/reject")
     public ResponseEntity<?> rejectPayment(
             @PathVariable String id,
@@ -103,7 +127,7 @@ public class AdminController {
         }
     }
 
-    // ══ GET /api/admin/drivers ════════════════════════
+    // ══ GET /api/admin/drivers ════════════════════════════════════════
     @GetMapping("/drivers")
     public ResponseEntity<?> getAllDrivers() {
         try {
@@ -113,7 +137,7 @@ public class AdminController {
         }
     }
 
-    // ══ POST /api/admin/drivers/{driverId}/block ══════
+    // ══ POST /api/admin/drivers/{driverId}/block ══════════════════════
     @PostMapping("/drivers/{driverId}/block")
     public ResponseEntity<?> blockDriver(@PathVariable String driverId) {
         try {
@@ -123,7 +147,7 @@ public class AdminController {
         }
     }
 
-    // ══ POST /api/admin/drivers/{driverId}/unblock ════
+    // ══ POST /api/admin/drivers/{driverId}/unblock ════════════════════
     @PostMapping("/drivers/{driverId}/unblock")
     public ResponseEntity<?> unblockDriver(@PathVariable String driverId) {
         try {
@@ -133,13 +157,11 @@ public class AdminController {
         }
     }
 
-    // ══ Screenshot serve karo ════════════════════════
-    // GET /api/admin/screenshot?path=uploads/payment-screenshots/BSD-1234_abc.jpg
+    // ══ GET /api/admin/screenshot ═════════════════════════════════════
     @GetMapping("/screenshot")
     public ResponseEntity<?> getScreenshot(@RequestParam String path) {
         try {
             Path filePath = Paths.get(path).normalize();
-            // Security: sirf uploads folder se serve karo
             if (!filePath.toString().startsWith("uploads")) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access denied");
             }
@@ -149,12 +171,13 @@ public class AdminController {
             }
             String contentType = "image/jpeg";
             String fileName = filePath.getFileName().toString().toLowerCase();
-            if (fileName.endsWith(".png")) contentType = "image/png";
+            if (fileName.endsWith(".png"))      contentType = "image/png";
             else if (fileName.endsWith(".gif")) contentType = "image/gif";
 
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(contentType))
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
+                    .header(HttpHeaders.CONTENT_DISPOSITION,
+                            "inline; filename=\"" + resource.getFilename() + "\"")
                     .body(resource);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
