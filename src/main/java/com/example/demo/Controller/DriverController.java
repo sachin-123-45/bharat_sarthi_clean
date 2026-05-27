@@ -102,11 +102,12 @@ public class DriverController {
         String token = body.get("token");
         
         if (driverId == null || token == null) {
-            return ResponseEntity.badRequest().body(Map.of("error", "driverId aur token dono chahiye"));
+            return ResponseEntity.badRequest()
+                .body(Map.of("error", "driverId aur token dono chahiye"));
         }
         
-        driverService.saveDriverToken(driverId, token);  // ye method already exist karta hai!
-        return ResponseEntity.ok(Map.of("message", "Token save ho gaya", "driverId", driverId));
+        driverService.saveDriverToken(driverId, token);
+        return ResponseEntity.ok(Map.of("message", "Token save ho gaya"));
     }
     
     
