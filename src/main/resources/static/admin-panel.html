@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -8,93 +9,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --saffron: #E8600A;
-  --saffron-2: #F57C1F;
-  --saffron-3: #FFA040;
-  --saffron-bg: #FFF3E9;
-  --saffron-bg2: #FFE8D0;
-  --navy: #0F1F5C;
-  --navy-2: #1A2F7A;
-  --navy-3: #253898;
-  --navy-light: rgba(15,31,92,0.08);
-  --green: #0F8F3C;
-  --green-2: #1AAD50;
-  --green-bg: #E8F5EE;
-  --green-bg2: #C8EDDA;
-  --white: #FFFFFF;
-  --bg: #F0F2F8;
-  --bg2: #E6E9F4;
-  --surface: #FFFFFF;
-  --border: #E2E6F0;
-  --border2: #CDD2EA;
-  --text-1: #0D1336;
-  --text-2: #3D4872;
-  --text-3: #8892BB;
-  --red: #C8202B;
-  --red-bg: #FDE8E9;
-  --red-bg2: #FBCFD1;
-  --yellow: #D97706;
-  --yellow-bg: #FEF3C7;
-  --sh-xs: 0 1px 3px rgba(15,31,92,.06);
-  --sh-sm: 0 2px 8px rgba(15,31,92,.08);
-  --sh-md: 0 6px 20px rgba(15,31,92,.10);
-  --sh-lg: 0 12px 40px rgba(15,31,92,.14);
-  --r-sm: 10px;
-  --r: 14px;
-  --r-lg: 20px;
-  --dur: 200ms;
-  --ease: cubic-bezier(.4,0,.2,1);
-  --sidebar-w: 240px;
-  --topbar-h: 56px;
+  --saffron:#E8600A;--saffron-2:#F57C1F;--saffron-3:#FFA040;
+  --saffron-bg:#FFF3E9;--saffron-bg2:#FFE8D0;
+  --navy:#0F1F5C;--navy-2:#1A2F7A;--navy-3:#253898;
+  --navy-light:rgba(15,31,92,0.08);
+  --green:#0F8F3C;--green-2:#1AAD50;--green-bg:#E8F5EE;--green-bg2:#C8EDDA;
+  --bg:#F0F2F8;--bg2:#E6E9F4;--surface:#fff;--border:#E2E6F0;--border2:#CDD2EA;
+  --text-1:#0D1336;--text-2:#3D4872;--text-3:#8892BB;
+  --red:#C8202B;--red-bg:#FDE8E9;--red-bg2:#FBCFD1;
+  --yellow:#D97706;--yellow-bg:#FEF3C7;
+  --sh-sm:0 2px 8px rgba(15,31,92,.08);--sh-md:0 6px 20px rgba(15,31,92,.10);--sh-lg:0 12px 40px rgba(15,31,92,.14);
+  --r-sm:10px;--r:14px;--r-lg:20px;--dur:200ms;--ease:cubic-bezier(.4,0,.2,1);
+  --sidebar-w:240px;--topbar-h:56px;
 }
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1);min-height:100vh;overflow-x:hidden;font-size:14px}
 
-/* ── BACK BUTTON ── */
-.back-btn{
-  display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);
-  border:1px solid rgba(255,255,255,0.25);color:#fff;border-radius:20px;
-  padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;
-  font-family:'Noto Sans',sans-serif;transition:all var(--dur);text-decoration:none;
-  backdrop-filter:blur(4px);
-}
-.back-btn:hover{background:rgba(255,255,255,0.25);transform:translateX(-2px)}
-.back-btn-dark{background:var(--bg);border:1.5px solid var(--border);color:var(--text-2)}
-.back-btn-dark:hover{background:var(--bg2);color:var(--text-1)}
-
-/* ── LOGIN PAGE ── */
-#loginPage{
-  display:flex;align-items:center;justify-content:center;min-height:100vh;
-  background:linear-gradient(145deg,var(--navy) 0%,var(--navy-2) 45%,#1E40AF 100%);
-  padding:16px;position:relative;overflow:hidden;
-}
-#loginPage::before{
-  content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;
-  background:radial-gradient(circle,rgba(232,96,10,.22) 0%,transparent 65%);border-radius:50%;
-}
-#loginPage::after{
-  content:'';position:absolute;bottom:-60px;left:-60px;width:250px;height:250px;
-  background:radial-gradient(circle,rgba(15,143,60,.15) 0%,transparent 65%);border-radius:50%;
-}
-.login-back-row{
-  position:absolute;top:16px;left:16px;z-index:10;
-}
-.login-card{
-  background:#fff;border-radius:var(--r-lg);width:100%;max-width:400px;
-  box-shadow:0 24px 80px rgba(0,0,0,.3);position:relative;z-index:2;
-  animation:loginSlide .35s var(--ease);overflow:hidden;
-}
+/* LOGIN PAGE */
+#loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(145deg,var(--navy) 0%,var(--navy-2) 45%,#1E40AF 100%);padding:16px;position:relative;overflow:hidden}
+#loginPage::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(232,96,10,.22) 0%,transparent 65%);border-radius:50%}
+#loginPage::after{content:'';position:absolute;bottom:-60px;left:-60px;width:250px;height:250px;background:radial-gradient(circle,rgba(15,143,60,.15) 0%,transparent 65%);border-radius:50%}
+.login-menu-btn{position:absolute;top:16px;right:16px;z-index:10;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background var(--dur)}
+.login-menu-btn:hover{background:rgba(255,255,255,.25)}
+.login-card{background:#fff;border-radius:var(--r-lg);width:100%;max-width:400px;box-shadow:0 24px 80px rgba(0,0,0,.3);position:relative;z-index:2;animation:loginSlide .35s var(--ease);overflow:hidden}
 @keyframes loginSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .flag-stripe{height:5px;background:linear-gradient(90deg,var(--saffron) 33.3%,#fff 33.3% 66.6%,var(--green) 66.6%)}
 .login-inner{padding:28px 24px 24px}
-.login-logo{
-  width:64px;height:64px;border-radius:var(--r);
-  background:linear-gradient(135deg,var(--saffron),var(--saffron-3));
-  display:flex;align-items:center;justify-content:center;font-size:30px;
-  margin:0 auto 16px;box-shadow:0 8px 24px rgba(232,96,10,.35);
-}
+.login-logo{width:64px;height:64px;border-radius:var(--r);background:linear-gradient(135deg,var(--saffron),var(--saffron-3));display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px;box-shadow:0 8px 24px rgba(232,96,10,.35)}
 .login-title{font-family:'Baloo 2';font-size:22px;font-weight:800;color:var(--navy);text-align:center;line-height:1.2}
 .login-sub{text-align:center;color:var(--text-3);font-size:12px;margin-top:4px}
 .login-divider{height:1px;background:var(--border);margin:20px 0}
@@ -102,68 +44,55 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .login-field{margin-bottom:14px}
 .login-input-wrap{position:relative}
 .login-input-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:15px}
-.login-input{
-  width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);
-  padding:11px 40px;font-size:14px;font-family:inherit;color:var(--text-1);outline:none;
-  transition:border-color var(--dur),box-shadow var(--dur),background var(--dur);
-}
+.login-input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:11px 40px;font-size:14px;font-family:inherit;color:var(--text-1);outline:none;transition:border-color var(--dur),box-shadow var(--dur),background var(--dur)}
 .login-input:focus{border-color:var(--navy-3);background:#fff;box-shadow:0 0 0 3px rgba(37,56,152,.1)}
 .login-pw-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:15px;color:var(--text-3)}
-.login-btn{
-  width:100%;background:linear-gradient(135deg,var(--saffron),var(--saffron-2));color:#fff;border:none;
-  border-radius:var(--r-sm);padding:13px;font-size:15px;font-weight:700;font-family:'Baloo 2';
-  cursor:pointer;box-shadow:0 6px 20px rgba(232,96,10,.4);transition:all var(--dur) var(--ease);margin-top:6px;
-}
+.login-btn{width:100%;background:linear-gradient(135deg,var(--saffron),var(--saffron-2));color:#fff;border:none;border-radius:var(--r-sm);padding:13px;font-size:15px;font-weight:700;font-family:'Baloo 2';cursor:pointer;box-shadow:0 6px 20px rgba(232,96,10,.4);transition:all var(--dur) var(--ease);margin-top:6px}
 .login-btn:hover{background:linear-gradient(135deg,#d45508,#e5700f);transform:translateY(-1px)}
 .login-btn:active{transform:scale(.98)}
-.login-error{
-  background:var(--red-bg);border:1px solid var(--red-bg2);color:var(--red);
-  border-radius:var(--r-sm);padding:10px 13px;font-size:12.5px;font-weight:600;
-  margin-top:12px;display:none;animation:shake .3s;
-}
+.login-error{background:var(--red-bg);border:1px solid var(--red-bg2);color:var(--red);border-radius:var(--r-sm);padding:10px 13px;font-size:12.5px;font-weight:600;margin-top:12px;display:none;animation:shake .3s}
 .login-error.show{display:block}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.login-notice{
-  background:var(--navy-light);border-radius:var(--r-sm);padding:10px 12px;
-  font-size:11.5px;color:var(--text-2);margin-top:14px;display:flex;gap:7px;align-items:flex-start;
-}
+.login-notice{background:var(--navy-light);border-radius:var(--r-sm);padding:10px 12px;font-size:11.5px;color:var(--text-2);margin-top:14px;display:flex;gap:7px;align-items:flex-start}
 .login-footer{text-align:center;color:var(--text-3);font-size:10.5px;margin-top:16px}
 
-/* ── DASHBOARD LAYOUT ── */
+/* LOGIN SIDEBAR (right side, white) */
+.login-sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:499}
+.login-sb-overlay.show{display:block}
+.login-sidebar{position:fixed;top:0;right:-300px;width:280px;height:100%;background:#fff;z-index:500;box-shadow:-8px 0 32px rgba(15,31,92,.2);transition:right .3s var(--ease);display:flex;flex-direction:column}
+.login-sidebar.open{right:0}
+.lsb-head{background:var(--navy);padding:18px 16px;display:flex;align-items:center;justify-content:space-between}
+.lsb-head h3{font-family:'Baloo 2';font-size:16px;font-weight:800;color:#fff}
+.lsb-close{background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lsb-body{flex:1;padding:14px;overflow-y:auto}
+.lsb-section{font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.6px;padding:4px 2px 8px}
+.lsb-item{display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:3px;border:1px solid transparent;transition:all var(--dur)}
+.lsb-item:hover{background:var(--bg);border-color:var(--border)}
+.lsb-item-ico{font-size:18px;width:34px;height:34px;border-radius:9px;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lsb-item-label{font-size:13.5px;font-weight:600;color:var(--text-1)}
+
+/* DASHBOARD LAYOUT */
 #adminApp{display:none}
 #adminApp.active{display:block;min-height:100vh}
 
-/* Topbar */
-.topbar{
-  position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--navy);
-  display:flex;align-items:center;padding:0 16px;gap:12px;z-index:300;
-  box-shadow:0 2px 12px rgba(15,31,92,.3);
-}
-.topbar-ham{
-  background:rgba(255,255,255,.12);border:none;color:#fff;width:38px;height:38px;
-  border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;
-  justify-content:center;flex-shrink:0;transition:background var(--dur);
-}
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--navy);display:flex;align-items:center;padding:0 16px;gap:12px;z-index:300;box-shadow:0 2px 12px rgba(15,31,92,.3)}
+.topbar-ham{background:rgba(255,255,255,.12);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--dur)}
 .topbar-ham:hover{background:rgba(255,255,255,.2)}
 .topbar-logo{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--saffron),var(--saffron-3));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .topbar-title{font-family:'Baloo 2';font-size:15px;font-weight:700;color:#fff;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.topbar-back{margin-left:auto;flex-shrink:0}
 
-/* Sidebar */
+/* DASHBOARD SIDEBAR (left side, navy) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:399}
 .sidebar-overlay.show{display:block}
-.sidebar{
-  position:fixed;top:0;bottom:0;left:0;width:var(--sidebar-w);background:var(--navy);
-  z-index:400;display:flex;flex-direction:column;transform:translateX(-100%);
-  transition:transform var(--dur) var(--ease);overflow-y:auto;
-}
+.sidebar{position:fixed;top:0;bottom:0;left:0;width:var(--sidebar-w);background:var(--navy);z-index:400;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform var(--dur) var(--ease);overflow-y:auto}
 .sidebar.open{transform:none}
 
-/* Desktop: sidebar always visible */
+/* Desktop — sidebar always visible */
 @media(min-width:900px){
-  .sidebar{transform:none;top:0}
+  .sidebar{transform:none}
   .sidebar-overlay{display:none!important}
-  .topbar-ham{display:none}
+  .topbar-ham{display:none!important}
   .main-wrap{margin-left:var(--sidebar-w)}
 }
 
@@ -172,61 +101,37 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .sb-logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--saffron),var(--saffron-3));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .sb-brand{font-family:'Baloo 2';font-size:14px;font-weight:800;color:#fff;line-height:1.2}
 .sb-sub{font-size:10px;color:rgba(255,255,255,.4)}
-.sb-badge{background:rgba(232,96,10,.2);border:1px solid rgba(232,96,10,.4);color:var(--saffron-3);border-radius:20px;padding:3px 9px;font-size:10px;font-weight:700;display:inline-block}
-
+.sb-admin-badge{background:rgba(232,96,10,.2);border:1px solid rgba(232,96,10,.4);color:var(--saffron-3);border-radius:20px;padding:3px 9px;font-size:10px;font-weight:700;display:inline-block;margin-top:6px}
 .sb-nav{flex:1;padding:10px 8px}
 .sb-section-title{font-size:9.5px;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:1px;padding:10px 8px 5px}
-.sb-item{
-  display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:var(--r-sm);
-  cursor:pointer;color:rgba(255,255,255,.6);font-size:13px;font-weight:500;
-  transition:all var(--dur);margin-bottom:1px;border:1px solid transparent;
-}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:var(--r-sm);cursor:pointer;color:rgba(255,255,255,.6);font-size:13px;font-weight:500;transition:all var(--dur);margin-bottom:1px;border:1px solid transparent}
 .sb-item:hover{background:rgba(255,255,255,.08);color:#fff}
 .sb-item.active{background:linear-gradient(135deg,rgba(232,96,10,.35),rgba(232,96,10,.2));color:#fff;border-color:rgba(232,96,10,.3)}
 .sb-ico{font-size:16px;width:20px;text-align:center;flex-shrink:0}
 .sb-badge-count{margin-left:auto;background:var(--red);color:#fff;border-radius:20px;padding:2px 6px;font-size:9.5px;font-weight:700;min-width:18px;text-align:center}
-
 .sb-footer{padding:10px 8px;border-top:1px solid rgba(255,255,255,.1)}
 .sb-admin-row{display:flex;align-items:center;gap:9px;padding:8px 10px}
 .sb-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--saffron-3));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .sb-admin-name{font-size:12px;font-weight:700;color:#fff}
 .sb-admin-role{font-size:10px;color:rgba(255,255,255,.4)}
-.sb-logout{
-  display:flex;align-items:center;gap:7px;width:100%;background:rgba(200,32,43,.15);
-  border:1px solid rgba(200,32,43,.3);color:#FF8A8A;border-radius:var(--r-sm);
-  padding:9px 11px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all var(--dur);
-  margin-top:5px;font-family:inherit;
-}
+.sb-logout{display:flex;align-items:center;gap:7px;width:100%;background:rgba(200,32,43,.15);border:1px solid rgba(200,32,43,.3);color:#FF8A8A;border-radius:var(--r-sm);padding:9px 11px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all var(--dur);margin-top:5px;font-family:inherit}
 .sb-logout:hover{background:rgba(200,32,43,.25)}
-.sb-back{
-  display:flex;align-items:center;gap:7px;width:100%;background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);border-radius:var(--r-sm);
-  padding:9px 11px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all var(--dur);
-  margin-top:5px;font-family:inherit;
-}
-.sb-back:hover{background:rgba(255,255,255,.12);color:#fff}
+.sb-home{display:flex;align-items:center;gap:7px;width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);border-radius:var(--r-sm);padding:9px 11px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all var(--dur);margin-top:5px;font-family:inherit}
+.sb-home:hover{background:rgba(255,255,255,.12);color:#fff}
 
-/* Main content */
+/* MAIN CONTENT */
 .main-wrap{padding-top:var(--topbar-h)}
 .main-content{padding:16px;max-width:1200px;margin:0 auto}
-
-/* Page header */
 .page-header{margin-bottom:18px}
 .page-title{font-family:'Baloo 2';font-size:20px;font-weight:800;color:var(--navy)}
 .page-sub{color:var(--text-3);font-size:12px;margin-top:2px}
-
-/* Section */
 .admin-section{display:none}
 .admin-section.active{display:block;animation:fadeIn .2s var(--ease)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
-/* Stats grid */
+/* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:18px}
-.stat-card{
-  background:var(--surface);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh-sm);
-  border:1px solid var(--border);position:relative;overflow:hidden;
-  transition:transform var(--dur),box-shadow var(--dur);
-}
+.stat-card{background:var(--surface);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh-sm);border:1px solid var(--border);position:relative;overflow:hidden;transition:transform var(--dur),box-shadow var(--dur)}
 .stat-card:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
 .stat-card.saffron::before{background:linear-gradient(90deg,var(--saffron),var(--saffron-3))}
@@ -238,42 +143,31 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .stat-val{font-family:'Baloo 2';font-size:26px;font-weight:800;color:var(--text-1);line-height:1}
 .stat-label{font-size:11px;color:var(--text-3);font-weight:600;margin-top:3px}
 
-/* Card */
+/* CARD */
 .card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);border:1px solid var(--border);overflow:hidden;margin-bottom:16px}
 .card-head{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .card-title{font-family:'Baloo 2';font-size:14px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:7px}
 .card-body{padding:14px 16px}
 
-/* Toolbar */
+/* TOOLBAR */
 .tbl-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;width:100%}
 .search-wrap{position:relative;flex:1;min-width:140px}
 .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--text-3)}
-.search-input{
-  width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);
-  padding:8px 10px 8px 32px;font-size:13px;font-family:inherit;color:var(--text-1);outline:none;
-  transition:border-color var(--dur);
-}
+.search-input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:8px 10px 8px 32px;font-size:13px;font-family:inherit;color:var(--text-1);outline:none;transition:border-color var(--dur)}
 .search-input:focus{border-color:var(--navy-3);background:#fff}
-.filter-select{
-  background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);
-  padding:8px 10px;font-size:12.5px;font-family:inherit;color:var(--text-1);outline:none;cursor:pointer;
-  max-width:130px;
-}
+.filter-select{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:8px 10px;font-size:12.5px;font-family:inherit;color:var(--text-1);outline:none;cursor:pointer;max-width:130px}
 
-/* Table */
+/* TABLE */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:500px}
-thead th{
-  background:var(--bg);color:var(--text-2);font-weight:700;padding:9px 10px;text-align:left;
-  font-size:11px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border);white-space:nowrap;
-}
+thead th{background:var(--bg);color:var(--text-2);font-weight:700;padding:9px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border);white-space:nowrap}
 tbody tr{border-bottom:1px solid var(--border);transition:background var(--dur)}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:rgba(37,56,152,.03)}
 td{padding:10px;color:var(--text-1);vertical-align:middle}
 td.muted{color:var(--text-3);font-size:11.5px}
 
-/* Badges */
+/* BADGES */
 .badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:10.5px;font-weight:700;white-space:nowrap}
 .badge-pending{background:var(--yellow-bg);color:var(--yellow)}
 .badge-accepted{background:#EEF1FD;color:var(--navy)}
@@ -286,7 +180,7 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .badge-active{background:var(--green-bg);color:var(--green)}
 .badge-blocked{background:var(--red-bg);color:var(--red)}
 
-/* Buttons */
+/* BUTTONS */
 .btn{border:none;border-radius:var(--r-sm);padding:8px 13px;font-size:12.5px;font-weight:700;font-family:'Baloo 2';cursor:pointer;transition:all var(--dur) var(--ease);display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
 .btn:active{transform:scale(.97)}
 .btn-sm{padding:6px 10px;font-size:11.5px}
@@ -304,7 +198,7 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .btn-full{width:100%;justify-content:center}
 .btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
 
-/* Payment verify cards */
+/* PAYMENT CARDS */
 .pay-card{background:var(--surface);border-radius:var(--r);padding:14px;box-shadow:var(--sh-sm);border:1px solid var(--border);margin-bottom:12px}
 .pay-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .pay-id{font-family:'Baloo 2';font-size:13.5px;font-weight:700;color:var(--navy)}
@@ -325,7 +219,7 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .driver-chip{background:var(--bg);border-radius:var(--r-sm);padding:7px 10px;font-size:11.5px;color:var(--text-2);display:flex;align-items:center;gap:5px;margin-bottom:10px;flex-wrap:wrap}
 .driver-chip strong{color:var(--text-1)}
 
-/* Driver cards */
+/* DRIVER CARDS */
 .driver-card{background:var(--surface);border-radius:var(--r);padding:14px;box-shadow:var(--sh-sm);border:1px solid var(--border);margin-bottom:10px;display:flex;gap:12px;align-items:flex-start;transition:transform var(--dur),box-shadow var(--dur)}
 .driver-card:hover{transform:translateY(-1px);box-shadow:var(--sh-md)}
 .driver-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-3));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;color:#fff}
@@ -338,7 +232,7 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .driver-stat strong{color:var(--text-1);display:block;font-family:'Baloo 2';font-size:12px}
 .driver-actions{display:flex;gap:6px;flex-direction:column;align-items:flex-end;flex-shrink:0}
 
-/* Modals */
+/* MODALS */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
 .modal-overlay.show{display:flex;animation:overlayFade .2s}
 @keyframes overlayFade{from{opacity:0}to{opacity:1}}
@@ -354,7 +248,7 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .reject-reason-input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:9px 11px;font-size:13px;font-family:inherit;color:var(--text-1);outline:none;resize:vertical;min-height:65px;transition:border-color var(--dur)}
 .reject-reason-input:focus{border-color:var(--red);background:#fff}
 
-/* Booking detail */
+/* BOOKING DETAIL */
 .detail-row{display:flex;border-bottom:1px solid var(--border)}
 .detail-row:last-child{border-bottom:none}
 .detail-label{font-size:11px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.3px;width:110px;flex-shrink:0;padding:9px 0}
@@ -362,7 +256,7 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .detail-section{background:var(--bg);border-radius:var(--r-sm);padding:12px 14px;margin-top:12px}
 .detail-section-title{font-size:10.5px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px}
 
-/* Empty/loading */
+/* EMPTY/LOADING */
 .empty-state{text-align:center;padding:40px 20px;color:var(--text-3)}
 .empty-icon{font-size:42px;margin-bottom:12px;opacity:.6}
 .empty-msg{font-size:14px;font-weight:600;color:var(--text-2)}
@@ -371,35 +265,24 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .spinner{width:18px;height:18px;border:2.5px solid var(--border);border-top-color:var(--saffron);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Toast */
+/* TOAST */
 .toast-container{position:fixed;top:68px;right:12px;z-index:600;display:flex;flex-direction:column;gap:8px;pointer-events:none}
-.toast{
-  background:#fff;border-radius:var(--r-sm);padding:11px 14px;box-shadow:var(--sh-lg);
-  border-left:4px solid;font-size:12.5px;font-weight:600;color:var(--text-1);
-  display:flex;align-items:center;gap:8px;min-width:220px;max-width:300px;
-  animation:toastIn .3s var(--ease);pointer-events:auto;
-}
+.toast{background:#fff;border-radius:var(--r-sm);padding:11px 14px;box-shadow:var(--sh-lg);border-left:4px solid;font-size:12.5px;font-weight:600;color:var(--text-1);display:flex;align-items:center;gap:8px;min-width:220px;max-width:300px;animation:toastIn .3s var(--ease);pointer-events:auto}
 @keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
 .toast.success{border-left-color:var(--green)}
 .toast.error{border-left-color:var(--red)}
 .toast.info{border-left-color:var(--navy)}
 .toast-icon{font-size:16px;flex-shrink:0}
 
-/* Commission banner */
-.commission-banner{
-  background:linear-gradient(135deg,var(--saffron-bg),#FFF8F0);
-  border:1.5px solid var(--saffron-bg2);border-radius:var(--r);padding:16px;
-  display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;
-}
+/* COMMISSION */
+.commission-banner{background:linear-gradient(135deg,var(--saffron-bg),#FFF8F0);border:1.5px solid var(--saffron-bg2);border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
 .commission-banner-icon{font-size:32px}
 .commission-banner-val{font-family:'Baloo 2';font-size:28px;font-weight:800;color:var(--saffron)}
 .commission-banner-label{font-size:11px;color:var(--text-3);font-weight:600}
 .commission-banner-note{font-size:11.5px;color:var(--text-2);margin-top:3px}
-
-/* Quick actions */
 .quick-actions{display:flex;gap:8px;flex-wrap:wrap}
 
-/* Mobile specific */
+/* MOBILE */
 @media(max-width:599px){
   .stats-grid{grid-template-columns:1fr 1fr;gap:10px}
   .stat-val{font-size:22px}
@@ -416,28 +299,46 @@ td.muted{color:var(--text-3);font-size:11.5px}
   .stats-grid{grid-template-columns:1fr}
   .login-inner{padding:20px 16px 18px}
 }
-
-/* Scrollbar */
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:10px}
+
+
+
+
+.topbar-menu-btn{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff;
+  width:38px;height:38px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  transition:background var(--dur);
+  margin-left:auto;
+}
+.topbar-menu-btn:hover{background:rgba(255,255,255,.25)}
 </style>
 </head>
 <body>
 
-<!-- LOGIN PAGE -->
+<!-- ═══════════════════════════════════════
+     LOGIN PAGE
+═══════════════════════════════════════ -->
 <div id="loginPage">
-  <div class="login-back-row">
-   <div style="position:absolute;top:16px;right:16px;z-index:10;">
-  <button class="tb-ham" onclick="openSidebar()" style="background:rgba(255,255,255,.15);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">☰</button>
-</div>
-  </div>
+  <!-- Menu button - top right -->
+  <button class="login-menu-btn" onclick="openLoginSidebar()">☰</button>
+
   <div class="login-card">
     <div class="flag-stripe"></div>
     <div class="login-inner">
       <div class="login-logo">🛡️</div>
       <div class="login-title">Bharat Sarthi</div>
-      <div class="login-sub">Admin Control Panelgggg — Sirf Authorized Access</div>
+      <div class="login-sub">Admin Control Panel — Sirf Authorized Access</div>
       <div class="login-divider"></div>
       <div class="login-field">
         <div class="login-label">👤 Username</div>
@@ -465,58 +366,55 @@ td.muted{color:var(--text-3);font-size:11.5px}
   </div>
 </div>
 
-
-
-<!-- SIDEBAR OVERLAY -->
-<div class="sidebar-overlay" id="loginSidebarOverlay" onclick="closeSidebar()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:399"></div>
-
-<!-- SIDEBAR -->
-<div class="sidebar" id="loginSidebar" style="position:fixed;top:0;right:-290px;width:290px;height:100%;background:#fff;z-index:400;box-shadow:-8px 0 32px rgba(15,31,92,.18);transition:right .3s;display:flex;flex-direction:column;">
-  <div style="background:var(--navy);padding:20px 16px;display:flex;align-items:center;justify-content:space-between;">
-    <h3 style="font-family:'Baloo 2';font-size:17px;font-weight:800;color:#fff;">☰ Menu</h3>
-    <button onclick="closeSidebar()" style="background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;">✕</button>
+<!-- ═══════════════════════════════════════
+     LOGIN PAGE SIDEBAR (right side, white)
+═══════════════════════════════════════ -->
+<div class="login-sb-overlay" id="loginSbOverlay" onclick="closeLoginSidebar()"></div>
+<div class="login-sidebar" id="loginSidebar">
+  <div class="lsb-head">
+    <h3>☰ Menu</h3>
+    <button class="lsb-close" onclick="closeLoginSidebar()">✕</button>
   </div>
-  <div style="flex:1;padding:16px;overflow-y:auto;">
-    <div style="font-size:10.5px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.6px;padding:4px 2px 8px;">Navigation</div>
-    <div onclick="goHome()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:4px;border:1px solid transparent;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
-      <div style="font-size:20px;width:36px;height:36px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;">🏠</div>
-      <span style="font-size:14px;font-weight:600;color:var(--text-1);">Home</span>
+  <div class="lsb-body">
+    <div class="lsb-section">Navigation</div>
+    <div class="lsb-item" onclick="goHome()">
+      <div class="lsb-item-ico">🏠</div>
+      <span class="lsb-item-label">Home</span>
     </div>
-    <div onclick="goHome()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:4px;border:1px solid transparent;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
-      <div style="font-size:20px;width:36px;height:36px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;">🚗</div>
-      <span style="font-size:14px;font-weight:600;color:var(--text-1);">Driver Book Karein</span>
+    <div class="lsb-item" onclick="goHome()">
+      <div class="lsb-item-ico">🚗</div>
+      <span class="lsb-item-label">Driver Book Karein</span>
     </div>
-    
-    
-    <div onclick="goHome()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:4px;border:1px solid transparent;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
-  <div style="font-size:20px;width:36px;height:36px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;">🪪</div>
-  <span style="font-size:14px;font-weight:600;color:var(--text-1);">ड्राइवर पैनल</span>
-</div>
-<div onclick="goHome()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:4px;border:1px solid transparent;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
-  <div style="font-size:20px;width:36px;height:36px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;">📋</div>
-  <span style="font-size:14px;font-weight:600;color:var(--text-1);">My Booking</span>
-</div>
+    <div class="lsb-item" onclick="goHome()">
+      <div class="lsb-item-ico">🪪</div>
+      <span class="lsb-item-label">ड्राइवर पैनल</span>
+    </div>
+    <div class="lsb-item" onclick="goHome()">
+      <div class="lsb-item-ico">📋</div>
+      <span class="lsb-item-label">My Booking</span>
+    </div>
   </div>
 </div>
 
-
-<!-- ADMIN DASHBOARD -->
+<!-- ═══════════════════════════════════════
+     ADMIN DASHBOARD
+═══════════════════════════════════════ -->
 <div id="adminApp">
 
-  <!-- Sidebar Overlay -->
-  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  <!-- Dashboard Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeDashboardSidebar()"></div>
 
-  <!-- Sidebar -->
-  <nav class="sidebar" id="sidebar">
+  <!-- Dashboard Sidebar (left, navy) -->
+  <nav class="sidebar" id="dashSidebar">
     <div class="sb-header">
       <div class="sb-logo-row">
         <div class="sb-logo">🛡️</div>
         <div>
-          <div class="sb-brand">Bharat Sarthigggggg</div>
+          <div class="sb-brand">Bharat Sarthi</div>
           <div class="sb-sub">Admin Panel</div>
         </div>
       </div>
-      <div class="sb-badge" id="sb-adminName">👤 Admin</div>
+      <div class="sb-admin-badge" id="sb-adminName">👤 Admin</div>
     </div>
     <div class="sb-nav">
       <div class="sb-section-title">Main Menu</div>
@@ -546,17 +444,18 @@ td.muted{color:var(--text-3);font-size:11.5px}
           <div class="sb-admin-role">System Administrator</div>
         </div>
       </div>
-      <button class="sb-back" onclick="goHome()">🏠 Back to Home</button>
+      <button class="sb-home" onclick="goHome()">🏠 Back to Home</button>
       <button class="sb-logout" onclick="doLogout()">🚪 Logout</button>
     </div>
   </nav>
 
   <!-- Topbar -->
- <div class="topbar">
-  <button class="topbar-ham" onclick="openSidebar()">☰</button>
-  <div class="topbar-logo">🛡️</div>
-  <div class="topbar-title" id="mob-pageTitle">Dashboard</div>
-</div>
+  <div class="topbar">
+    <button class="topbar-ham" onclick="openDashboardSidebar()">☰</button>
+    <div class="topbar-logo">🛡️</div>
+    <div class="topbar-title" id="mob-pageTitle">Dashboard</div>
+     <button class="login-menu-btn" onclick="openLoginSidebar()">☰</button>
+  </div>
 
   <!-- Main Content -->
   <div class="main-wrap">
@@ -568,7 +467,7 @@ td.muted{color:var(--text-3);font-size:11.5px}
           <div class="page-title">📊 Dashboard</div>
           <div class="page-sub">Bharat Sarthi — Admin Control Center</div>
         </div>
-        <div class="stats-grid" id="statsGrid">
+        <div class="stats-grid">
           <div class="stat-card navy"><div class="stat-icon">📋</div><div class="stat-val" id="st-total">—</div><div class="stat-label">Total Bookings</div></div>
           <div class="stat-card yellow"><div class="stat-icon">⏳</div><div class="stat-val" id="st-pending">—</div><div class="stat-label">Pending</div></div>
           <div class="stat-card saffron"><div class="stat-icon">✅</div><div class="stat-val" id="st-accepted">—</div><div class="stat-label">Accepted</div></div>
@@ -607,18 +506,12 @@ td.muted{color:var(--text-3);font-size:11.5px}
 
       <!-- ALL BOOKINGS -->
       <div class="admin-section" id="sec-bookings">
-        <div class="page-header">
-          <div class="page-title">📋 All Bookings</div>
-          <div class="page-sub">Saari bookings — filter aur search karein</div>
-        </div>
+        <div class="page-header"><div class="page-title">📋 All Bookings</div><div class="page-sub">Saari bookings — filter aur search karein</div></div>
         <div class="card">
           <div class="card-head">
             <div class="card-title">Booking List</div>
             <div class="tbl-toolbar">
-              <div class="search-wrap">
-                <span class="search-icon">🔍</span>
-                <input class="search-input" id="bookingSearch" placeholder="ID, Mobile ya Location..." oninput="filterBookings()">
-              </div>
+              <div class="search-wrap"><span class="search-icon">🔍</span><input class="search-input" id="bookingSearch" placeholder="ID, Mobile ya Location..." oninput="filterBookings()"></div>
               <select class="filter-select" id="bookingStatusFilter" onchange="filterBookings()">
                 <option value="">Sab Status</option>
                 <option value="PENDING">⏳ Pending</option>
@@ -632,12 +525,8 @@ td.muted{color:var(--text-3);font-size:11.5px}
           </div>
           <div class="tbl-wrap">
             <table>
-              <thead>
-                <tr><th>ID</th><th>Customer</th><th>Pickup</th><th>Drop</th><th>Driver</th><th>Total</th><th>Status</th><th>Payment</th><th>Action</th></tr>
-              </thead>
-              <tbody id="allBookingsBody">
-                <tr><td colspan="9"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>
-              </tbody>
+              <thead><tr><th>ID</th><th>Customer</th><th>Pickup</th><th>Drop</th><th>Driver</th><th>Total</th><th>Status</th><th>Payment</th><th>Action</th></tr></thead>
+              <tbody id="allBookingsBody"><tr><td colspan="9"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr></tbody>
             </table>
           </div>
         </div>
@@ -645,35 +534,21 @@ td.muted{color:var(--text-3);font-size:11.5px}
 
       <!-- PAYMENT VERIFICATION -->
       <div class="admin-section" id="sec-payments">
-        <div class="page-header">
-          <div class="page-title">💳 Payment Verification</div>
-          <div class="page-sub">Screenshots verify karein — Approve ya Reject</div>
-        </div>
+        <div class="page-header"><div class="page-title">💳 Payment Verification</div><div class="page-sub">Screenshots verify karein — Approve ya Reject</div></div>
         <div class="card" style="margin-bottom:14px">
-          <div class="card-head">
-            <div class="card-title">⏳ Pending Verifications</div>
-            <button class="btn btn-ghost btn-sm" onclick="loadPendingPayments()">🔄 Refresh</button>
-          </div>
+          <div class="card-head"><div class="card-title">⏳ Pending Verifications</div><button class="btn btn-ghost btn-sm" onclick="loadPendingPayments()">🔄 Refresh</button></div>
         </div>
-        <div id="pendingPaymentsContainer">
-          <div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div>
-        </div>
+        <div id="pendingPaymentsContainer"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></div>
       </div>
 
       <!-- DRIVERS -->
       <div class="admin-section" id="sec-drivers">
-        <div class="page-header">
-          <div class="page-title">🚗 Driver Management</div>
-          <div class="page-sub">Sabhi drivers ki information aur status</div>
-        </div>
+        <div class="page-header"><div class="page-title">🚗 Driver Management</div><div class="page-sub">Sabhi drivers ki information aur status</div></div>
         <div class="card" style="margin-bottom:12px">
           <div class="card-head">
             <div class="card-title">Driver List</div>
             <div class="tbl-toolbar">
-              <div class="search-wrap">
-                <span class="search-icon">🔍</span>
-                <input class="search-input" id="driverSearch" placeholder="Naam ya Mobile..." oninput="filterDrivers()">
-              </div>
+              <div class="search-wrap"><span class="search-icon">🔍</span><input class="search-input" id="driverSearch" placeholder="Naam ya Mobile..." oninput="filterDrivers()"></div>
               <select class="filter-select" id="driverStatusFilter" onchange="filterDrivers()">
                 <option value="">Sab Drivers</option>
                 <option value="active">✅ Active</option>
@@ -683,17 +558,12 @@ td.muted{color:var(--text-3);font-size:11.5px}
             </div>
           </div>
         </div>
-        <div id="driversContainer">
-          <div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div>
-        </div>
+        <div id="driversContainer"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></div>
       </div>
 
       <!-- COMMISSION -->
       <div class="admin-section" id="sec-commission">
-        <div class="page-header">
-          <div class="page-title">💰 Commission & Earnings</div>
-          <div class="page-sub">15% admin commission ka poora hisaab</div>
-        </div>
+        <div class="page-header"><div class="page-title">💰 Commission & Earnings</div><div class="page-sub">15% admin commission ka poora hisaab</div></div>
         <div class="commission-banner">
           <div class="commission-banner-icon">💰</div>
           <div>
@@ -703,16 +573,11 @@ td.muted{color:var(--text-3);font-size:11.5px}
           </div>
         </div>
         <div class="card">
-          <div class="card-head">
-            <div class="card-title">📊 Commission Breakdown</div>
-            <button class="btn btn-ghost btn-sm" onclick="loadCommission()">🔄</button>
-          </div>
+          <div class="card-head"><div class="card-title">📊 Commission Breakdown</div><button class="btn btn-ghost btn-sm" onclick="loadCommission()">🔄</button></div>
           <div class="tbl-wrap">
             <table>
               <thead><tr><th>Booking ID</th><th>Customer</th><th>Driver</th><th>Total</th><th>Commission (15%)</th><th>Driver Gets</th><th>Date</th></tr></thead>
-              <tbody id="commissionBody">
-                <tr><td colspan="7"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>
-              </tbody>
+              <tbody id="commissionBody"><tr><td colspan="7"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr></tbody>
             </table>
           </div>
         </div>
@@ -725,38 +590,27 @@ td.muted{color:var(--text-3);font-size:11.5px}
 <!-- Booking Detail Modal -->
 <div class="modal-overlay" id="bookingDetailModal" onclick="closeModal('bookingDetailModal')">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <div class="modal-head">
-      <div class="modal-title" id="bdetail-title">Booking Details</div>
-      <button class="modal-close" onclick="closeModal('bookingDetailModal')">✕</button>
-    </div>
+    <div class="modal-head"><div class="modal-title" id="bdetail-title">Booking Details</div><button class="modal-close" onclick="closeModal('bookingDetailModal')">✕</button></div>
     <div class="modal-body" id="bookingDetailBody"></div>
   </div>
 </div>
 
-<!-- Screenshot Lightbox -->
+<!-- Screenshot Modal -->
 <div class="modal-overlay" id="screenshotModal" onclick="closeModal('screenshotModal')">
   <div class="modal-box" style="max-width:680px" onclick="event.stopPropagation()">
-    <div class="modal-head">
-      <div class="modal-title">📷 Payment Screenshot</div>
-      <button class="modal-close" onclick="closeModal('screenshotModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <img id="screenshotLargeImg" class="modal-img" src="" alt="Payment Screenshot">
-    </div>
+    <div class="modal-head"><div class="modal-title">📷 Payment Screenshot</div><button class="modal-close" onclick="closeModal('screenshotModal')">✕</button></div>
+    <div class="modal-body"><img id="screenshotLargeImg" class="modal-img" src="" alt="Payment Screenshot"></div>
   </div>
 </div>
 
 <!-- Reject Modal -->
 <div class="modal-overlay" id="rejectModal" onclick="closeModal('rejectModal')">
   <div class="modal-box" style="max-width:420px" onclick="event.stopPropagation()">
-    <div class="modal-head">
-      <div class="modal-title">🚫 Payment Reject Karein</div>
-      <button class="modal-close" onclick="closeModal('rejectModal')">✕</button>
-    </div>
+    <div class="modal-head"><div class="modal-title">🚫 Payment Reject Karein</div><button class="modal-close" onclick="closeModal('rejectModal')">✕</button></div>
     <div class="modal-body">
       <p style="font-size:13px;color:var(--text-2);margin-bottom:12px">Booking <strong id="rejectBookingId">—</strong> ka payment reject karne wale hain.</p>
       <div class="reject-reason-label">Rejection Reason (optional)</div>
-      <textarea class="reject-reason-input" id="rejectReasonInput" placeholder="e.g. Screenshot unclear hai, Amount galat hai..."></textarea>
+      <textarea class="reject-reason-input" id="rejectReasonInput" placeholder="e.g. Screenshot unclear hai..."></textarea>
       <div style="display:flex;gap:8px;margin-top:14px">
         <button class="btn btn-ghost btn-full" onclick="closeModal('rejectModal')">Cancel</button>
         <button class="btn btn-red btn-full" id="confirmRejectBtn" onclick="confirmReject()">🚫 Confirm Reject</button>
@@ -765,21 +619,39 @@ td.muted{color:var(--text-3);font-size:11.5px}
   </div>
 </div>
 
-<!-- Toast -->
 <div class="toast-container" id="toastContainer"></div>
+
+
+
+
+
+
 
 <script>
 const API = 'https://bharat-sarthi-clean.onrender.com';
-
-let adminSession = null;
-let allBookingsData = [];
-let allDriversData = [];
-let currentRejectId = null;
-let bookingMap = {};
+let adminSession = null, allBookingsData = [], allDriversData = [], currentRejectId = null, bookingMap = {};
 
 // ── NAVIGATION ──
-function goHome() {
-  window.location.href = 'bharat-sarthi-frontend.html';
+function goHome() { window.location.href = 'bharat-sarthi-frontend.html'; }
+
+// ── LOGIN SIDEBAR (right, white) ──
+function openLoginSidebar() {
+  document.getElementById('loginSidebar').classList.add('open');
+  document.getElementById('loginSbOverlay').classList.add('show');
+}
+function closeLoginSidebar() {
+  document.getElementById('loginSidebar').classList.remove('open');
+  document.getElementById('loginSbOverlay').classList.remove('show');
+}
+
+// ── DASHBOARD SIDEBAR (left, navy) ──
+function openDashboardSidebar() {
+  document.getElementById('dashSidebar').classList.add('open');
+  document.getElementById('sidebarOverlay').classList.add('show');
+}
+function closeDashboardSidebar() {
+  document.getElementById('dashSidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
 }
 
 // ── UTILS ──
@@ -790,492 +662,234 @@ function showToast(msg, type='info') {
   toast.className = `toast ${type}`;
   toast.innerHTML = `<span class="toast-icon">${icons[type]}</span>${msg}`;
   container.appendChild(toast);
-  setTimeout(() => {
-    toast.style.opacity = '0'; toast.style.transform = 'translateX(20px)';
-    toast.style.transition = 'all .3s';
-    setTimeout(() => toast.remove(), 350);
-  }, 3200);
+  setTimeout(() => { toast.style.opacity='0'; toast.style.transform='translateX(20px)'; toast.style.transition='all .3s'; setTimeout(()=>toast.remove(),350); }, 3200);
 }
-
 function openModal(id) { document.getElementById(id).classList.add('show'); }
 function closeModal(id) { document.getElementById(id).classList.remove('show'); }
-function formatDate(d) {
-  if (!d) return '—';
-  try { return new Date(d).toLocaleDateString('hi-IN', {day:'2-digit', month:'short', year:'numeric'}); }
-  catch { return d; }
-}
-function formatMoney(v) { return v != null ? '₹' + Number(v).toLocaleString('en-IN') : '—'; }
-
+function formatDate(d) { if(!d) return '—'; try { return new Date(d).toLocaleDateString('hi-IN',{day:'2-digit',month:'short',year:'numeric'}); } catch { return d; } }
+function formatMoney(v) { return v!=null ? '₹'+Number(v).toLocaleString('en-IN') : '—'; }
 function statusBadge(s) {
   const map = {PENDING:'badge-pending ⏳',ACCEPTED:'badge-accepted ✅',COMPLETED:'badge-completed 🚗',CANCELLED:'badge-cancelled ❌',REJECTED:'badge-rejected 🚫'};
-  const val = map[s] || 'badge-pending';
-  const parts = val.split(' ');
-  const cls = parts.shift();
+  const val = map[s]||'badge-pending'; const parts=val.split(' '); const cls=parts.shift();
   return `<span class="badge ${cls}">${parts.join(' ')} ${s}</span>`;
 }
 function payBadge(s) {
   const map = {PENDING:'badge-pending ⏳ Pending',SCREENSHOT_UPLOADED:'badge-screenshot 📷 Screenshot',VERIFIED:'badge-verified ✅ Verified',REJECTED:'badge-rejected 🚫 Rejected'};
-  const val = map[s] || 'badge-pending ' + s;
-  const parts = val.split(' ');
-  const cls = parts.shift();
+  const val = map[s]||'badge-pending '+s; const parts=val.split(' '); const cls=parts.shift();
   return `<span class="badge ${cls}">${parts.join(' ')}</span>`;
 }
 
 // ── AUTH ──
-function toggleLoginPw() {
-  const inp = document.getElementById('adminPassword');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
-}
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !document.getElementById('loginPage').style.display) doAdminLogin();
-  if (e.key === 'Escape') { document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show')); closeSidebar(); }
+function toggleLoginPw() { const inp=document.getElementById('adminPassword'); inp.type=inp.type==='password'?'text':'password'; }
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Enter'&&!document.getElementById('loginPage').style.display) doAdminLogin();
+  if(e.key==='Escape'){ document.querySelectorAll('.modal-overlay.show').forEach(m=>m.classList.remove('show')); closeDashboardSidebar(); closeLoginSidebar(); }
 });
-
 async function doAdminLogin() {
-  const username = document.getElementById('adminUsername').value.trim();
-  const password = document.getElementById('adminPassword').value;
-  const errEl = document.getElementById('loginError');
-  const btn = document.getElementById('loginBtn');
+  const username=document.getElementById('adminUsername').value.trim();
+  const password=document.getElementById('adminPassword').value;
+  const errEl=document.getElementById('loginError'); const btn=document.getElementById('loginBtn');
   errEl.classList.remove('show');
-  if (!username || !password) { showLoginError('Username aur password dono daalein'); return; }
-  btn.disabled = true; btn.textContent = '⏳ Login ho raha hai...';
+  if(!username||!password){showLoginError('Username aur password dono daalein');return;}
+  btn.disabled=true; btn.textContent='⏳ Login ho raha hai...';
   try {
-    const res = await fetch(`${API}/api/admin/login`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({username, password})
-    });
-    if (!res.ok) { const err = await res.json(); showLoginError(err.error || 'Login fail ho gaya'); return; }
-    adminSession = await res.json();
-    localStorage.setItem('bsAdminSession', JSON.stringify(adminSession));
-    showDashboard();
-    loadDashboard();
-    showToast('Welcome back, ' + (adminSession.fullName || adminSession.username) + '! 👑', 'success');
-  } catch (e) {
-    showLoginError('Server se connect nahi ho pa raha.');
-  } finally {
-    btn.disabled = false; btn.textContent = '🚀 Admin Login';
-  }
+    const res=await fetch(`${API}/api/admin/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password})});
+    if(!res.ok){const err=await res.json();showLoginError(err.error||'Login fail ho gaya');return;}
+    adminSession=await res.json();
+    localStorage.setItem('bsAdminSession',JSON.stringify(adminSession));
+    showDashboard(); loadDashboard();
+    showToast('Welcome back, '+(adminSession.fullName||adminSession.username)+'! 👑','success');
+  } catch(e){showLoginError('Server se connect nahi ho pa raha.');}
+  finally{btn.disabled=false;btn.textContent='🚀 Admin Login';}
 }
-
 function showDashboard() {
-  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('loginPage').style.display='none';
   document.getElementById('adminApp').classList.add('active');
-  document.getElementById('sb-adminName').textContent = '👤 ' + (adminSession.username || 'Admin');
-  document.getElementById('sb-adminFullName').textContent = adminSession.fullName || 'Super Admin';
+  document.getElementById('sb-adminName').textContent='👤 '+(adminSession.username||'Admin');
+  document.getElementById('sb-adminFullName').textContent=adminSession.fullName||'Super Admin';
 }
-
-function showLoginError(msg) {
-  document.getElementById('loginErrorMsg').textContent = msg;
-  document.getElementById('loginError').classList.add('show');
-}
-
+function showLoginError(msg){document.getElementById('loginErrorMsg').textContent=msg;document.getElementById('loginError').classList.add('show');}
 function doLogout() {
-  if (!confirm('Kya aap logout karna chahte hain?')) return;
-  adminSession = null;
-  localStorage.removeItem('bsAdminSession');
+  if(!confirm('Kya aap logout karna chahte hain?')) return;
+  adminSession=null; localStorage.removeItem('bsAdminSession');
   document.getElementById('adminApp').classList.remove('active');
-  document.getElementById('loginPage').style.display = '';
-  document.getElementById('adminUsername').value = '';
-  document.getElementById('adminPassword').value = '';
-  showToast('Logout ho gaya. Phir milenge! 👋', 'info');
+  document.getElementById('loginPage').style.display='';
+  document.getElementById('adminUsername').value=''; document.getElementById('adminPassword').value='';
+  showToast('Logout ho gaya. Phir milenge! 👋','info');
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('bsAdminSession');
-  if (saved) {
-    try {
-      adminSession = JSON.parse(saved);
-      showDashboard();
-      loadDashboard();
-    } catch { localStorage.removeItem('bsAdminSession'); }
-  }
+window.addEventListener('DOMContentLoaded',()=>{
+  const saved=localStorage.getItem('bsAdminSession');
+  if(saved){try{adminSession=JSON.parse(saved);showDashboard();loadDashboard();}catch{localStorage.removeItem('bsAdminSession');}}
 });
 
-// ── SIDEBAR ──
-function openSidebar() {
-  const isLoggedIn = document.getElementById('adminApp').classList.contains('active');
-  if (isLoggedIn) {
-    document.getElementById('sidebar').classList.add('open');
-    document.getElementById('sidebarOverlay').classList.add('show');
-  } else {
-    document.getElementById('loginSidebar').style.right = '0';
-    document.getElementById('loginSidebarOverlay').style.display = 'block';
-  }
-}
-function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebarOverlay').classList.remove('show');
-  document.getElementById('loginSidebar').style.right = '-290px';
-  document.getElementById('loginSidebarOverlay').style.display = 'none';
-}
-
-const sectionTitles = {dashboard:'Dashboard', bookings:'All Bookings', payments:'Payment Verify', drivers:'Drivers', commission:'Commission'};
-
+// ── SECTIONS ──
+const sectionTitles={dashboard:'Dashboard',bookings:'All Bookings',payments:'Payment Verify',drivers:'Drivers',commission:'Commission'};
 function showSection(name) {
-  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.sb-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('sec-' + name).classList.add('active');
-  document.getElementById('nav-' + name).classList.add('active');
-  document.getElementById('mob-pageTitle').textContent = sectionTitles[name] || name;
-  closeSidebar();
-  window.scrollTo(0, 0);
-  if (name === 'dashboard') loadDashboard();
-  else if (name === 'bookings') loadAllBookings();
-  else if (name === 'payments') loadPendingPayments();
-  else if (name === 'drivers') loadAllDrivers();
-  else if (name === 'commission') loadCommission();
+  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('sec-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  document.getElementById('mob-pageTitle').textContent=sectionTitles[name]||name;
+  closeDashboardSidebar(); window.scrollTo(0,0);
+  if(name==='dashboard') loadDashboard();
+  else if(name==='bookings') loadAllBookings();
+  else if(name==='payments') loadPendingPayments();
+  else if(name==='drivers') loadAllDrivers();
+  else if(name==='commission') loadCommission();
 }
 
 // ── DASHBOARD ──
 async function loadDashboard() {
   try {
-    const res = await fetch(`${API}/api/admin/dashboard`);
-    if (!res.ok) throw new Error('Dashboard load fail');
-    const d = await res.json();
-    document.getElementById('st-total').textContent = d.totalBookings ?? '0';
-    document.getElementById('st-pending').textContent = d.pendingBookings ?? '0';
-    document.getElementById('st-accepted').textContent = d.acceptedBookings ?? '0';
-    document.getElementById('st-completed').textContent = d.completedBookings ?? '0';
-    document.getElementById('st-cancelled').textContent = d.cancelledBookings ?? '0';
-    document.getElementById('st-drivers').textContent = d.totalDrivers ?? '0';
-    document.getElementById('st-pendPay').textContent = d.pendingPayments ?? '0';
-    document.getElementById('st-commission').textContent = '₹' + Number(d.totalCommission||0).toLocaleString('en-IN');
-    const pCount = d.pendingPayments || 0;
-    const badge = document.getElementById('pendingPayBadge');
-    badge.textContent = pCount;
-    badge.style.display = pCount > 0 ? '' : 'none';
+    const res=await fetch(`${API}/api/admin/dashboard`);
+    if(!res.ok) throw new Error('Dashboard load fail');
+    const d=await res.json();
+    document.getElementById('st-total').textContent=d.totalBookings??'0';
+    document.getElementById('st-pending').textContent=d.pendingBookings??'0';
+    document.getElementById('st-accepted').textContent=d.acceptedBookings??'0';
+    document.getElementById('st-completed').textContent=d.completedBookings??'0';
+    document.getElementById('st-cancelled').textContent=d.cancelledBookings??'0';
+    document.getElementById('st-drivers').textContent=d.totalDrivers??'0';
+    document.getElementById('st-pendPay').textContent=d.pendingPayments??'0';
+    document.getElementById('st-commission').textContent='₹'+Number(d.totalCommission||0).toLocaleString('en-IN');
+    const pCount=d.pendingPayments||0; const badge=document.getElementById('pendingPayBadge');
+    badge.textContent=pCount; badge.style.display=pCount>0?'':'none';
     loadRecentBookings();
-  } catch(e) { showToast('Dashboard load nahi hua: ' + e.message, 'error'); }
+  } catch(e){showToast('Dashboard load nahi hua: '+e.message,'error');}
 }
-
 async function loadRecentBookings() {
-  const tbody = document.getElementById('recentBookingsBody');
-  tbody.innerHTML = '<tr><td colspan="5"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>';
+  const tbody=document.getElementById('recentBookingsBody');
+  tbody.innerHTML='<tr><td colspan="5"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>';
   try {
-    const res = await fetch(`${API}/api/admin/bookings`);
-    const data = await res.json();
-    const recent = data.slice(0, 8);
-    if (recent.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><div class="empty-icon">📋</div><div class="empty-msg">Koi booking nahi mili</div></div></td></tr>';
-      return;
-    }
-    tbody.innerHTML = recent.map(b => `
-      <tr>
-        <td><strong style="font-family:'Baloo 2';color:var(--navy);font-size:12px">${b.id}</strong></td>
-        <td>📱 ${b.customerMobile}</td>
-        <td style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${b.pickupLocation||'—'}</td>
-        <td>${statusBadge(b.status)}</td>
-        <td>${payBadge(b.paymentStatus)}</td>
-      </tr>`).join('');
-  } catch(e) {
-    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--red);padding:16px">Error: ${e.message}</td></tr>`;
-  }
+    const res=await fetch(`${API}/api/admin/bookings`); const data=await res.json(); const recent=data.slice(0,8);
+    if(recent.length===0){tbody.innerHTML='<tr><td colspan="5"><div class="empty-state"><div class="empty-icon">📋</div><div class="empty-msg">Koi booking nahi mili</div></div></td></tr>';return;}
+    tbody.innerHTML=recent.map(b=>`<tr><td><strong style="font-family:'Baloo 2';color:var(--navy);font-size:12px">${b.id}</strong></td><td>📱 ${b.customerMobile}</td><td style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${b.pickupLocation||'—'}</td><td>${statusBadge(b.status)}</td><td>${payBadge(b.paymentStatus)}</td></tr>`).join('');
+  } catch(e){tbody.innerHTML=`<tr><td colspan="5" style="text-align:center;color:var(--red);padding:16px">Error: ${e.message}</td></tr>`;}
 }
 
 // ── ALL BOOKINGS ──
 async function loadAllBookings() {
-  const tbody = document.getElementById('allBookingsBody');
-  tbody.innerHTML = '<tr><td colspan="9"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>';
+  const tbody=document.getElementById('allBookingsBody');
+  tbody.innerHTML='<tr><td colspan="9"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>';
   try {
-    const res = await fetch(`${API}/api/admin/bookings`);
-    allBookingsData = await res.json();
-    bookingMap = {};
-    allBookingsData.forEach(b => bookingMap[b.id] = b);
-    renderBookingsTable(allBookingsData);
-  } catch(e) {
-    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;color:var(--red);padding:16px">Error: ${e.message}</td></tr>`;
-  }
+    const res=await fetch(`${API}/api/admin/bookings`); allBookingsData=await res.json();
+    bookingMap={}; allBookingsData.forEach(b=>bookingMap[b.id]=b); renderBookingsTable(allBookingsData);
+  } catch(e){tbody.innerHTML=`<tr><td colspan="9" style="text-align:center;color:var(--red);padding:16px">Error: ${e.message}</td></tr>`;}
 }
-
 function renderBookingsTable(data) {
-  const tbody = document.getElementById('allBookingsBody');
-  if (data.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">📋</div><div class="empty-msg">Koi booking nahi mili</div></div></td></tr>';
-    return;
-  }
-  tbody.innerHTML = data.map(b => {
-    const drv = b.driver ? `<strong>${b.driver.name}</strong>` : `<span style="color:var(--text-3)">—</span>`;
-    return `<tr>
-      <td><span style="font-family:'Baloo 2';font-weight:700;color:var(--navy);font-size:12px">${b.id}</span></td>
-      <td>📱 ${b.customerMobile}</td>
-      <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${b.pickupLocation||'—'}</td>
-      <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${b.dropLocation||'—'}</td>
-      <td>${drv}</td>
-      <td><strong>${formatMoney(b.totalAmount)}</strong></td>
-      <td>${statusBadge(b.status)}</td>
-      <td>${payBadge(b.paymentStatus)}</td>
-      <td>
-        <button class="btn btn-ghost btn-xs" onclick="showBookingDetail('${b.id}')">👁️</button>
-        ${b.paymentStatus==='SCREENSHOT_UPLOADED'?`<button class="btn btn-saffron btn-xs" style="margin-top:3px" onclick="showSection('payments')">💳</button>`:''}
-      </td>
-    </tr>`;
+  const tbody=document.getElementById('allBookingsBody');
+  if(data.length===0){tbody.innerHTML='<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">📋</div><div class="empty-msg">Koi booking nahi mili</div></div></td></tr>';return;}
+  tbody.innerHTML=data.map(b=>{
+    const drv=b.driver?`<strong>${b.driver.name}</strong>`:`<span style="color:var(--text-3)">—</span>`;
+    return `<tr><td><span style="font-family:'Baloo 2';font-weight:700;color:var(--navy);font-size:12px">${b.id}</span></td><td>📱 ${b.customerMobile}</td><td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${b.pickupLocation||'—'}</td><td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${b.dropLocation||'—'}</td><td>${drv}</td><td><strong>${formatMoney(b.totalAmount)}</strong></td><td>${statusBadge(b.status)}</td><td>${payBadge(b.paymentStatus)}</td><td><button class="btn btn-ghost btn-xs" onclick="showBookingDetail('${b.id}')">👁️</button>${b.paymentStatus==='SCREENSHOT_UPLOADED'?`<button class="btn btn-saffron btn-xs" style="margin-top:3px" onclick="showSection('payments')">💳</button>`:''}</td></tr>`;
   }).join('');
 }
-
 function filterBookings() {
-  const search = document.getElementById('bookingSearch').value.toLowerCase();
-  const status = document.getElementById('bookingStatusFilter').value;
-  const filtered = allBookingsData.filter(b => {
-    const ms = !search || b.id.toLowerCase().includes(search)||(b.customerMobile||'').includes(search)||(b.pickupLocation||'').toLowerCase().includes(search)||(b.dropLocation||'').toLowerCase().includes(search);
-    const mst = !status || b.status === status;
-    return ms && mst;
-  });
-  renderBookingsTable(filtered);
+  const search=document.getElementById('bookingSearch').value.toLowerCase();
+  const status=document.getElementById('bookingStatusFilter').value;
+  renderBookingsTable(allBookingsData.filter(b=>{
+    const ms=!search||b.id.toLowerCase().includes(search)||(b.customerMobile||'').includes(search)||(b.pickupLocation||'').toLowerCase().includes(search)||(b.dropLocation||'').toLowerCase().includes(search);
+    return ms&&(!status||b.status===status);
+  }));
 }
-
 function showBookingDetail(bookingId) {
-  const b = bookingMap[bookingId];
-  if (!b) { showToast('Booking data nahi mila', 'error'); return; }
-  document.getElementById('bdetail-title').textContent = '📋 ' + b.id;
-  const drvHtml = b.driver ? `
-    <div class="detail-section">
-      <div class="detail-section-title">Driver Info</div>
-      <div class="detail-row"><div class="detail-label">Driver ID</div><div class="detail-val">${b.driver.driverId}</div></div>
-      <div class="detail-row"><div class="detail-label">Name</div><div class="detail-val">${b.driver.name}</div></div>
-      <div class="detail-row"><div class="detail-label">Mobile</div><div class="detail-val">📱 ${b.driver.mobile}</div></div>
-    </div>` : '';
-  const ssHtml = b.paymentScreenshot ? `
-    <img src="${API}/api/admin/screenshot?path=${encodeURIComponent(b.paymentScreenshot)}" style="width:100%;max-height:180px;object-fit:contain;cursor:pointer;background:var(--bg);border-radius:var(--r-sm);margin-top:10px" onclick="viewScreenshot('${b.paymentScreenshot}')">` : '';
-  document.getElementById('bookingDetailBody').innerHTML = `
-    <div class="detail-row"><div class="detail-label">Booking ID</div><div class="detail-val"><strong>${b.id}</strong></div></div>
-    <div class="detail-row"><div class="detail-label">Customer</div><div class="detail-val">📱 ${b.customerMobile}</div></div>
-    <div class="detail-row"><div class="detail-label">Pickup</div><div class="detail-val">📍 ${b.pickupLocation||'—'}</div></div>
-    <div class="detail-row"><div class="detail-label">Drop</div><div class="detail-val">🏁 ${b.dropLocation||'—'}</div></div>
-    <div class="detail-row"><div class="detail-label">Dates</div><div class="detail-val">📅 ${formatDate(b.startDate)} → ${formatDate(b.endDate)}</div></div>
-    <div class="detail-row"><div class="detail-label">Status</div><div class="detail-val">${statusBadge(b.status)}</div></div>
-    <div class="detail-row"><div class="detail-label">Payment</div><div class="detail-val">${payBadge(b.paymentStatus)}</div></div>
-    <div class="detail-section">
-      <div class="detail-section-title">💰 Financial</div>
-      <div class="detail-row"><div class="detail-label">Total Fare</div><div class="detail-val"><strong>${formatMoney(b.totalAmount)}</strong></div></div>
-      <div class="detail-row"><div class="detail-label">15% Advance</div><div class="detail-val" style="color:var(--saffron);font-weight:700">${formatMoney(b.advanceAmount)}</div></div>
-      <div class="detail-row"><div class="detail-label">Driver Cash</div><div class="detail-val" style="color:var(--green);font-weight:700">${formatMoney(b.remainingCashAmount)}</div></div>
-      ${b.rejectionReason?`<div class="detail-row"><div class="detail-label">Reason</div><div class="detail-val" style="color:var(--red)">${b.rejectionReason}</div></div>`:''}
-    </div>
-    ${drvHtml}${ssHtml}`;
+  const b=bookingMap[bookingId]; if(!b){showToast('Booking data nahi mila','error');return;}
+  document.getElementById('bdetail-title').textContent='📋 '+b.id;
+  const drvHtml=b.driver?`<div class="detail-section"><div class="detail-section-title">Driver Info</div><div class="detail-row"><div class="detail-label">Driver ID</div><div class="detail-val">${b.driver.driverId}</div></div><div class="detail-row"><div class="detail-label">Name</div><div class="detail-val">${b.driver.name}</div></div><div class="detail-row"><div class="detail-label">Mobile</div><div class="detail-val">📱 ${b.driver.mobile}</div></div></div>`:'';
+  const ssHtml=b.paymentScreenshot?`<img src="${API}/api/admin/screenshot?path=${encodeURIComponent(b.paymentScreenshot)}" style="width:100%;max-height:180px;object-fit:contain;cursor:pointer;background:var(--bg);border-radius:var(--r-sm);margin-top:10px" onclick="viewScreenshot('${b.paymentScreenshot}')">` :'';
+  document.getElementById('bookingDetailBody').innerHTML=`<div class="detail-row"><div class="detail-label">Booking ID</div><div class="detail-val"><strong>${b.id}</strong></div></div><div class="detail-row"><div class="detail-label">Customer</div><div class="detail-val">📱 ${b.customerMobile}</div></div><div class="detail-row"><div class="detail-label">Pickup</div><div class="detail-val">📍 ${b.pickupLocation||'—'}</div></div><div class="detail-row"><div class="detail-label">Drop</div><div class="detail-val">🏁 ${b.dropLocation||'—'}</div></div><div class="detail-row"><div class="detail-label">Dates</div><div class="detail-val">📅 ${formatDate(b.startDate)} → ${formatDate(b.endDate)}</div></div><div class="detail-row"><div class="detail-label">Status</div><div class="detail-val">${statusBadge(b.status)}</div></div><div class="detail-row"><div class="detail-label">Payment</div><div class="detail-val">${payBadge(b.paymentStatus)}</div></div><div class="detail-section"><div class="detail-section-title">💰 Financial</div><div class="detail-row"><div class="detail-label">Total Fare</div><div class="detail-val"><strong>${formatMoney(b.totalAmount)}</strong></div></div><div class="detail-row"><div class="detail-label">15% Advance</div><div class="detail-val" style="color:var(--saffron);font-weight:700">${formatMoney(b.advanceAmount)}</div></div><div class="detail-row"><div class="detail-label">Driver Cash</div><div class="detail-val" style="color:var(--green);font-weight:700">${formatMoney(b.remainingCashAmount)}</div></div>${b.rejectionReason?`<div class="detail-row"><div class="detail-label">Reason</div><div class="detail-val" style="color:var(--red)">${b.rejectionReason}</div></div>`:''}</div>${drvHtml}${ssHtml}`;
   openModal('bookingDetailModal');
 }
 
 // ── PAYMENT VERIFICATION ──
 async function loadPendingPayments() {
-  const container = document.getElementById('pendingPaymentsContainer');
-  container.innerHTML = '<div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div>';
+  const container=document.getElementById('pendingPaymentsContainer');
+  container.innerHTML='<div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div>';
   try {
-    const res = await fetch(`${API}/api/admin/bookings/pending-payments`);
-    const data = await res.json();
-    if (data.length === 0) {
-      container.innerHTML = `<div class="empty-state"><div class="empty-icon">✅</div><div class="empty-msg">Sab verified!</div><div class="empty-sub">Koi pending verification nahi hai.</div></div>`;
-      return;
-    }
-    container.innerHTML = data.map(b => renderPayCard(b)).join('');
-  } catch(e) {
-    container.innerHTML = `<div class="empty-state"><div class="empty-icon">❌</div><div class="empty-msg">Load nahi hua</div><div class="empty-sub">${e.message}</div></div>`;
-  }
+    const res=await fetch(`${API}/api/admin/bookings/pending-payments`); const data=await res.json();
+    if(data.length===0){container.innerHTML=`<div class="empty-state"><div class="empty-icon">✅</div><div class="empty-msg">Sab verified!</div><div class="empty-sub">Koi pending verification nahi hai.</div></div>`;return;}
+    container.innerHTML=data.map(b=>renderPayCard(b)).join('');
+  } catch(e){container.innerHTML=`<div class="empty-state"><div class="empty-icon">❌</div><div class="empty-msg">Load nahi hua</div><div class="empty-sub">${e.message}</div></div>`;}
 }
-
 function renderPayCard(b) {
-  const ssHtml = b.paymentScreenshot
-    ? `<div class="pay-ss-wrap" onclick="viewScreenshot('${b.paymentScreenshot}')">
-        <img src="${API}/api/admin/screenshot?path=${encodeURIComponent(b.paymentScreenshot)}" alt="SS" onerror="this.src=''">
-        <div class="pay-ss-overlay">🔍 Zoom</div>
-      </div>`
-    : `<div class="pay-ss-wrap" style="cursor:default"><div class="pay-no-ss">📷 Screenshot upload nahi hua</div></div>`;
-  const drvHtml = b.driver
-    ? `<div class="driver-chip">🚗 <strong>${b.driver.name}</strong> · ${b.driver.driverId} · 📱 ${b.driver.mobile}</div>`
-    : `<div class="driver-chip" style="color:var(--red)">⚠️ Koi driver assign nahi</div>`;
-  return `
-    <div class="pay-card" id="paycard-${b.id}">
-      <div class="pay-top">
-        <div>
-          <div class="pay-id">📋 ${b.id}</div>
-          <div class="pay-mob">📱 ${b.customerMobile}</div>
-          <div class="pay-route">📍 ${b.pickupLocation||'—'} → 🏁 ${b.dropLocation||'—'}</div>
-          <div style="font-size:11px;color:var(--text-3);margin-top:2px">📅 ${formatDate(b.startDate)} – ${formatDate(b.endDate)}</div>
-        </div>
-        ${payBadge(b.paymentStatus)}
-      </div>
-      ${drvHtml}
-      <div class="pay-amounts">
-        <div class="pay-amt-item"><div class="pay-amt-val">${formatMoney(b.totalAmount)}</div><div class="pay-amt-label">Total</div></div>
-        <div class="pay-amt-item commission"><div class="pay-amt-val">${formatMoney(b.advanceAmount)}</div><div class="pay-amt-label">Admin (15%)</div></div>
-        <div class="pay-amt-item remaining"><div class="pay-amt-val">${formatMoney(b.remainingCashAmount)}</div><div class="pay-amt-label">Driver (85%)</div></div>
-      </div>
-      ${ssHtml}
-      <div class="pay-actions">
-        <button class="btn btn-red btn-full" onclick="openRejectModal('${b.id}')">🚫 Reject</button>
-        <button class="btn btn-green btn-full" onclick="approvePayment('${b.id}')">✅ Approve</button>
-      </div>
-    </div>`;
+  const ssHtml=b.paymentScreenshot?`<div class="pay-ss-wrap" onclick="viewScreenshot('${b.paymentScreenshot}')"><img src="${API}/api/admin/screenshot?path=${encodeURIComponent(b.paymentScreenshot)}" alt="SS" onerror="this.src=''"><div class="pay-ss-overlay">🔍 Zoom</div></div>`:`<div class="pay-ss-wrap" style="cursor:default"><div class="pay-no-ss">📷 Screenshot upload nahi hua</div></div>`;
+  const drvHtml=b.driver?`<div class="driver-chip">🚗 <strong>${b.driver.name}</strong> · ${b.driver.driverId} · 📱 ${b.driver.mobile}</div>`:`<div class="driver-chip" style="color:var(--red)">⚠️ Koi driver assign nahi</div>`;
+  return `<div class="pay-card" id="paycard-${b.id}"><div class="pay-top"><div><div class="pay-id">📋 ${b.id}</div><div class="pay-mob">📱 ${b.customerMobile}</div><div class="pay-route">📍 ${b.pickupLocation||'—'} → 🏁 ${b.dropLocation||'—'}</div><div style="font-size:11px;color:var(--text-3);margin-top:2px">📅 ${formatDate(b.startDate)} – ${formatDate(b.endDate)}</div></div>${payBadge(b.paymentStatus)}</div>${drvHtml}<div class="pay-amounts"><div class="pay-amt-item"><div class="pay-amt-val">${formatMoney(b.totalAmount)}</div><div class="pay-amt-label">Total</div></div><div class="pay-amt-item commission"><div class="pay-amt-val">${formatMoney(b.advanceAmount)}</div><div class="pay-amt-label">Admin (15%)</div></div><div class="pay-amt-item remaining"><div class="pay-amt-val">${formatMoney(b.remainingCashAmount)}</div><div class="pay-amt-label">Driver (85%)</div></div></div>${ssHtml}<div class="pay-actions"><button class="btn btn-red btn-full" onclick="openRejectModal('${b.id}')">🚫 Reject</button><button class="btn btn-green btn-full" onclick="approvePayment('${b.id}')">✅ Approve</button></div></div>`;
 }
-
 async function approvePayment(bookingId) {
-  if (!confirm(`Booking ${bookingId} ka payment APPROVE karein?`)) return;
-  const card = document.getElementById('paycard-' + bookingId);
-  const btns = card.querySelectorAll('.pay-actions button');
-  btns.forEach(b => b.disabled = true);
-  btns[1].textContent = '⏳ Approving...';
+  if(!confirm(`Booking ${bookingId} ka payment APPROVE karein?`)) return;
+  const card=document.getElementById('paycard-'+bookingId); const btns=card.querySelectorAll('.pay-actions button');
+  btns.forEach(b=>b.disabled=true); btns[1].textContent='⏳ Approving...';
   try {
-    const res = await fetch(`${API}/api/admin/bookings/${bookingId}/approve`, {method:'POST'});
-    if (!res.ok) { const e = await res.json(); throw new Error(e.error||'Fail'); }
-    card.style.background = 'var(--green-bg)';
-    card.style.borderColor = 'var(--green)';
-    card.querySelector('.pay-actions').innerHTML = `<div style="text-align:center;color:var(--green);font-weight:700;font-size:13px;padding:8px;grid-column:1/-1">✅ Approved! Customer ko ride confirm ho gayi.</div>`;
-    showToast('Payment approve ho gayi! ' + bookingId, 'success');
-    setTimeout(() => { card.remove(); checkEmptyPayments(); }, 3000);
-    loadDashboard();
-  } catch(e) {
-    btns.forEach(b => b.disabled = false);
-    btns[1].textContent = '✅ Approve';
-    showToast('Approve fail: ' + e.message, 'error');
-  }
+    const res=await fetch(`${API}/api/admin/bookings/${bookingId}/approve`,{method:'POST'});
+    if(!res.ok){const e=await res.json();throw new Error(e.error||'Fail');}
+    card.style.background='var(--green-bg)'; card.style.borderColor='var(--green)';
+    card.querySelector('.pay-actions').innerHTML=`<div style="text-align:center;color:var(--green);font-weight:700;font-size:13px;padding:8px;grid-column:1/-1">✅ Approved!</div>`;
+    showToast('Payment approve ho gayi! '+bookingId,'success');
+    setTimeout(()=>{card.remove();checkEmptyPayments();},3000); loadDashboard();
+  } catch(e){btns.forEach(b=>b.disabled=false);btns[1].textContent='✅ Approve';showToast('Approve fail: '+e.message,'error');}
 }
-
-function openRejectModal(bookingId) {
-  currentRejectId = bookingId;
-  document.getElementById('rejectBookingId').textContent = bookingId;
-  document.getElementById('rejectReasonInput').value = '';
-  openModal('rejectModal');
-}
-
+function openRejectModal(bookingId){currentRejectId=bookingId;document.getElementById('rejectBookingId').textContent=bookingId;document.getElementById('rejectReasonInput').value='';openModal('rejectModal');}
 async function confirmReject() {
-  if (!currentRejectId) return;
-  const reason = document.getElementById('rejectReasonInput').value.trim() || 'Payment verify nahi hui';
-  const btn = document.getElementById('confirmRejectBtn');
-  btn.disabled = true; btn.textContent = '⏳ Rejecting...';
+  if(!currentRejectId) return;
+  const reason=document.getElementById('rejectReasonInput').value.trim()||'Payment verify nahi hui';
+  const btn=document.getElementById('confirmRejectBtn'); btn.disabled=true; btn.textContent='⏳ Rejecting...';
   try {
-    const res = await fetch(`${API}/api/admin/bookings/${currentRejectId}/reject`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({reason})
-    });
-    if (!res.ok) { const e = await res.json(); throw new Error(e.error||'Fail'); }
+    const res=await fetch(`${API}/api/admin/bookings/${currentRejectId}/reject`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reason})});
+    if(!res.ok){const e=await res.json();throw new Error(e.error||'Fail');}
     closeModal('rejectModal');
-    const card = document.getElementById('paycard-' + currentRejectId);
-    if (card) {
-      card.style.background = 'var(--red-bg)';
-      card.style.borderColor = 'var(--red)';
-      card.querySelector('.pay-actions').innerHTML = `<div style="text-align:center;color:var(--red);font-weight:700;font-size:13px;padding:8px;grid-column:1/-1">🚫 Rejected.</div>`;
-      setTimeout(() => { card.remove(); checkEmptyPayments(); }, 2500);
-    }
-    showToast('Payment reject ho gayi: ' + currentRejectId, 'error');
-    loadDashboard();
-  } catch(e) { showToast('Reject fail: ' + e.message, 'error'); }
-  finally { btn.disabled = false; btn.textContent = '🚫 Confirm Reject'; }
+    const card=document.getElementById('paycard-'+currentRejectId);
+    if(card){card.style.background='var(--red-bg)';card.style.borderColor='var(--red)';card.querySelector('.pay-actions').innerHTML=`<div style="text-align:center;color:var(--red);font-weight:700;font-size:13px;padding:8px;grid-column:1/-1">🚫 Rejected.</div>`;setTimeout(()=>{card.remove();checkEmptyPayments();},2500);}
+    showToast('Payment reject ho gayi: '+currentRejectId,'error'); loadDashboard();
+  } catch(e){showToast('Reject fail: '+e.message,'error');}
+  finally{btn.disabled=false;btn.textContent='🚫 Confirm Reject';}
 }
-
-function checkEmptyPayments() {
-  const container = document.getElementById('pendingPaymentsContainer');
-  if (!container.querySelector('.pay-card')) {
-    container.innerHTML = `<div class="empty-state"><div class="empty-icon">✅</div><div class="empty-msg">Sab verified!</div></div>`;
-  }
-}
-
-function viewScreenshot(path) {
-  document.getElementById('screenshotLargeImg').src = `${API}/api/admin/screenshot?path=${encodeURIComponent(path)}`;
-  openModal('screenshotModal');
-}
+function checkEmptyPayments(){const c=document.getElementById('pendingPaymentsContainer');if(!c.querySelector('.pay-card'))c.innerHTML=`<div class="empty-state"><div class="empty-icon">✅</div><div class="empty-msg">Sab verified!</div></div>`;}
+function viewScreenshot(path){document.getElementById('screenshotLargeImg').src=`${API}/api/admin/screenshot?path=${encodeURIComponent(path)}`;openModal('screenshotModal');}
 
 // ── DRIVERS ──
 async function loadAllDrivers() {
-  const container = document.getElementById('driversContainer');
-  container.innerHTML = '<div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div>';
-  try {
-    const res = await fetch(`${API}/api/admin/drivers`);
-    allDriversData = await res.json();
-    renderDriverCards(allDriversData);
-  } catch(e) {
-    container.innerHTML = `<div class="empty-state"><div class="empty-icon">❌</div><div class="empty-msg">Load nahi hua</div><div class="empty-sub">${e.message}</div></div>`;
-  }
+  const container=document.getElementById('driversContainer');
+  container.innerHTML='<div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div>';
+  try{const res=await fetch(`${API}/api/admin/drivers`);allDriversData=await res.json();renderDriverCards(allDriversData);}
+  catch(e){container.innerHTML=`<div class="empty-state"><div class="empty-icon">❌</div><div class="empty-msg">Load nahi hua</div><div class="empty-sub">${e.message}</div></div>`;}
 }
-
 function renderDriverCards(data) {
-  const container = document.getElementById('driversContainer');
-  if (data.length === 0) {
-    container.innerHTML = `<div class="empty-state"><div class="empty-icon">🚗</div><div class="empty-msg">Koi driver nahi mila</div></div>`;
-    return;
-  }
-  container.innerHTML = data.map(d => `
-    <div class="driver-card" id="drvcard-${d.driverId}">
-      ${d.photoUrl
-        ? `<img class="driver-avatar-img" src="${d.photoUrl}" alt="${d.name}" onerror="this.outerHTML='<div class=\\'driver-avatar\\'>${d.name?d.name.charAt(0).toUpperCase():'🚗'}</div>'">`
-        : `<div class="driver-avatar">${d.name?d.name.charAt(0).toUpperCase():'🚗'}</div>`
-      }
-      <div class="driver-info">
-        <div class="driver-name">
-          ${d.name}
-          <span class="badge ${d.active?'badge-active':'badge-blocked'}">${d.active?'✅ Active':'🚫 Blocked'}</span>
-          <span class="badge ${d.online?'badge-online':'badge-offline'}">${d.online?'🟢':'⚫'}</span>
-        </div>
-        <div class="driver-details">
-          <span>🆔 ${d.driverId}</span>
-          <span>📱 ${d.mobile}</span>
-          <span>📅 ${formatDate(d.createdAt)}</span>
-        </div>
-        <div class="driver-stats-row">
-          <div class="driver-stat"><strong>${d.totalBookings||0}</strong>Trips</div>
-          <div class="driver-stat"><strong>${d.online?'Online':'Offline'}</strong>Status</div>
-        </div>
-      </div>
-      <div class="driver-actions">
-        ${d.active
-          ? `<button class="btn btn-red btn-sm" onclick="blockDriver('${d.driverId}',true)">🚫 Block</button>`
-          : `<button class="btn btn-green btn-sm" onclick="blockDriver('${d.driverId}',false)">✅ Unblock</button>`
-        }
-      </div>
-    </div>`).join('');
+  const container=document.getElementById('driversContainer');
+  if(data.length===0){container.innerHTML=`<div class="empty-state"><div class="empty-icon">🚗</div><div class="empty-msg">Koi driver nahi mila</div></div>`;return;}
+  container.innerHTML=data.map(d=>`<div class="driver-card" id="drvcard-${d.driverId}">${d.photoUrl?`<img class="driver-avatar-img" src="${d.photoUrl}" alt="${d.name}" onerror="this.outerHTML='<div class=\\'driver-avatar\\'>${d.name?d.name.charAt(0).toUpperCase():'🚗'}</div>'">`:`<div class="driver-avatar">${d.name?d.name.charAt(0).toUpperCase():'🚗'}</div>`}<div class="driver-info"><div class="driver-name">${d.name}<span class="badge ${d.active?'badge-active':'badge-blocked'}">${d.active?'✅ Active':'🚫 Blocked'}</span><span class="badge ${d.online?'badge-online':'badge-offline'}">${d.online?'🟢':'⚫'}</span></div><div class="driver-details"><span>🆔 ${d.driverId}</span><span>📱 ${d.mobile}</span><span>📅 ${formatDate(d.createdAt)}</span></div><div class="driver-stats-row"><div class="driver-stat"><strong>${d.totalBookings||0}</strong>Trips</div><div class="driver-stat"><strong>${d.online?'Online':'Offline'}</strong>Status</div></div></div><div class="driver-actions">${d.active?`<button class="btn btn-red btn-sm" onclick="blockDriver('${d.driverId}',true)">🚫 Block</button>`:`<button class="btn btn-green btn-sm" onclick="blockDriver('${d.driverId}',false)">✅ Unblock</button>`}</div></div>`).join('');
 }
-
-function filterDrivers() {
-  const search = document.getElementById('driverSearch').value.toLowerCase();
-  const status = document.getElementById('driverStatusFilter').value;
-  const filtered = allDriversData.filter(d => {
-    const ms = !search||(d.name||'').toLowerCase().includes(search)||(d.mobile||'').includes(search)||(d.driverId||'').toLowerCase().includes(search);
-    const mst = !status||(status==='active'?d.active:!d.active);
-    return ms && mst;
-  });
-  renderDriverCards(filtered);
-}
-
-async function blockDriver(driverId, block) {
-  if (!confirm(`Driver ${driverId} ko ${block?'BLOCK':'UNBLOCK'} karna chahte hain?`)) return;
-  try {
-    const res = await fetch(`${API}/api/admin/drivers/${driverId}/${block?'block':'unblock'}`, {method:'POST'});
-    if (!res.ok) { const e = await res.json(); throw new Error(e.error||'Fail'); }
-    const data = await res.json();
-    showToast(data.message, block?'error':'success');
-    loadAllDrivers();
-  } catch(e) { showToast('Action fail: ' + e.message, 'error'); }
+function filterDrivers(){const s=document.getElementById('driverSearch').value.toLowerCase();const st=document.getElementById('driverStatusFilter').value;renderDriverCards(allDriversData.filter(d=>{const ms=!s||(d.name||'').toLowerCase().includes(s)||(d.mobile||'').includes(s)||(d.driverId||'').toLowerCase().includes(s);return ms&&(!st||(st==='active'?d.active:!d.active));}));}
+async function blockDriver(driverId,block){
+  if(!confirm(`Driver ${driverId} ko ${block?'BLOCK':'UNBLOCK'} karna chahte hain?`)) return;
+  try{const res=await fetch(`${API}/api/admin/drivers/${driverId}/${block?'block':'unblock'}`,{method:'POST'});if(!res.ok){const e=await res.json();throw new Error(e.error||'Fail');}const data=await res.json();showToast(data.message,block?'error':'success');loadAllDrivers();}
+  catch(e){showToast('Action fail: '+e.message,'error');}
 }
 
 // ── COMMISSION ──
 async function loadCommission() {
-  const tbody = document.getElementById('commissionBody');
-  tbody.innerHTML = '<tr><td colspan="7"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>';
+  const tbody=document.getElementById('commissionBody');
+  tbody.innerHTML='<tr><td colspan="7"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>';
   try {
-    const [dashRes, bookRes] = await Promise.all([
-      fetch(`${API}/api/admin/dashboard`),
-      fetch(`${API}/api/admin/bookings`)
-    ]);
-    const dash = await dashRes.json();
-    const books = await bookRes.json();
-    document.getElementById('comm-total').textContent = '₹' + Number(dash.totalCommission||0).toLocaleString('en-IN');
-    const verified = books.filter(b => b.paymentStatus==='VERIFIED' && b.commissionAmount!=null);
-    if (verified.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="empty-icon">💰</div><div class="empty-msg">Koi verified payment nahi</div></div></td></tr>';
-      return;
-    }
-    tbody.innerHTML = verified.map(b => `
-      <tr>
-        <td><strong style="font-family:'Baloo 2';color:var(--navy);font-size:12px">${b.id}</strong></td>
-        <td>📱 ${b.customerMobile}</td>
-        <td>${b.driver?`<strong>${b.driver.name}</strong>`:'—'}</td>
-        <td><strong>${formatMoney(b.totalAmount)}</strong></td>
-        <td><span style="color:var(--saffron);font-weight:700;font-family:'Baloo 2'">${formatMoney(b.commissionAmount)}</span></td>
-        <td><span style="color:var(--green);font-weight:700;font-family:'Baloo 2'">${formatMoney(b.remainingCashAmount)}</span></td>
-        <td class="muted">${formatDate(b.createdAt)}</td>
-      </tr>`).join('');
-  } catch(e) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--red);padding:16px">Error: ${e.message}</td></tr>`;
-  }
+    const [dashRes,bookRes]=await Promise.all([fetch(`${API}/api/admin/dashboard`),fetch(`${API}/api/admin/bookings`)]);
+    const dash=await dashRes.json(); const books=await bookRes.json();
+    document.getElementById('comm-total').textContent='₹'+Number(dash.totalCommission||0).toLocaleString('en-IN');
+    const verified=books.filter(b=>b.paymentStatus==='VERIFIED'&&b.commissionAmount!=null);
+    if(verified.length===0){tbody.innerHTML='<tr><td colspan="7"><div class="empty-state"><div class="empty-icon">💰</div><div class="empty-msg">Koi verified payment nahi</div></div></td></tr>';return;}
+    tbody.innerHTML=verified.map(b=>`<tr><td><strong style="font-family:'Baloo 2';color:var(--navy);font-size:12px">${b.id}</strong></td><td>📱 ${b.customerMobile}</td><td>${b.driver?`<strong>${b.driver.name}</strong>`:'—'}</td><td><strong>${formatMoney(b.totalAmount)}</strong></td><td><span style="color:var(--saffron);font-weight:700;font-family:'Baloo 2'">${formatMoney(b.commissionAmount)}</span></td><td><span style="color:var(--green);font-weight:700;font-family:'Baloo 2'">${formatMoney(b.remainingCashAmount)}</span></td><td class="muted">${formatDate(b.createdAt)}</td></tr>`).join('');
+  } catch(e){tbody.innerHTML=`<tr><td colspan="7" style="text-align:center;color:var(--red);padding:16px">Error: ${e.message}</td></tr>`;}
 }
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
