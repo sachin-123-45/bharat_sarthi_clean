@@ -428,7 +428,9 @@ td.muted{color:var(--text-3);font-size:11.5px}
 <!-- LOGIN PAGE -->
 <div id="loginPage">
   <div class="login-back-row">
-    <button class="back-btn" onclick="goHome()">← Home</button>
+   <div style="position:absolute;top:16px;right:16px;z-index:10;">
+  <button class="tb-ham" onclick="openSidebar()" style="background:rgba(255,255,255,.15);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">☰</button>
+</div>
   </div>
   <div class="login-card">
     <div class="flag-stripe"></div>
@@ -462,6 +464,41 @@ td.muted{color:var(--text-3);font-size:11.5px}
     </div>
   </div>
 </div>
+
+
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="loginSidebarOverlay" onclick="closeSidebar()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:399"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="loginSidebar" style="position:fixed;top:0;right:-290px;width:290px;height:100%;background:#fff;z-index:400;box-shadow:-8px 0 32px rgba(15,31,92,.18);transition:right .3s;display:flex;flex-direction:column;">
+  <div style="background:var(--navy);padding:20px 16px;display:flex;align-items:center;justify-content:space-between;">
+    <h3 style="font-family:'Baloo 2';font-size:17px;font-weight:800;color:#fff;">☰ Menu</h3>
+    <button onclick="closeSidebar()" style="background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;">✕</button>
+  </div>
+  <div style="flex:1;padding:16px;overflow-y:auto;">
+    <div style="font-size:10.5px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.6px;padding:4px 2px 8px;">Navigation</div>
+    <div onclick="goHome()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:4px;border:1px solid transparent;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+      <div style="font-size:20px;width:36px;height:36px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;">🏠</div>
+      <span style="font-size:14px;font-weight:600;color:var(--text-1);">Home</span>
+    </div>
+    <div onclick="goHome()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:4px;border:1px solid transparent;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+      <div style="font-size:20px;width:36px;height:36px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;">🚗</div>
+      <span style="font-size:14px;font-weight:600;color:var(--text-1);">Driver Book Karein</span>
+    </div>
+    
+    
+    <div onclick="goHome()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:4px;border:1px solid transparent;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+  <div style="font-size:20px;width:36px;height:36px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;">🪪</div>
+  <span style="font-size:14px;font-weight:600;color:var(--text-1);">ड्राइवर पैनल</span>
+</div>
+<div onclick="goHome()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:4px;border:1px solid transparent;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+  <div style="font-size:20px;width:36px;height:36px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;">📋</div>
+  <span style="font-size:14px;font-weight:600;color:var(--text-1);">My Booking</span>
+</div>
+  </div>
+</div>
+
 
 <!-- ADMIN DASHBOARD -->
 <div id="adminApp">
@@ -515,12 +552,11 @@ td.muted{color:var(--text-3);font-size:11.5px}
   </nav>
 
   <!-- Topbar -->
-  <div class="topbar">
-    <button class="topbar-ham" onclick="openSidebar()">☰</button>
-    <div class="topbar-logo">🛡️</div>
-    <div class="topbar-title" id="mob-pageTitle">Dashboard</div>
-    <button class="back-btn topbar-back" onclick="goHome()">← Home</button>
-  </div>
+ <div class="topbar">
+  <button class="topbar-ham" onclick="openSidebar()">☰</button>
+  <div class="topbar-logo">🛡️</div>
+  <div class="topbar-title" id="mob-pageTitle">Dashboard</div>
+</div>
 
   <!-- Main Content -->
   <div class="main-wrap">
@@ -857,12 +893,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // ── SIDEBAR ──
 function openSidebar() {
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('sidebarOverlay').classList.add('show');
+  const isLoggedIn = document.getElementById('adminApp').classList.contains('active');
+  if (isLoggedIn) {
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('sidebarOverlay').classList.add('show');
+  } else {
+    document.getElementById('loginSidebar').style.right = '0';
+    document.getElementById('loginSidebarOverlay').style.display = 'block';
+  }
 }
 function closeSidebar() {
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('show');
+  document.getElementById('loginSidebar').style.right = '-290px';
+  document.getElementById('loginSidebarOverlay').style.display = 'none';
 }
 
 const sectionTitles = {dashboard:'Dashboard', bookings:'All Bookings', payments:'Payment Verify', drivers:'Drivers', commission:'Commission'};
