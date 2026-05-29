@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -26,12 +25,18 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1);min-height:100vh;overflow-x:hidden;font-size:14px}
 
-/* LOGIN PAGE */
 #loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(145deg,var(--navy) 0%,var(--navy-2) 45%,#1E40AF 100%);padding:16px;position:relative;overflow:hidden}
 #loginPage::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(232,96,10,.22) 0%,transparent 65%);border-radius:50%}
 #loginPage::after{content:'';position:absolute;bottom:-60px;left:-60px;width:250px;height:250px;background:radial-gradient(circle,rgba(15,143,60,.15) 0%,transparent 65%);border-radius:50%}
-.login-menu-btn{position:absolute;top:16px;right:16px;z-index:10;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background var(--dur)}
-.login-menu-btn:hover{background:rgba(255,255,255,.25)}
+
+/* LOGIN PAGE KA MENU BTN - sirf loginPage ke andar */
+#loginPage .menu-btn{position:absolute;top:16px;right:16px;z-index:10;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background var(--dur)}
+#loginPage .menu-btn:hover{background:rgba(255,255,255,.25)}
+
+/* TOPBAR KA MENU BTN - alag class, position:absolute nahi */
+.topbar-menu-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--dur);margin-left:auto;}
+.topbar-menu-btn:hover{background:rgba(255,255,255,.25)}
+
 .login-card{background:#fff;border-radius:var(--r-lg);width:100%;max-width:400px;box-shadow:0 24px 80px rgba(0,0,0,.3);position:relative;z-index:2;animation:loginSlide .35s var(--ease);overflow:hidden}
 @keyframes loginSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .flag-stripe{height:5px;background:linear-gradient(90deg,var(--saffron) 33.3%,#fff 33.3% 66.6%,var(--green) 66.6%)}
@@ -56,7 +61,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .login-notice{background:var(--navy-light);border-radius:var(--r-sm);padding:10px 12px;font-size:11.5px;color:var(--text-2);margin-top:14px;display:flex;gap:7px;align-items:flex-start}
 .login-footer{text-align:center;color:var(--text-3);font-size:10.5px;margin-top:16px}
 
-/* LOGIN SIDEBAR (right side, white) */
 .login-sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:499}
 .login-sb-overlay.show{display:block}
 .login-sidebar{position:fixed;top:0;right:-300px;width:280px;height:100%;background:#fff;z-index:500;box-shadow:-8px 0 32px rgba(15,31,92,.2);transition:right .3s var(--ease);display:flex;flex-direction:column}
@@ -71,24 +75,20 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .lsb-item-ico{font-size:18px;width:34px;height:34px;border-radius:9px;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .lsb-item-label{font-size:13.5px;font-weight:600;color:var(--text-1)}
 
-/* DASHBOARD LAYOUT */
 #adminApp{display:none}
 #adminApp.active{display:block;min-height:100vh}
 
-/* TOPBAR */
 .topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--navy);display:flex;align-items:center;padding:0 16px;gap:12px;z-index:300;box-shadow:0 2px 12px rgba(15,31,92,.3)}
 .topbar-ham{background:rgba(255,255,255,.12);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--dur)}
 .topbar-ham:hover{background:rgba(255,255,255,.2)}
 .topbar-logo{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--saffron),var(--saffron-3));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .topbar-title{font-family:'Baloo 2';font-size:15px;font-weight:700;color:#fff;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* DASHBOARD SIDEBAR (left side, navy) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:399}
 .sidebar-overlay.show{display:block}
 .sidebar{position:fixed;top:0;bottom:0;left:0;width:var(--sidebar-w);background:var(--navy);z-index:400;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform var(--dur) var(--ease);overflow-y:auto}
 .sidebar.open{transform:none}
 
-/* Desktop — sidebar always visible */
 @media(min-width:900px){
   .sidebar{transform:none}
   .sidebar-overlay{display:none!important}
@@ -119,7 +119,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .sb-home{display:flex;align-items:center;gap:7px;width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);border-radius:var(--r-sm);padding:9px 11px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all var(--dur);margin-top:5px;font-family:inherit}
 .sb-home:hover{background:rgba(255,255,255,.12);color:#fff}
 
-/* MAIN CONTENT */
 .main-wrap{padding-top:var(--topbar-h)}
 .main-content{padding:16px;max-width:1200px;margin:0 auto}
 .page-header{margin-bottom:18px}
@@ -129,7 +128,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .admin-section.active{display:block;animation:fadeIn .2s var(--ease)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
-/* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:18px}
 .stat-card{background:var(--surface);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh-sm);border:1px solid var(--border);position:relative;overflow:hidden;transition:transform var(--dur),box-shadow var(--dur)}
 .stat-card:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
@@ -143,13 +141,10 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .stat-val{font-family:'Baloo 2';font-size:26px;font-weight:800;color:var(--text-1);line-height:1}
 .stat-label{font-size:11px;color:var(--text-3);font-weight:600;margin-top:3px}
 
-/* CARD */
 .card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);border:1px solid var(--border);overflow:hidden;margin-bottom:16px}
 .card-head{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .card-title{font-family:'Baloo 2';font-size:14px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:7px}
 .card-body{padding:14px 16px}
-
-/* TOOLBAR */
 .tbl-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;width:100%}
 .search-wrap{position:relative;flex:1;min-width:140px}
 .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--text-3)}
@@ -157,7 +152,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .search-input:focus{border-color:var(--navy-3);background:#fff}
 .filter-select{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:8px 10px;font-size:12.5px;font-family:inherit;color:var(--text-1);outline:none;cursor:pointer;max-width:130px}
 
-/* TABLE */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:500px}
 thead th{background:var(--bg);color:var(--text-2);font-weight:700;padding:9px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border);white-space:nowrap}
@@ -167,7 +161,6 @@ tbody tr:hover{background:rgba(37,56,152,.03)}
 td{padding:10px;color:var(--text-1);vertical-align:middle}
 td.muted{color:var(--text-3);font-size:11.5px}
 
-/* BADGES */
 .badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:10.5px;font-weight:700;white-space:nowrap}
 .badge-pending{background:var(--yellow-bg);color:var(--yellow)}
 .badge-accepted{background:#EEF1FD;color:var(--navy)}
@@ -180,7 +173,6 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .badge-active{background:var(--green-bg);color:var(--green)}
 .badge-blocked{background:var(--red-bg);color:var(--red)}
 
-/* BUTTONS */
 .btn{border:none;border-radius:var(--r-sm);padding:8px 13px;font-size:12.5px;font-weight:700;font-family:'Baloo 2';cursor:pointer;transition:all var(--dur) var(--ease);display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
 .btn:active{transform:scale(.97)}
 .btn-sm{padding:6px 10px;font-size:11.5px}
@@ -198,7 +190,6 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .btn-full{width:100%;justify-content:center}
 .btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
 
-/* PAYMENT CARDS */
 .pay-card{background:var(--surface);border-radius:var(--r);padding:14px;box-shadow:var(--sh-sm);border:1px solid var(--border);margin-bottom:12px}
 .pay-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .pay-id{font-family:'Baloo 2';font-size:13.5px;font-weight:700;color:var(--navy)}
@@ -219,7 +210,6 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .driver-chip{background:var(--bg);border-radius:var(--r-sm);padding:7px 10px;font-size:11.5px;color:var(--text-2);display:flex;align-items:center;gap:5px;margin-bottom:10px;flex-wrap:wrap}
 .driver-chip strong{color:var(--text-1)}
 
-/* DRIVER CARDS */
 .driver-card{background:var(--surface);border-radius:var(--r);padding:14px;box-shadow:var(--sh-sm);border:1px solid var(--border);margin-bottom:10px;display:flex;gap:12px;align-items:flex-start;transition:transform var(--dur),box-shadow var(--dur)}
 .driver-card:hover{transform:translateY(-1px);box-shadow:var(--sh-md)}
 .driver-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-3));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;color:#fff}
@@ -232,7 +222,6 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .driver-stat strong{color:var(--text-1);display:block;font-family:'Baloo 2';font-size:12px}
 .driver-actions{display:flex;gap:6px;flex-direction:column;align-items:flex-end;flex-shrink:0}
 
-/* MODALS */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
 .modal-overlay.show{display:flex;animation:overlayFade .2s}
 @keyframes overlayFade{from{opacity:0}to{opacity:1}}
@@ -248,7 +237,6 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .reject-reason-input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:9px 11px;font-size:13px;font-family:inherit;color:var(--text-1);outline:none;resize:vertical;min-height:65px;transition:border-color var(--dur)}
 .reject-reason-input:focus{border-color:var(--red);background:#fff}
 
-/* BOOKING DETAIL */
 .detail-row{display:flex;border-bottom:1px solid var(--border)}
 .detail-row:last-child{border-bottom:none}
 .detail-label{font-size:11px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.3px;width:110px;flex-shrink:0;padding:9px 0}
@@ -256,7 +244,6 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .detail-section{background:var(--bg);border-radius:var(--r-sm);padding:12px 14px;margin-top:12px}
 .detail-section-title{font-size:10.5px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px}
 
-/* EMPTY/LOADING */
 .empty-state{text-align:center;padding:40px 20px;color:var(--text-3)}
 .empty-icon{font-size:42px;margin-bottom:12px;opacity:.6}
 .empty-msg{font-size:14px;font-weight:600;color:var(--text-2)}
@@ -265,7 +252,6 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .spinner{width:18px;height:18px;border:2.5px solid var(--border);border-top-color:var(--saffron);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* TOAST */
 .toast-container{position:fixed;top:68px;right:12px;z-index:600;display:flex;flex-direction:column;gap:8px;pointer-events:none}
 .toast{background:#fff;border-radius:var(--r-sm);padding:11px 14px;box-shadow:var(--sh-lg);border-left:4px solid;font-size:12.5px;font-weight:600;color:var(--text-1);display:flex;align-items:center;gap:8px;min-width:220px;max-width:300px;animation:toastIn .3s var(--ease);pointer-events:auto}
 @keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
@@ -274,7 +260,6 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .toast.info{border-left-color:var(--navy)}
 .toast-icon{font-size:16px;flex-shrink:0}
 
-/* COMMISSION */
 .commission-banner{background:linear-gradient(135deg,var(--saffron-bg),#FFF8F0);border:1.5px solid var(--saffron-bg2);border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
 .commission-banner-icon{font-size:32px}
 .commission-banner-val{font-family:'Baloo 2';font-size:28px;font-weight:800;color:var(--saffron)}
@@ -282,7 +267,6 @@ td.muted{color:var(--text-3);font-size:11.5px}
 .commission-banner-note{font-size:11.5px;color:var(--text-2);margin-top:3px}
 .quick-actions{display:flex;gap:8px;flex-wrap:wrap}
 
-/* MOBILE */
 @media(max-width:599px){
   .stats-grid{grid-template-columns:1fr 1fr;gap:10px}
   .stat-val{font-size:22px}
@@ -302,37 +286,12 @@ td.muted{color:var(--text-3);font-size:11.5px}
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:10px}
-
-
-
-
-.topbar-menu-btn{
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.25);
-  color:#fff;
-  width:38px;height:38px;
-  border-radius:50%;
-  cursor:pointer;
-  font-size:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-  transition:background var(--dur);
-  margin-left:auto;
-}
-.topbar-menu-btn:hover{background:rgba(255,255,255,.25)}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     LOGIN PAGE
-═══════════════════════════════════════ -->
 <div id="loginPage">
-  <!-- Menu button - top right -->
-  <button class="login-menu-btn" onclick="openLoginSidebar()">☰</button>
-
+  <button class="menu-btn" onclick="openLoginSidebar()">☰</button>
   <div class="login-card">
     <div class="flag-stripe"></div>
     <div class="login-inner">
@@ -357,18 +316,12 @@ td.muted{color:var(--text-3);font-size:11.5px}
       </div>
       <button class="login-btn" id="loginBtn" onclick="doAdminLogin()">🚀 Admin Login</button>
       <div class="login-error" id="loginError">⚠️ <span id="loginErrorMsg">Galat credentials</span></div>
-      <div class="login-notice">
-        <span>🔒</span>
-        <span>Yeh page sirf authorized admins ke liye hai. Koi public registration nahi hai.</span>
-      </div>
+      <div class="login-notice"><span>🔒</span><span>Yeh page sirf authorized admins ke liye hai. Koi public registration nahi hai.</span></div>
       <div class="login-footer">Bharat Sarthi Driver Booking System v2.0</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     LOGIN PAGE SIDEBAR (right side, white)
-═══════════════════════════════════════ -->
 <div class="login-sb-overlay" id="loginSbOverlay" onclick="closeLoginSidebar()"></div>
 <div class="login-sidebar" id="loginSidebar">
   <div class="lsb-head">
@@ -377,96 +330,48 @@ td.muted{color:var(--text-3);font-size:11.5px}
   </div>
   <div class="lsb-body">
     <div class="lsb-section">Navigation</div>
-    <div class="lsb-item" onclick="goHome()">
-      <div class="lsb-item-ico">🏠</div>
-      <span class="lsb-item-label">Home</span>
-    </div>
-    <div class="lsb-item" onclick="goHome()">
-      <div class="lsb-item-ico">🚗</div>
-      <span class="lsb-item-label">Driver Book Karein</span>
-    </div>
-    <div class="lsb-item" onclick="goHome()">
-      <div class="lsb-item-ico">🪪</div>
-      <span class="lsb-item-label">ड्राइवर पैनल</span>
-    </div>
-    <div class="lsb-item" onclick="goHome()">
-      <div class="lsb-item-ico">📋</div>
-      <span class="lsb-item-label">My Booking</span>
-    </div>
+    <div class="lsb-item" onclick="goHome()"><div class="lsb-item-ico">🏠</div><span class="lsb-item-label">Home</span></div>
+    <div class="lsb-item" onclick="goHome()"><div class="lsb-item-ico">🚗</div><span class="lsb-item-label">Driver Book Karein</span></div>
+    <div class="lsb-item" onclick="goHome()"><div class="lsb-item-ico">🪪</div><span class="lsb-item-label">ड्राइवर पैनल</span></div>
+    <div class="lsb-item" onclick="goHome()"><div class="lsb-item-ico">📋</div><span class="lsb-item-label">My Booking</span></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     ADMIN DASHBOARD
-═══════════════════════════════════════ -->
 <div id="adminApp">
-
-  <!-- Dashboard Sidebar Overlay -->
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeDashboardSidebar()"></div>
-
-  <!-- Dashboard Sidebar (left, navy) -->
   <nav class="sidebar" id="dashSidebar">
     <div class="sb-header">
-      <div class="sb-logo-row">
-        <div class="sb-logo">🛡️</div>
-        <div>
-          <div class="sb-brand">Bharat Sarthi</div>
-          <div class="sb-sub">Admin Panel</div>
-        </div>
-      </div>
+      <div class="sb-logo-row"><div class="sb-logo">🛡️</div><div><div class="sb-brand">Bharat Sarthi</div><div class="sb-sub">Admin Panel</div></div></div>
       <div class="sb-admin-badge" id="sb-adminName">👤 Admin</div>
     </div>
     <div class="sb-nav">
       <div class="sb-section-title">Main Menu</div>
-      <div class="sb-item active" id="nav-dashboard" onclick="showSection('dashboard')">
-        <span class="sb-ico">📊</span> Dashboard
-      </div>
-      <div class="sb-item" id="nav-bookings" onclick="showSection('bookings')">
-        <span class="sb-ico">📋</span> All Bookings
-      </div>
-      <div class="sb-item" id="nav-payments" onclick="showSection('payments')">
-        <span class="sb-ico">💳</span> Payment Verify
-        <span class="sb-badge-count" id="pendingPayBadge" style="display:none">0</span>
-      </div>
+      <div class="sb-item active" id="nav-dashboard" onclick="showSection('dashboard')"><span class="sb-ico">📊</span> Dashboard</div>
+      <div class="sb-item" id="nav-bookings" onclick="showSection('bookings')"><span class="sb-ico">📋</span> All Bookings</div>
+      <div class="sb-item" id="nav-payments" onclick="showSection('payments')"><span class="sb-ico">💳</span> Payment Verify<span class="sb-badge-count" id="pendingPayBadge" style="display:none">0</span></div>
       <div class="sb-section-title">Management</div>
-      <div class="sb-item" id="nav-drivers" onclick="showSection('drivers')">
-        <span class="sb-ico">🚗</span> Drivers
-      </div>
-      <div class="sb-item" id="nav-commission" onclick="showSection('commission')">
-        <span class="sb-ico">💰</span> Commission
-      </div>
+      <div class="sb-item" id="nav-drivers" onclick="showSection('drivers')"><span class="sb-ico">🚗</span> Drivers</div>
+      <div class="sb-item" id="nav-commission" onclick="showSection('commission')"><span class="sb-ico">💰</span> Commission</div>
     </div>
     <div class="sb-footer">
-      <div class="sb-admin-row">
-        <div class="sb-avatar">👑</div>
-        <div>
-          <div class="sb-admin-name" id="sb-adminFullName">Super Admin</div>
-          <div class="sb-admin-role">System Administrator</div>
-        </div>
-      </div>
+      <div class="sb-admin-row"><div class="sb-avatar">👑</div><div><div class="sb-admin-name" id="sb-adminFullName">Super Admin</div><div class="sb-admin-role">System Administrator</div></div></div>
       <button class="sb-home" onclick="goHome()">🏠 Back to Home</button>
       <button class="sb-logout" onclick="doLogout()">🚪 Logout</button>
     </div>
   </nav>
 
-  <!-- Topbar -->
+  <!-- TOPBAR: right side menu btn add kiya - class hai topbar-menu-btn -->
   <div class="topbar">
     <button class="topbar-ham" onclick="openDashboardSidebar()">☰</button>
     <div class="topbar-logo">🛡️</div>
     <div class="topbar-title" id="mob-pageTitle">Dashboard</div>
-     <button class="login-menu-btn" onclick="openLoginSidebar()">☰</button>
+    <button class="topbar-menu-btn" onclick="openLoginSidebar()">☰</button>
   </div>
 
-  <!-- Main Content -->
   <div class="main-wrap">
     <div class="main-content">
-
-      <!-- DASHBOARD -->
       <div class="admin-section active" id="sec-dashboard">
-        <div class="page-header">
-          <div class="page-title">📊 Dashboard</div>
-          <div class="page-sub">Bharat Sarthi — Admin Control Center</div>
-        </div>
+        <div class="page-header"><div class="page-title">📊 Dashboard</div><div class="page-sub">Bharat Sarthi — Admin Control Center</div></div>
         <div class="stats-grid">
           <div class="stat-card navy"><div class="stat-icon">📋</div><div class="stat-val" id="st-total">—</div><div class="stat-label">Total Bookings</div></div>
           <div class="stat-card yellow"><div class="stat-icon">⏳</div><div class="stat-val" id="st-pending">—</div><div class="stat-label">Pending</div></div>
@@ -477,184 +382,103 @@ td.muted{color:var(--text-3);font-size:11.5px}
           <div class="stat-card yellow"><div class="stat-icon">💳</div><div class="stat-val" id="st-pendPay">—</div><div class="stat-label">Pending Pay</div></div>
           <div class="stat-card saffron"><div class="stat-icon">💰</div><div class="stat-val" id="st-commission">—</div><div class="stat-label">Commission</div></div>
         </div>
+        <div class="card"><div class="card-head"><div class="card-title">⚡ Quick Actions</div></div><div class="card-body"><div class="quick-actions"><button class="btn btn-saffron" onclick="showSection('payments')">💳 Verify Payments</button><button class="btn btn-navy" onclick="showSection('bookings')">📋 All Bookings</button><button class="btn btn-green" onclick="showSection('drivers')">🚗 Drivers</button><button class="btn btn-ghost" onclick="loadDashboard()">🔄 Refresh</button></div></div></div>
         <div class="card">
-          <div class="card-head"><div class="card-title">⚡ Quick Actions</div></div>
-          <div class="card-body">
-            <div class="quick-actions">
-              <button class="btn btn-saffron" onclick="showSection('payments')">💳 Verify Payments</button>
-              <button class="btn btn-navy" onclick="showSection('bookings')">📋 All Bookings</button>
-              <button class="btn btn-green" onclick="showSection('drivers')">🚗 Drivers</button>
-              <button class="btn btn-ghost" onclick="loadDashboard()">🔄 Refresh</button>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-head">
-            <div class="card-title">🕐 Recent Bookings</div>
-            <button class="btn btn-ghost btn-sm" onclick="showSection('bookings')">View All →</button>
-          </div>
-          <div class="tbl-wrap">
-            <table>
-              <thead><tr><th>Booking ID</th><th>Customer</th><th>Pickup</th><th>Status</th><th>Payment</th></tr></thead>
-              <tbody id="recentBookingsBody">
-                <tr><td colspan="5"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>
-              </tbody>
-            </table>
-          </div>
+          <div class="card-head"><div class="card-title">🕐 Recent Bookings</div><button class="btn btn-ghost btn-sm" onclick="showSection('bookings')">View All →</button></div>
+          <div class="tbl-wrap"><table><thead><tr><th>Booking ID</th><th>Customer</th><th>Pickup</th><th>Status</th><th>Payment</th></tr></thead><tbody id="recentBookingsBody"><tr><td colspan="5"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr></tbody></table></div>
         </div>
       </div>
 
-      <!-- ALL BOOKINGS -->
       <div class="admin-section" id="sec-bookings">
         <div class="page-header"><div class="page-title">📋 All Bookings</div><div class="page-sub">Saari bookings — filter aur search karein</div></div>
         <div class="card">
-          <div class="card-head">
-            <div class="card-title">Booking List</div>
-            <div class="tbl-toolbar">
-              <div class="search-wrap"><span class="search-icon">🔍</span><input class="search-input" id="bookingSearch" placeholder="ID, Mobile ya Location..." oninput="filterBookings()"></div>
-              <select class="filter-select" id="bookingStatusFilter" onchange="filterBookings()">
-                <option value="">Sab Status</option>
-                <option value="PENDING">⏳ Pending</option>
-                <option value="ACCEPTED">✅ Accepted</option>
-                <option value="COMPLETED">🚗 Completed</option>
-                <option value="CANCELLED">❌ Cancelled</option>
-                <option value="REJECTED">🚫 Rejected</option>
-              </select>
-              <button class="btn btn-ghost btn-sm" onclick="loadAllBookings()">🔄</button>
-            </div>
-          </div>
-          <div class="tbl-wrap">
-            <table>
-              <thead><tr><th>ID</th><th>Customer</th><th>Pickup</th><th>Drop</th><th>Driver</th><th>Total</th><th>Status</th><th>Payment</th><th>Action</th></tr></thead>
-              <tbody id="allBookingsBody"><tr><td colspan="9"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr></tbody>
-            </table>
-          </div>
+          <div class="card-head"><div class="card-title">Booking List</div><div class="tbl-toolbar"><div class="search-wrap"><span class="search-icon">🔍</span><input class="search-input" id="bookingSearch" placeholder="ID, Mobile ya Location..." oninput="filterBookings()"></div><select class="filter-select" id="bookingStatusFilter" onchange="filterBookings()"><option value="">Sab Status</option><option value="PENDING">⏳ Pending</option><option value="ACCEPTED">✅ Accepted</option><option value="COMPLETED">🚗 Completed</option><option value="CANCELLED">❌ Cancelled</option><option value="REJECTED">🚫 Rejected</option></select><button class="btn btn-ghost btn-sm" onclick="loadAllBookings()">🔄</button></div></div>
+          <div class="tbl-wrap"><table><thead><tr><th>ID</th><th>Customer</th><th>Pickup</th><th>Drop</th><th>Driver</th><th>Total</th><th>Status</th><th>Payment</th><th>Action</th></tr></thead><tbody id="allBookingsBody"><tr><td colspan="9"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr></tbody></table></div>
         </div>
       </div>
 
-      <!-- PAYMENT VERIFICATION -->
       <div class="admin-section" id="sec-payments">
         <div class="page-header"><div class="page-title">💳 Payment Verification</div><div class="page-sub">Screenshots verify karein — Approve ya Reject</div></div>
-        <div class="card" style="margin-bottom:14px">
-          <div class="card-head"><div class="card-title">⏳ Pending Verifications</div><button class="btn btn-ghost btn-sm" onclick="loadPendingPayments()">🔄 Refresh</button></div>
-        </div>
+        <div class="card" style="margin-bottom:14px"><div class="card-head"><div class="card-title">⏳ Pending Verifications</div><button class="btn btn-ghost btn-sm" onclick="loadPendingPayments()">🔄 Refresh</button></div></div>
         <div id="pendingPaymentsContainer"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></div>
       </div>
 
-      <!-- DRIVERS -->
       <div class="admin-section" id="sec-drivers">
         <div class="page-header"><div class="page-title">🚗 Driver Management</div><div class="page-sub">Sabhi drivers ki information aur status</div></div>
-        <div class="card" style="margin-bottom:12px">
-          <div class="card-head">
-            <div class="card-title">Driver List</div>
-            <div class="tbl-toolbar">
-              <div class="search-wrap"><span class="search-icon">🔍</span><input class="search-input" id="driverSearch" placeholder="Naam ya Mobile..." oninput="filterDrivers()"></div>
-              <select class="filter-select" id="driverStatusFilter" onchange="filterDrivers()">
-                <option value="">Sab Drivers</option>
-                <option value="active">✅ Active</option>
-                <option value="blocked">🚫 Blocked</option>
-              </select>
-              <button class="btn btn-ghost btn-sm" onclick="loadAllDrivers()">🔄</button>
-            </div>
-          </div>
-        </div>
+        <div class="card" style="margin-bottom:12px"><div class="card-head"><div class="card-title">Driver List</div><div class="tbl-toolbar"><div class="search-wrap"><span class="search-icon">🔍</span><input class="search-input" id="driverSearch" placeholder="Naam ya Mobile..." oninput="filterDrivers()"></div><select class="filter-select" id="driverStatusFilter" onchange="filterDrivers()"><option value="">Sab Drivers</option><option value="active">✅ Active</option><option value="blocked">🚫 Blocked</option></select><button class="btn btn-ghost btn-sm" onclick="loadAllDrivers()">🔄</button></div></div></div>
         <div id="driversContainer"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></div>
       </div>
 
-      <!-- COMMISSION -->
       <div class="admin-section" id="sec-commission">
         <div class="page-header"><div class="page-title">💰 Commission & Earnings</div><div class="page-sub">15% admin commission ka poora hisaab</div></div>
-        <div class="commission-banner">
-          <div class="commission-banner-icon">💰</div>
-          <div>
-            <div class="commission-banner-val" id="comm-total">₹—</div>
-            <div class="commission-banner-label">TOTAL COMMISSION (15%)</div>
-            <div class="commission-banner-note">Sirf VERIFIED payments se calculate hua</div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-head"><div class="card-title">📊 Commission Breakdown</div><button class="btn btn-ghost btn-sm" onclick="loadCommission()">🔄</button></div>
-          <div class="tbl-wrap">
-            <table>
-              <thead><tr><th>Booking ID</th><th>Customer</th><th>Driver</th><th>Total</th><th>Commission (15%)</th><th>Driver Gets</th><th>Date</th></tr></thead>
-              <tbody id="commissionBody"><tr><td colspan="7"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- Booking Detail Modal -->
-<div class="modal-overlay" id="bookingDetailModal" onclick="closeModal('bookingDetailModal')">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <div class="modal-head"><div class="modal-title" id="bdetail-title">Booking Details</div><button class="modal-close" onclick="closeModal('bookingDetailModal')">✕</button></div>
-    <div class="modal-body" id="bookingDetailBody"></div>
-  </div>
-</div>
-
-<!-- Screenshot Modal -->
-<div class="modal-overlay" id="screenshotModal" onclick="closeModal('screenshotModal')">
-  <div class="modal-box" style="max-width:680px" onclick="event.stopPropagation()">
-    <div class="modal-head"><div class="modal-title">📷 Payment Screenshot</div><button class="modal-close" onclick="closeModal('screenshotModal')">✕</button></div>
-    <div class="modal-body"><img id="screenshotLargeImg" class="modal-img" src="" alt="Payment Screenshot"></div>
-  </div>
-</div>
-
-<!-- Reject Modal -->
-<div class="modal-overlay" id="rejectModal" onclick="closeModal('rejectModal')">
-  <div class="modal-box" style="max-width:420px" onclick="event.stopPropagation()">
-    <div class="modal-head"><div class="modal-title">🚫 Payment Reject Karein</div><button class="modal-close" onclick="closeModal('rejectModal')">✕</button></div>
-    <div class="modal-body">
-      <p style="font-size:13px;color:var(--text-2);margin-bottom:12px">Booking <strong id="rejectBookingId">—</strong> ka payment reject karne wale hain.</p>
-      <div class="reject-reason-label">Rejection Reason (optional)</div>
-      <textarea class="reject-reason-input" id="rejectReasonInput" placeholder="e.g. Screenshot unclear hai..."></textarea>
-      <div style="display:flex;gap:8px;margin-top:14px">
-        <button class="btn btn-ghost btn-full" onclick="closeModal('rejectModal')">Cancel</button>
-        <button class="btn btn-red btn-full" id="confirmRejectBtn" onclick="confirmReject()">🚫 Confirm Reject</button>
+        <div class="commission-banner"><div class="commission-banner-icon">💰</div><div><div class="commission-banner-val" id="comm-total">₹—</div><div class="commission-banner-label">TOTAL COMMISSION (15%)</div><div class="commission-banner-note">Sirf VERIFIED payments se calculate hua</div></div></div>
+        <div class="card"><div class="card-head"><div class="card-title">📊 Commission Breakdown</div><button class="btn btn-ghost btn-sm" onclick="loadCommission()">🔄</button></div><div class="tbl-wrap"><table><thead><tr><th>Booking ID</th><th>Customer</th><th>Driver</th><th>Total</th><th>Commission (15%)</th><th>Driver Gets</th><th>Date</th></tr></thead><tbody id="commissionBody"><tr><td colspan="7"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr></tbody></table></div></div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal-overlay" id="bookingDetailModal" onclick="closeModal('bookingDetailModal')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-head"><div class="modal-title" id="bdetail-title">Booking Details</div><button class="modal-close" onclick="closeModal('bookingDetailModal')">✕</button></div><div class="modal-body" id="bookingDetailBody"></div></div></div>
+<div class="modal-overlay" id="screenshotModal" onclick="closeModal('screenshotModal')"><div class="modal-box" style="max-width:680px" onclick="event.stopPropagation()"><div class="modal-head"><div class="modal-title">📷 Payment Screenshot</div><button class="modal-close" onclick="closeModal('screenshotModal')">✕</button></div><div class="modal-body"><img id="screenshotLargeImg" class="modal-img" src="" alt="Payment Screenshot"></div></div></div>
+<div class="modal-overlay" id="rejectModal" onclick="closeModal('rejectModal')"><div class="modal-box" style="max-width:420px" onclick="event.stopPropagation()"><div class="modal-head"><div class="modal-title">🚫 Payment Reject Karein</div><button class="modal-close" onclick="closeModal('rejectModal')">✕</button></div><div class="modal-body"><p style="font-size:13px;color:var(--text-2);margin-bottom:12px">Booking <strong id="rejectBookingId">—</strong> ka payment reject karne wale hain.</p><div class="reject-reason-label">Rejection Reason (optional)</div><textarea class="reject-reason-input" id="rejectReasonInput" placeholder="e.g. Screenshot unclear hai..."></textarea><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-ghost btn-full" onclick="closeModal('rejectModal')">Cancel</button><button class="btn btn-red btn-full" id="confirmRejectBtn" onclick="confirmReject()">🚫 Confirm Reject</button></div></div></div></div>
 
 <div class="toast-container" id="toastContainer"></div>
-
-
-
-
-
-
 
 <script>
 const API = 'https://bharat-sarthi-clean.onrender.com';
 let adminSession = null, allBookingsData = [], allDriversData = [], currentRejectId = null, bookingMap = {};
 
-// ── NAVIGATION ──
 function goHome() { window.location.href = 'bharat-sarthi-frontend.html'; }
-
-// ── LOGIN SIDEBAR (right, white) ──
 function openLoginSidebar() {
+  const body = document.getElementById('loginSidebar').querySelector('.lsb-body');
+  if (adminSession) {
+    body.innerHTML = `
+      <div class="lsb-section">Dashboard Menu</div>
+      <div class="lsb-item" onclick="showSection('dashboard');closeLoginSidebar()">
+        <div class="lsb-item-ico">📊</div><span class="lsb-item-label">Dashboard</span>
+      </div>
+      <div class="lsb-item" onclick="showSection('bookings');closeLoginSidebar()">
+        <div class="lsb-item-ico">📋</div><span class="lsb-item-label">All Bookings</span>
+      </div>
+      <div class="lsb-item" onclick="showSection('payments');closeLoginSidebar()">
+        <div class="lsb-item-ico">💳</div><span class="lsb-item-label">Payment Verify</span>
+      </div>
+      <div class="lsb-item" onclick="showSection('drivers');closeLoginSidebar()">
+        <div class="lsb-item-ico">🚗</div><span class="lsb-item-label">Drivers</span>
+      </div>
+      <div class="lsb-item" onclick="showSection('commission');closeLoginSidebar()">
+        <div class="lsb-item-ico">💰</div><span class="lsb-item-label">Commission</span>
+      </div>
+      <div class="lsb-section" style="margin-top:8px">Account</div>
+      <div class="lsb-item" onclick="goHome()">
+        <div class="lsb-item-ico">🏠</div><span class="lsb-item-label">Home</span>
+      </div>
+      <div class="lsb-item" onclick="doLogout();closeLoginSidebar()">
+        <div class="lsb-item-ico">🚪</div><span class="lsb-item-label">Logout</span>
+      </div>`;
+  } else {
+    body.innerHTML = `
+      <div class="lsb-section">Navigation</div>
+      <div class="lsb-item" onclick="window.location.href='bharat-sarthi-frontend.html'">
+        <div class="lsb-item-ico">🏠</div><span class="lsb-item-label">Home</span>
+      </div>
+      <div class="lsb-item" onclick="window.location.href='bharat-sarthi-frontend.html#pg-book'">
+        <div class="lsb-item-ico">🚗</div><span class="lsb-item-label">Driver Book Karein</span>
+      </div>
+      <div class="lsb-item" onclick="window.location.href='bharat-sarthi-frontend.html#pg-drv-auth'">
+        <div class="lsb-item-ico">🪪</div><span class="lsb-item-label">ड्राइवर पैनल</span>
+      </div>
+      <div class="lsb-item" onclick="window.location.href='bharat-sarthi-frontend.html#pg-my-booking'">
+        <div class="lsb-item-ico">📋</div><span class="lsb-item-label">My Booking</span>
+      </div>`;
+  }
   document.getElementById('loginSidebar').classList.add('open');
   document.getElementById('loginSbOverlay').classList.add('show');
 }
-function closeLoginSidebar() {
-  document.getElementById('loginSidebar').classList.remove('open');
-  document.getElementById('loginSbOverlay').classList.remove('show');
-}
+function closeLoginSidebar() { document.getElementById('loginSidebar').classList.remove('open'); document.getElementById('loginSbOverlay').classList.remove('show'); }
+function openDashboardSidebar() { document.getElementById('dashSidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('show'); }
+function closeDashboardSidebar() { document.getElementById('dashSidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('show'); }
 
-// ── DASHBOARD SIDEBAR (left, navy) ──
-function openDashboardSidebar() {
-  document.getElementById('dashSidebar').classList.add('open');
-  document.getElementById('sidebarOverlay').classList.add('show');
-}
-function closeDashboardSidebar() {
-  document.getElementById('dashSidebar').classList.remove('open');
-  document.getElementById('sidebarOverlay').classList.remove('show');
-}
-
-// ── UTILS ──
 function showToast(msg, type='info') {
   const icons = {success:'✅', error:'❌', info:'ℹ️'};
   const container = document.getElementById('toastContainer');
@@ -678,8 +502,6 @@ function payBadge(s) {
   const val = map[s]||'badge-pending '+s; const parts=val.split(' '); const cls=parts.shift();
   return `<span class="badge ${cls}">${parts.join(' ')}</span>`;
 }
-
-// ── AUTH ──
 function toggleLoginPw() { const inp=document.getElementById('adminPassword'); inp.type=inp.type==='password'?'text':'password'; }
 document.addEventListener('keydown',(e)=>{
   if(e.key==='Enter'&&!document.getElementById('loginPage').style.display) doAdminLogin();
@@ -721,8 +543,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   const saved=localStorage.getItem('bsAdminSession');
   if(saved){try{adminSession=JSON.parse(saved);showDashboard();loadDashboard();}catch{localStorage.removeItem('bsAdminSession');}}
 });
-
-// ── SECTIONS ──
 const sectionTitles={dashboard:'Dashboard',bookings:'All Bookings',payments:'Payment Verify',drivers:'Drivers',commission:'Commission'};
 function showSection(name) {
   document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
@@ -737,8 +557,6 @@ function showSection(name) {
   else if(name==='drivers') loadAllDrivers();
   else if(name==='commission') loadCommission();
 }
-
-// ── DASHBOARD ──
 async function loadDashboard() {
   try {
     const res=await fetch(`${API}/api/admin/dashboard`);
@@ -766,8 +584,6 @@ async function loadRecentBookings() {
     tbody.innerHTML=recent.map(b=>`<tr><td><strong style="font-family:'Baloo 2';color:var(--navy);font-size:12px">${b.id}</strong></td><td>📱 ${b.customerMobile}</td><td style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${b.pickupLocation||'—'}</td><td>${statusBadge(b.status)}</td><td>${payBadge(b.paymentStatus)}</td></tr>`).join('');
   } catch(e){tbody.innerHTML=`<tr><td colspan="5" style="text-align:center;color:var(--red);padding:16px">Error: ${e.message}</td></tr>`;}
 }
-
-// ── ALL BOOKINGS ──
 async function loadAllBookings() {
   const tbody=document.getElementById('allBookingsBody');
   tbody.innerHTML='<tr><td colspan="9"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>';
@@ -800,8 +616,6 @@ function showBookingDetail(bookingId) {
   document.getElementById('bookingDetailBody').innerHTML=`<div class="detail-row"><div class="detail-label">Booking ID</div><div class="detail-val"><strong>${b.id}</strong></div></div><div class="detail-row"><div class="detail-label">Customer</div><div class="detail-val">📱 ${b.customerMobile}</div></div><div class="detail-row"><div class="detail-label">Pickup</div><div class="detail-val">📍 ${b.pickupLocation||'—'}</div></div><div class="detail-row"><div class="detail-label">Drop</div><div class="detail-val">🏁 ${b.dropLocation||'—'}</div></div><div class="detail-row"><div class="detail-label">Dates</div><div class="detail-val">📅 ${formatDate(b.startDate)} → ${formatDate(b.endDate)}</div></div><div class="detail-row"><div class="detail-label">Status</div><div class="detail-val">${statusBadge(b.status)}</div></div><div class="detail-row"><div class="detail-label">Payment</div><div class="detail-val">${payBadge(b.paymentStatus)}</div></div><div class="detail-section"><div class="detail-section-title">💰 Financial</div><div class="detail-row"><div class="detail-label">Total Fare</div><div class="detail-val"><strong>${formatMoney(b.totalAmount)}</strong></div></div><div class="detail-row"><div class="detail-label">15% Advance</div><div class="detail-val" style="color:var(--saffron);font-weight:700">${formatMoney(b.advanceAmount)}</div></div><div class="detail-row"><div class="detail-label">Driver Cash</div><div class="detail-val" style="color:var(--green);font-weight:700">${formatMoney(b.remainingCashAmount)}</div></div>${b.rejectionReason?`<div class="detail-row"><div class="detail-label">Reason</div><div class="detail-val" style="color:var(--red)">${b.rejectionReason}</div></div>`:''}</div>${drvHtml}${ssHtml}`;
   openModal('bookingDetailModal');
 }
-
-// ── PAYMENT VERIFICATION ──
 async function loadPendingPayments() {
   const container=document.getElementById('pendingPaymentsContainer');
   container.innerHTML='<div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div>';
@@ -846,8 +660,6 @@ async function confirmReject() {
 }
 function checkEmptyPayments(){const c=document.getElementById('pendingPaymentsContainer');if(!c.querySelector('.pay-card'))c.innerHTML=`<div class="empty-state"><div class="empty-icon">✅</div><div class="empty-msg">Sab verified!</div></div>`;}
 function viewScreenshot(path){document.getElementById('screenshotLargeImg').src=`${API}/api/admin/screenshot?path=${encodeURIComponent(path)}`;openModal('screenshotModal');}
-
-// ── DRIVERS ──
 async function loadAllDrivers() {
   const container=document.getElementById('driversContainer');
   container.innerHTML='<div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div>';
@@ -865,8 +677,6 @@ async function blockDriver(driverId,block){
   try{const res=await fetch(`${API}/api/admin/drivers/${driverId}/${block?'block':'unblock'}`,{method:'POST'});if(!res.ok){const e=await res.json();throw new Error(e.error||'Fail');}const data=await res.json();showToast(data.message,block?'error':'success');loadAllDrivers();}
   catch(e){showToast('Action fail: '+e.message,'error');}
 }
-
-// ── COMMISSION ──
 async function loadCommission() {
   const tbody=document.getElementById('commissionBody');
   tbody.innerHTML='<tr><td colspan="7"><div class="loading-row"><div class="spinner"></div>Load ho raha hai...</div></td></tr>';
@@ -882,14 +692,3 @@ async function loadCommission() {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
