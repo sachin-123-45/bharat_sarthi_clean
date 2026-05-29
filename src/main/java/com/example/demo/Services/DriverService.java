@@ -137,11 +137,11 @@ d.setPhotoPath("uploads/driver-photos/" + fileName);
         r.setAadhaar(d.getAadhaarNumber());
         r.setLicence(d.getLicenceNumber());
         r.setOnline(d.isOnline());
-        // Photo URL bhi bhejo — frontend popup mein use hogi
+        
+     // ✅ Yeh karo — full URL
         r.setPhotoUrl(d.getPhotoPath() != null
-                ? "/api/drivers/" + d.getDriverId() + "/photo"
+                ? "https://bharat-sarthi-clean.onrender.com/api/drivers/" + d.getDriverId() + "/photo"
                 : null);
-        return r;
     }
     
     
