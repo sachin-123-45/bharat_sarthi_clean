@@ -44,8 +44,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .restore-btn-home{background:transparent;color:rgba(255,255,255,.55);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r-sm);padding:11px 24px;font-family:'Baloo 2';font-size:14px;font-weight:600;cursor:pointer;width:100%}
 @keyframes restorePulse{0%,100%{opacity:.7}50%{opacity:1}}
 
-
-
 /* TOPBAR */
 .topbar{background:var(--navy);padding:0 16px;height:60px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(15,31,92,.25)}
 .tb-back{background:rgba(255,255,255,.12);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--dur)}
@@ -285,13 +283,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .days-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
 .days-num{font-family:'Baloo 2';font-size:20px;font-weight:800;color:var(--navy);min-width:32px;text-align:center}
 
-/* ADMIN */
-.adm-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.stat{background:#fff;border-radius:var(--r);padding:16px 14px;box-shadow:var(--sh-xs);border:1px solid var(--border);text-align:center}
-.stat-num{font-family:'Baloo 2';font-size:28px;font-weight:800;color:var(--navy);line-height:1}
-.stat-lbl{font-size:11.5px;color:var(--text-3);margin-top:4px;font-weight:500}
-.stat.orange .stat-num{color:var(--saffron)}.stat.green .stat-num{color:var(--green)}
-
 /* PAYMENT */
 .pay-section{display:none;margin-top:16px}
 .pay-section.show{display:block}
@@ -402,9 +393,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
   </div>
 </div>
 
-
-
-
 <!-- ========== PAGE: HOME ========== -->
 <div id="pg-home" class="page active">
   <div class="home-strip"></div>
@@ -506,7 +494,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
     </div>
   </div>
 
-  <!-- Active Booking Resume Card (shown when booking exists) -->
   <div class="home-resume-card" id="homeResumeCard" style="display:none" onclick="resumeActiveBooking()">
     <div class="hrc-eyebrow"><div class="hrc-dot"></div>Active Booking Chal Rahi Hai</div>
     <div class="hrc-code" id="hrc-code">—</div>
@@ -649,8 +636,6 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
     <div class="tb-right"><button class="tb-ham" onclick="openSidebar()">☰</button></div>
   </div>
   <div class="pb">
-
-    <!-- Session Restored Badge -->
     <div class="session-restored-badge" id="sessionRestoredBadge" style="display:none">
       <div class="srb-ico">🔄</div>
       <div class="srb-text">
@@ -658,31 +643,26 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
         Aapki booking wahan se shuru ho gayi jahan aapne chhhodi thi.
       </div>
     </div>
-
     <div class="sbanner waiting" id="statusBanner">
       <div class="spinner" id="statusSpinner"></div>
       <h3 id="statusTitle">Driver Dhundh Rahe Hain...</h3>
       <p id="statusMsg">Aapki request send ho gayi hai. Thoda intezaar karein.</p>
     </div>
-
     <div class="bid-pill">
       <div class="bpl">Aapka Booking Code</div>
       <div class="bpv" id="bookingCode">BS-0000</div>
     </div>
-
     <div class="driver-locked-box" id="driverLockedBox" style="display:none">
       <div class="dlb-icon">🔒</div>
       <h4>Driver Details Locked</h4>
       <p>Payment complete karne ke baad driver ka naam, number aur licence dikhai dega.</p>
     </div>
-
     <div class="drv-confirmed-card" id="drvConfirmedCard">
       <div class="dc-head">✅ Driver Assign Ho Gaya</div>
       <div class="dc-row"><div class="dc-ico">👨‍✈️</div><div><div class="dc-lbl">Driver ka Naam</div><div class="dc-val" id="sc-drvName">—</div></div></div>
       <div class="dc-row"><div class="dc-ico">📱</div><div><div class="dc-lbl">Mobile Number</div><div class="dc-val" id="sc-drvMobile">—</div></div></div>
       <div class="dc-row"><div class="dc-ico">🪪</div><div><div class="dc-lbl">Licence Number</div><div class="dc-val" id="sc-drvLicence">—</div></div></div>
     </div>
-
     <div class="icard">
       <div class="icard-head">📋 Booking Details</div>
       <div class="irow"><div class="irow-ico">👤</div><div><div class="irow-lbl">Customer</div><div class="irow-val" id="s-name">—</div></div></div>
@@ -692,25 +672,20 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
       <div class="irow"><div class="irow-ico">📆</div><div><div class="irow-lbl">Din</div><div class="irow-val" id="s-days">—</div></div></div>
       <div class="irow"><div class="irow-ico">💰</div><div><div class="irow-lbl">Driver Kiraya (Total)</div><div class="irow-val" id="s-fare">—</div></div></div>
     </div>
-
     <button class="btn btn-red-o btn-full" id="cancelBtn" onclick="goTo('pg-home')">❌ Booking Raddh Karein</button>
   </div>
-
-  <!-- PAYMENT SECTION -->
   <div class="pay-section" id="paySection">
     <div class="pending-verify-banner" id="pendingVerifyBanner">
       <span class="pv-emoji">⏳</span>
       <div class="pv-title">Screenshot Submit Ho Gayi!</div>
       <div class="pv-sub">Admin aapki payment verify kar raha hai.<br>Verify hone ke baad aapko confirmation milega.<br><strong>Kripya wait karein...</strong></div>
     </div>
-
     <div class="ride-confirmed-banner" id="rideConfirmedBanner">
       <span class="rc-emoji">✅</span>
       <div class="rc-title">Ride Confirmed!</div>
       <div class="rc-sub">Driver Se Contact kre 🚗</div>
       <div class="rc-note">Payment verify ho gayi hai.<br>Baaki ₹<span id="rc-remaining">0</span> driver ko trip ke time CASH mein dein.</div>
     </div>
-
     <div class="pay-card" id="payCard">
       <div class="pay-card-head">💳 Advance Payment Karein</div>
       <div style="padding:16px 16px 0">
@@ -1052,34 +1027,7 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 </div>
 
 <script>
-/* =========================================================
-   BHARAT SARTHI v2.2 — Full Session Restore System
-   
-   STATE MACHINE (localStorage):
-     bs_bookingSession = {
-       bookingId,          // always
-       status,             // PENDING | ACCEPTED | SCREENSHOT_UPLOADED | CONFIRMED | COMPLETED
-       pickup, drop,       // route info (for display on home card)
-       name,               // customer name
-       grandTotal,         // fare
-       days,
-       time,
-       savedAt             // timestamp
-     }
-   
-   KEY RULE:
-     - bs_confirmedBookingId = set ONLY when paymentStatus === 'VERIFIED'
-     - bs_pendingBookingId   = set when booking created, cleared on confirm
-     - bs_bookingSession     = comprehensive session state, always updated
-   
-   RESTORE LOGIC on app open:
-     1. Check bs_bookingSession
-     2. If exists and not COMPLETED/CANCELLED → show restore splash
-     3. Fetch latest status from server
-     4. Resume correct screen
-========================================================= */
-
-const API = window.location.origin;
+const API = "https://bharat-sarthi-clean.onrender.com";
 let days = 1;
 let currentFareData = {};
 let loggedInDriver = null;
@@ -1090,7 +1038,6 @@ let _sessionRestoredThisSession = false;
 
 // ============================================================
 // SESSION STATE MANAGER
-// Single source of truth for booking state
 // ============================================================
 const SESSION_KEY = 'bs_bookingSession';
 
@@ -1099,31 +1046,23 @@ function saveSession(patch) {
   session = Object.assign(session, patch, { savedAt: Date.now() });
   try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch(e) {}
 }
-
 function getSession() {
-  try {
-    const raw = localStorage.getItem(SESSION_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch(e) { return null; }
+  try { const raw = localStorage.getItem(SESSION_KEY); return raw ? JSON.parse(raw) : null; } catch(e) { return null; }
 }
-
 function clearSession() {
   localStorage.removeItem(SESSION_KEY);
   localStorage.removeItem('bs_pendingBookingId');
   localStorage.removeItem('bs_confirmedBookingId');
   localStorage.removeItem('bs_bookingFare');
 }
-
 function clearAllBookingState() {
   clearSession();
   updateHomeResumeCard(null);
   updateSidebarDot(false);
 }
-
 function isSessionActive(session) {
   if (!session || !session.bookingId) return false;
-  const inactive = ['COMPLETED','CANCELLED'];
-  return !inactive.includes(session.status);
+  return !['COMPLETED','CANCELLED'].includes(session.status);
 }
 
 // ============================================================
@@ -1132,81 +1071,37 @@ function isSessionActive(session) {
 function updateHomeResumeCard(session) {
   const card = document.getElementById('homeResumeCard');
   if (!card) return;
-  if (!session || !isSessionActive(session)) {
-    card.style.display = 'none';
-    updateSidebarDot(false);
-    return;
-  }
+  if (!session || !isSessionActive(session)) { card.style.display = 'none'; updateSidebarDot(false); return; }
   card.style.display = 'block';
   document.getElementById('hrc-code').textContent = session.bookingId || '—';
   document.getElementById('hrc-route').textContent = [session.pickup, session.drop].filter(Boolean).join(' → ') || '—';
-
   const stateEl = document.getElementById('hrc-state');
   switch(session.status) {
-    case 'PENDING':
-      stateEl.textContent = '⏳ Driver dhundh raha hai...'; break;
-    case 'ACCEPTED':
-      stateEl.textContent = '✅ Driver mila! Payment baaki hai'; break;
-    case 'SCREENSHOT_UPLOADED':
-      stateEl.textContent = '📋 Screenshot verify ho raha hai...'; break;
-    case 'CONFIRMED':
-      stateEl.textContent = '🎉 Ride confirmed! Driver ready hai'; break;
-    default:
-      stateEl.textContent = '🚗 Active booking'; break;
+    case 'PENDING': stateEl.textContent = '⏳ Driver dhundh raha hai...'; break;
+    case 'ACCEPTED': stateEl.textContent = '✅ Driver mila! Payment baaki hai'; break;
+    case 'SCREENSHOT_UPLOADED': stateEl.textContent = '📋 Screenshot verify ho raha hai...'; break;
+    case 'CONFIRMED': stateEl.textContent = '🎉 Ride confirmed! Driver ready hai'; break;
+    default: stateEl.textContent = '🚗 Active booking'; break;
   }
   updateSidebarDot(true);
 }
-
 function updateSidebarDot(show) {
   const dot = document.getElementById('sb-booking-dot');
   if (dot) dot.style.display = show ? 'block' : 'none';
 }
 
 // ============================================================
-// RESUME TOAST (bottom notification)
-// ============================================================
-let _toastTimeout;
-function showResumeToast(session) {
-  if (!session) return;
-  const toast = document.getElementById('resumeToast');
-  const ico = document.getElementById('rt-ico');
-  const title = document.getElementById('rt-title');
-  const sub = document.getElementById('rt-sub');
-
-  ico.textContent = session.status === 'CONFIRMED' ? '✅' : session.status === 'SCREENSHOT_UPLOADED' ? '⏳' : '🚗';
-  title.textContent = 'Active Booking: ' + (session.bookingId || '—');
-  sub.textContent = session.status === 'PENDING' ? 'Driver dhundh raha hai — tap to track' :
-                    session.status === 'ACCEPTED' ? 'Driver mila! Payment complete karein' :
-                    session.status === 'SCREENSHOT_UPLOADED' ? 'Payment verify ho raha hai' :
-                    'Ride confirmed! Driver ready';
-
-  toast.classList.add('show');
-  clearTimeout(_toastTimeout);
-  _toastTimeout = setTimeout(() => toast.classList.remove('show'), 8000);
-}
-
-function resumeFromToast() {
-  document.getElementById('resumeToast').classList.remove('show');
-  resumeActiveBooking();
-}
-
-// ============================================================
 // NAVIGATION
 // ============================================================
 function goTo(id) {
-  // Driver session check
   if (id === 'pg-drv-dash') {
     if (!loggedInDriver) {
       const saved = localStorage.getItem('bs_driver');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          if (parsed && parsed.driverId && parsed.name) {
-            loggedInDriver = parsed;
-          } else {
-            localStorage.removeItem('bs_driver');
-            id = 'pg-drv-auth';
-          }
+          if (parsed && parsed.driverId && parsed.name) { loggedInDriver = parsed; }
+          else { localStorage.removeItem('bs_driver'); id = 'pg-drv-auth'; }
         } catch(e) { localStorage.removeItem('bs_driver'); id = 'pg-drv-auth'; }
       } else { id = 'pg-drv-auth'; }
     }
@@ -1222,24 +1117,63 @@ function goTo(id) {
   window.scrollTo(0, 0);
 }
 
-function openSidebar() {
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('sbOverlay').classList.add('show');
-}
-function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sbOverlay').classList.remove('show');
-}
-function changeDays(d) {
-  days = Math.max(1, Math.min(30, days + d));
-  document.getElementById('daysNum').textContent = days;
+function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sbOverlay').classList.add('show'); }
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sbOverlay').classList.remove('show'); }
+function changeDays(d) { days = Math.max(1, Math.min(30, days + d)); document.getElementById('daysNum').textContent = days; }
+
+// ============================================================
+// HASH ROUTING — YEH NAYA CODE HAI (FIX)
+// ============================================================
+
+// URL hash se valid page ID nikaalte hain
+function getHashPage() {
+  const hash = window.location.hash;
+  if (!hash || hash === '#') return null;
+  const id = hash.replace('#', '').trim();
+  const validPages = ['pg-home','pg-book','pg-status','pg-drv-auth','pg-drv-dash','pg-my-booking'];
+  return validPages.includes(id) ? id : null;
 }
 
 // ============================================================
-// APP RESTORE — main entry point
+// APP RESTORE — main entry point (HASH-AWARE)
 // ============================================================
 async function checkAndRestoreSession() {
-  // Check driver session first
+
+  // ★ HASH PRIORITY ★ — Agar URL mein #pg-book jaisa hash hai,
+  //   seedha wahi page kholo, session restore mat karo
+  const hashPage = getHashPage();
+  if (hashPage) {
+    dismissRestore();
+    if (hashPage === 'pg-drv-dash') {
+      const savedDriver = localStorage.getItem('bs_driver');
+      if (savedDriver) {
+        try {
+          const parsed = JSON.parse(savedDriver);
+          if (parsed && parsed.driverId) {
+            loggedInDriver = parsed;
+            document.getElementById('drvName').textContent = loggedInDriver.name;
+            document.getElementById('drvId').textContent = 'ID: ' + loggedInDriver.driverId;
+            goTo('pg-drv-dash');
+            loadPendingBookings();
+            const s = getSession(); if (s && isSessionActive(s)) updateHomeResumeCard(s);
+            return;
+          }
+        } catch(e) { localStorage.removeItem('bs_driver'); }
+      }
+      goTo('pg-drv-auth'); return;
+    }
+    if (hashPage === 'pg-my-booking') {
+      // My Booking ke liye openMyBooking() call karo
+      // Pehle pg-home activate karo (silently) phir my-booking
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      openMyBooking(); return;
+    }
+    goTo(hashPage);
+    const s = getSession(); if (s && isSessionActive(s)) updateHomeResumeCard(s);
+    return;
+  }
+
+  // No hash — normal session restore flow
   const savedDriver = localStorage.getItem('bs_driver');
   if (savedDriver) {
     try {
@@ -1249,54 +1183,38 @@ async function checkAndRestoreSession() {
         dismissRestore();
         document.getElementById('drvName').textContent = loggedInDriver.name;
         document.getElementById('drvId').textContent = 'ID: ' + loggedInDriver.driverId;
-        goTo('pg-drv-dash');
-        loadPendingBookings();
-        return;
+        goTo('pg-drv-dash'); loadPendingBookings(); return;
       }
     } catch(e) { localStorage.removeItem('bs_driver'); }
   }
 
   const session = getSession();
-
   if (!isSessionActive(session)) {
-    // No active session — go to home normally
-    if (session && !isSessionActive(session)) {
-      clearSession(); // cleanup stale
-    }
-    dismissRestore();
-    goTo('pg-home');
-    return;
+    if (session && !isSessionActive(session)) clearSession();
+    dismissRestore(); goTo('pg-home'); return;
   }
 
-  // We have an active session!
-  // Show restore splash with booking info
+  // Active booking session hai — restore splash dikhao
   document.getElementById('restore-spinner').style.display = 'block';
   document.getElementById('restore-msg').textContent = 'Aapki booking dhundh rahe hain...';
   document.getElementById('restore-card').style.display = 'none';
   document.getElementById('restore-btns').style.display = 'none';
 
-  // Fetch latest status from server
   try {
     const res = await fetch(`${API}/api/bookings/${session.bookingId}`);
     if (!res.ok) throw new Error('not found');
     const data = await res.json();
 
-    // Update session with latest server state
     let serverStatus = data.status;
     if (data.status === 'ACCEPTED' && data.paymentStatus === 'VERIFIED') serverStatus = 'CONFIRMED';
     else if (data.status === 'ACCEPTED' && data.paymentStatus === 'SCREENSHOT_UPLOADED') serverStatus = 'SCREENSHOT_UPLOADED';
     else if (data.status === 'ACCEPTED') serverStatus = 'ACCEPTED';
 
     if (data.status === 'COMPLETED' || data.status === 'CANCELLED') {
-      clearSession();
-      dismissRestore();
-      goTo('pg-home');
-      return;
+      clearSession(); dismissRestore(); goTo('pg-home'); return;
     }
 
     saveSession({ status: serverStatus });
-
-    // Show restore card with latest info
     document.getElementById('restore-spinner').style.display = 'none';
     document.getElementById('restore-code').textContent = session.bookingId;
     document.getElementById('restore-state').textContent =
@@ -1313,30 +1231,23 @@ async function checkAndRestoreSession() {
       serverStatus === 'ACCEPTED' ? '💳 Payment Karein' :
       serverStatus === 'SCREENSHOT_UPLOADED' ? '⏳ Verification Status Dekho' :
       '🚗 Ride Status Dekho';
-
     document.getElementById('restore-btns').style.display = 'flex';
 
     continueBtn.onclick = () => {
-      dismissRestore();
-      _sessionRestoredThisSession = true;
+      dismissRestore(); _sessionRestoredThisSession = true;
       doResumeBooking(session.bookingId, serverStatus, data, session);
     };
-
   } catch(e) {
-    // Server not reachable — still show option to continue from local state
     document.getElementById('restore-spinner').style.display = 'none';
     document.getElementById('restore-code').textContent = session.bookingId;
     document.getElementById('restore-state').textContent = '⚠️ Server se connect nahi ho paya';
     document.getElementById('restore-card').style.display = 'block';
     document.getElementById('restore-msg').textContent = 'Internet check karein. Last known state restore karein?';
-
     const continueBtn = document.getElementById('restore-continue-btn');
     continueBtn.textContent = '▶ Last State Se Shuru Karein';
     document.getElementById('restore-btns').style.display = 'flex';
-
     continueBtn.onclick = () => {
-      dismissRestore();
-      _sessionRestoredThisSession = true;
+      dismissRestore(); _sessionRestoredThisSession = true;
       doResumeBooking(session.bookingId, session.status, null, session);
     };
   }
@@ -1349,21 +1260,14 @@ function dismissRestore() {
 }
 
 // ============================================================
-// CORE RESUME — restores the correct screen based on state
-// Called both from splash and from home resume card
+// CORE RESUME
 // ============================================================
 async function resumeActiveBooking() {
   const session = getSession();
-  if (!session || !isSessionActive(session)) {
-    goTo('pg-book');
-    return;
-  }
-
-  // If server reachable, fetch fresh state
+  if (!session || !isSessionActive(session)) { goTo('pg-book'); return; }
   try {
     const res = await fetch(`${API}/api/bookings/${session.bookingId}`);
     const data = res.ok ? await res.json() : null;
-
     if (data) {
       let serverStatus = data.status;
       if (data.status === 'ACCEPTED' && data.paymentStatus === 'VERIFIED') serverStatus = 'CONFIRMED';
@@ -1371,96 +1275,48 @@ async function resumeActiveBooking() {
       else if (data.status === 'ACCEPTED') serverStatus = 'ACCEPTED';
       saveSession({ status: serverStatus });
       doResumeBooking(session.bookingId, serverStatus, data, session);
-    } else {
-      doResumeBooking(session.bookingId, session.status, null, session);
-    }
-  } catch(e) {
-    doResumeBooking(session.bookingId, session.status, null, session);
-  }
+    } else { doResumeBooking(session.bookingId, session.status, null, session); }
+  } catch(e) { doResumeBooking(session.bookingId, session.status, null, session); }
 }
 
 function doResumeBooking(bookingId, status, serverData, session) {
   currentBookingId = bookingId;
-
-  // Restore fare data from session
   if (session) {
-    currentFareData = {
-      grandTotal: session.grandTotal || 0,
-      days: session.days || 1,
-      name: session.name || '',
-      time: session.time || '',
-      pickup: session.pickup || '',
-      drop: session.drop || ''
-    };
+    currentFareData = { grandTotal: session.grandTotal || 0, days: session.days || 1, name: session.name || '', time: session.time || '', pickup: session.pickup || '', drop: session.drop || '' };
   }
-
-  // Populate status page fields
   document.getElementById('bookingCode').textContent = bookingId;
   document.getElementById('s-name').textContent = session?.name || '—';
   document.getElementById('s-pickup').textContent = session?.pickup || serverData?.pickupLocation || '—';
   document.getElementById('s-drop').textContent = session?.drop || serverData?.dropLocation || '—';
   document.getElementById('s-dt').textContent = (serverData?.startDate || '') + (session?.time ? ' at ' + session.time : '');
   document.getElementById('s-days').textContent = (session?.days || 1) + ' din';
-  if (currentFareData.grandTotal) {
-    document.getElementById('s-fare').textContent = '₹' + currentFareData.grandTotal.toLocaleString('en-IN');
-  }
-
-  // Show session restored badge
-  if (_sessionRestoredThisSession) {
-    const badge = document.getElementById('sessionRestoredBadge');
-    if (badge) badge.style.display = 'flex';
-  }
-
-  // Now restore the correct UI state
+  if (currentFareData.grandTotal) document.getElementById('s-fare').textContent = '₹' + currentFareData.grandTotal.toLocaleString('en-IN');
+  if (_sessionRestoredThisSession) { const b = document.getElementById('sessionRestoredBadge'); if (b) b.style.display = 'flex'; }
   resetStatusPageUI();
-
-  if (status === 'PENDING') {
-    // Still waiting for driver
-    goTo('pg-status');
-    startStatusPolling(bookingId);
-
-  } else if (status === 'ACCEPTED') {
-    // Driver accepted, payment not yet done
-    goTo('pg-status');
-    showStatusDriverAssignedLocked();
-    initPaymentSection();
-    document.getElementById('paySection').classList.add('show');
-
-  } else if (status === 'SCREENSHOT_UPLOADED') {
-    // Screenshot submitted, waiting admin verification
-    goTo('pg-status');
-    showStatusDriverAssignedLocked();
-    document.getElementById('cancelBtn').style.display = 'none';
-    initPaymentSection();
-    document.getElementById('paySection').classList.add('show');
-    document.getElementById('payCard').style.display = 'none';
-    document.getElementById('pendingVerifyBanner').classList.add('show');
-    startPollingForVerification();
-
+  if (status === 'PENDING') { goTo('pg-status'); startStatusPolling(bookingId); }
+  else if (status === 'ACCEPTED') { goTo('pg-status'); showStatusDriverAssignedLocked(); initPaymentSection(); document.getElementById('paySection').classList.add('show'); }
+  else if (status === 'SCREENSHOT_UPLOADED') {
+    goTo('pg-status'); showStatusDriverAssignedLocked();
+    document.getElementById('cancelBtn').style.display = 'none'; initPaymentSection();
+    document.getElementById('paySection').classList.add('show'); document.getElementById('payCard').style.display = 'none';
+    document.getElementById('pendingVerifyBanner').classList.add('show'); startPollingForVerification();
   } else if (status === 'CONFIRMED') {
-    // Payment verified — full details available
     goTo('pg-status');
-    if (serverData && serverData.driver) {
-      showRideConfirmed(serverData);
-    } else {
-      // Show partial confirmed state
-      const banner = document.getElementById('statusBanner');
-      banner.className = 'sbanner confirmed';
+    if (serverData && serverData.driver) { showRideConfirmed(serverData); }
+    else {
+      const banner = document.getElementById('statusBanner'); banner.className = 'sbanner confirmed';
       document.getElementById('statusSpinner').style.display = 'none';
       document.getElementById('statusTitle').textContent = '🚗 Ride Confirmed!';
       document.getElementById('statusMsg').textContent = 'Driver Se contact kre. Shubh Yatra! 🙏';
-      document.getElementById('cancelBtn').style.display = 'none';
-      document.getElementById('driverLockedBox').style.display = 'none';
-      document.getElementById('paySection').classList.add('show');
-      document.getElementById('payCard').style.display = 'none';
+      document.getElementById('cancelBtn').style.display = 'none'; document.getElementById('driverLockedBox').style.display = 'none';
+      document.getElementById('paySection').classList.add('show'); document.getElementById('payCard').style.display = 'none';
       document.getElementById('rideConfirmedBanner').classList.add('show');
     }
   }
 }
 
 function showStatusDriverAssignedLocked() {
-  const banner = document.getElementById('statusBanner');
-  banner.className = 'sbanner pending-payment';
+  const banner = document.getElementById('statusBanner'); banner.className = 'sbanner pending-payment';
   document.getElementById('statusSpinner').style.display = 'none';
   document.getElementById('statusTitle').textContent = '💳 Payment Karein';
   document.getElementById('statusMsg').textContent = 'Driver assign ho gaya. Payment ke baad details milegi 👇';
@@ -1482,114 +1338,65 @@ const DRIVER_RATES = {
 function calculateFare() {
   let valid = true;
   function chk(id, errId, test) {
-    const el = document.getElementById(id);
-    const err = document.getElementById(errId);
+    const el = document.getElementById(id); const err = document.getElementById(errId);
     if (!test(el.value)) { el.classList.add('err'); err.classList.add('show'); valid = false; }
     else { el.classList.remove('err'); err.classList.remove('show'); }
   }
-  chk('custName',  'err-custName',  v => v.trim().length >= 2);
-  chk('custPhone', 'err-custPhone', v => /^\d{10}$/.test(v.trim()));
-  chk('pickup',    'err-pickup',    v => v.trim().length >= 2);
-  chk('drop',      'err-drop',      v => v.trim().length >= 2);
-  chk('tripType',  'err-tripType',  v => !!v);
+  chk('custName','err-custName',v=>v.trim().length>=2);
+  chk('custPhone','err-custPhone',v=>/^\d{10}$/.test(v.trim()));
+  chk('pickup','err-pickup',v=>v.trim().length>=2);
+  chk('drop','err-drop',v=>v.trim().length>=2);
+  chk('tripType','err-tripType',v=>!!v);
   if (!valid) return;
-
   const tripType = document.getElementById('tripType').value;
   const rate = DRIVER_RATES[tripType];
   const nightTotal = days * rate.nightAllowance;
-  const baseTotal = rate.dayRate * days;
-  const grandTotal = baseTotal + nightTotal;
-
-  currentFareData = {
-    name: document.getElementById('custName').value.trim(),
-    phone: document.getElementById('custPhone').value.trim(),
-    pickup: document.getElementById('pickup').value.trim(),
-    drop: document.getElementById('drop').value.trim(),
-    date: document.getElementById('tripDate').value,
-    time: document.getElementById('tripTime').value,
-    days, tripType, driverDayRate: rate.dayRate, nightTotal, grandTotal, tripLabel: rate.label,
-  };
-
-  document.getElementById('fm-pickup').textContent = currentFareData.pickup || '—';
-  document.getElementById('fm-drop').textContent = currentFareData.drop || '—';
-  document.getElementById('fm-drate').textContent = '₹' + rate.dayRate + '/din';
-  document.getElementById('fm-days').textContent = days + ' din';
+  const grandTotal = rate.dayRate * days + nightTotal;
+  currentFareData = { name: document.getElementById('custName').value.trim(), phone: document.getElementById('custPhone').value.trim(), pickup: document.getElementById('pickup').value.trim(), drop: document.getElementById('drop').value.trim(), date: document.getElementById('tripDate').value, time: document.getElementById('tripTime').value, days, tripType, driverDayRate: rate.dayRate, nightTotal, grandTotal, tripLabel: rate.label };
+  document.getElementById('fm-pickup').textContent = currentFareData.pickup||'—';
+  document.getElementById('fm-drop').textContent = currentFareData.drop||'—';
+  document.getElementById('fm-drate').textContent = '₹'+rate.dayRate+'/din';
+  document.getElementById('fm-days').textContent = days+' din';
   document.getElementById('fm-type').textContent = rate.label;
   document.getElementById('fm-night').textContent = 'Food or Night Alag Se';
-  document.getElementById('fm-total').textContent = '₹' + grandTotal.toLocaleString('en-IN');
+  document.getElementById('fm-total').textContent = '₹'+grandTotal.toLocaleString('en-IN');
   document.getElementById('fareOverlay').classList.add('show');
 }
-
-function closeFare() {
-  document.getElementById('fareOverlay').classList.remove('show');
-}
+function closeFare() { document.getElementById('fareOverlay').classList.remove('show'); }
 
 // ============================================================
 // CONFIRM BOOKING
 // ============================================================
 async function confirmBooking() {
   closeFare();
-
   const startDate = currentFareData.date || new Date().toISOString().split('T')[0];
-  const endObj = new Date(startDate);
-  endObj.setDate(endObj.getDate() + (currentFareData.days - 1));
+  const endObj = new Date(startDate); endObj.setDate(endObj.getDate() + (currentFareData.days - 1));
   const endDate = endObj.toISOString().split('T')[0];
-
-  const payload = {
-    pickupLocation: currentFareData.pickup,
-    dropLocation: currentFareData.drop,
-    startDate, endDate,
-    customerMobile: currentFareData.phone,
-    customerFcmToken: localStorage.getItem("fcmToken")
-  };
-
+  const payload = { pickupLocation: currentFareData.pickup, dropLocation: currentFareData.drop, startDate, endDate, customerMobile: currentFareData.phone, customerFcmToken: localStorage.getItem("fcmToken") };
   try {
-    const res = await fetch(`${API}/api/bookings`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) { const err = await res.json(); alert('Booking fail hui: ' + (err.error || 'Unknown error')); return; }
-
+    const res = await fetch(`${API}/api/bookings`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    if (!res.ok) { const err = await res.json(); alert('Booking fail hui: '+(err.error||'Unknown error')); return; }
     const data = await res.json();
     currentBookingId = data.id;
-
-    // Save comprehensive session
-    saveSession({
-      bookingId: data.id,
-      status: 'PENDING',
-      pickup: currentFareData.pickup,
-      drop: currentFareData.drop,
-      name: currentFareData.name,
-      grandTotal: currentFareData.grandTotal,
-      days: currentFareData.days,
-      time: currentFareData.time,
-    });
+    saveSession({ bookingId: data.id, status: 'PENDING', pickup: currentFareData.pickup, drop: currentFareData.drop, name: currentFareData.name, grandTotal: currentFareData.grandTotal, days: currentFareData.days, time: currentFareData.time });
     localStorage.setItem('bs_pendingBookingId', data.id);
     localStorage.removeItem('bs_confirmedBookingId');
-
-    // Populate status page
     document.getElementById('bookingCode').textContent = data.id;
-    document.getElementById('s-name').textContent = currentFareData.name || '—';
+    document.getElementById('s-name').textContent = currentFareData.name||'—';
     document.getElementById('s-pickup').textContent = data.pickupLocation;
     document.getElementById('s-drop').textContent = data.dropLocation;
-    document.getElementById('s-dt').textContent = startDate + (currentFareData.time ? ' at ' + currentFareData.time : '');
-    document.getElementById('s-days').textContent = currentFareData.days + ' din';
-    document.getElementById('s-fare').textContent = '₹' + currentFareData.grandTotal.toLocaleString('en-IN') + ' (estimate)';
-
+    document.getElementById('s-dt').textContent = startDate+(currentFareData.time?' at '+currentFareData.time:'');
+    document.getElementById('s-days').textContent = currentFareData.days+' din';
+    document.getElementById('s-fare').textContent = '₹'+currentFareData.grandTotal.toLocaleString('en-IN')+' (estimate)';
     resetStatusPageUI();
     updateHomeResumeCard(getSession());
     goTo('pg-status');
     startStatusPolling(data.id);
-
-  } catch(e) {
-    alert('Server se connect nahi ho pa raha. Spring Boot chal raha hai?');
-  }
+  } catch(e) { alert('Server se connect nahi ho pa raha.'); }
 }
 
 function resetStatusPageUI() {
-  const banner = document.getElementById('statusBanner');
-  banner.className = 'sbanner waiting';
+  const banner = document.getElementById('statusBanner'); banner.className = 'sbanner waiting';
   document.getElementById('statusSpinner').style.display = '';
   document.getElementById('statusTitle').textContent = 'Driver Dhundh Rahe Hain...';
   document.getElementById('statusMsg').textContent = 'Aapki request send ho gayi hai. Thoda intezaar karein.';
@@ -1601,8 +1408,7 @@ function resetStatusPageUI() {
   document.getElementById('rideConfirmedBanner').classList.remove('show');
   document.getElementById('payCard').style.display = '';
   document.getElementById('sessionRestoredBadge').style.display = 'none';
-  const revealCard = document.getElementById('driverRevealCard');
-  if (revealCard) revealCard.remove();
+  const revealCard = document.getElementById('driverRevealCard'); if (revealCard) revealCard.remove();
 }
 
 // ============================================================
@@ -1612,126 +1418,86 @@ function startStatusPolling(bookingId) {
   if (statusPollingInterval) clearInterval(statusPollingInterval);
   statusPollingInterval = setInterval(async () => {
     try {
-      const res = await fetch(`${API}/api/bookings/${bookingId}`);
-      const data = await res.json();
+      const res = await fetch(`${API}/api/bookings/${bookingId}`); const data = await res.json();
       if (data.status === 'ACCEPTED' && data.driver) {
         clearInterval(statusPollingInterval); statusPollingInterval = null;
-        saveSession({ status: 'ACCEPTED' });
-        updateHomeResumeCard(getSession());
+        saveSession({ status: 'ACCEPTED' }); updateHomeResumeCard(getSession());
         showDriverAcceptedPopup(data.driver);
       }
-      if (data.status === 'COMPLETED') {
-        clearInterval(statusPollingInterval); statusPollingInterval = null;
-        clearAllBookingState();
-        showRideCompletePopup();
-      }
-    } catch(e) { console.warn('Polling error:', e); }
+      if (data.status === 'COMPLETED') { clearInterval(statusPollingInterval); statusPollingInterval = null; clearAllBookingState(); showRideCompletePopup(); }
+    } catch(e) {}
   }, 5000);
 }
 
-// ============================================================
-// DRIVER ACCEPTED POPUP
-// ============================================================
 function showDriverAcceptedPopup(driver) {
-  document.getElementById('popup-drvName').textContent = driver.name || '—';
-  document.getElementById('popup-drvMobile').textContent = driver.mobile || driver.phone || '—';
-  document.getElementById('popup-drvLicence').textContent = driver.licenceNumber || driver.licence || driver.driverId || '—';
-  document.getElementById('popup-drvVehicle').textContent = driver.vehicle || 'Uplabdh nahi';
-  const nameBadge = document.getElementById('popup-drvNameBadge');
-  if (nameBadge) nameBadge.textContent = driver.name || 'Driver';
-  const photoEl = document.getElementById('popup-drvPhoto');
-  const placeholder = document.getElementById('popup-drvPhotoPlaceholder');
-  const photoUrl = driver.photoUrl || (driver.driverId ? `${API}/api/drivers/${driver.driverId}/photo` : null);
-  if (photoEl && photoUrl) {
-    photoEl.src = photoUrl; photoEl.style.display = 'block';
-    if (placeholder) placeholder.style.display = 'none';
-    photoEl.onerror = () => { photoEl.style.display = 'none'; if (placeholder) placeholder.style.display = 'flex'; };
-  } else {
-    if (photoEl) photoEl.style.display = 'none';
-    if (placeholder) placeholder.style.display = 'flex';
-  }
+  document.getElementById('popup-drvName').textContent = driver.name||'—';
+  document.getElementById('popup-drvMobile').textContent = driver.mobile||driver.phone||'—';
+  document.getElementById('popup-drvLicence').textContent = driver.licenceNumber||driver.licence||driver.driverId||'—';
+  document.getElementById('popup-drvVehicle').textContent = driver.vehicle||'Uplabdh nahi';
+  const nameBadge = document.getElementById('popup-drvNameBadge'); if (nameBadge) nameBadge.textContent = driver.name||'Driver';
+  const photoEl = document.getElementById('popup-drvPhoto'); const placeholder = document.getElementById('popup-drvPhotoPlaceholder');
+  const photoUrl = driver.photoUrl||(driver.driverId?`${API}/api/drivers/${driver.driverId}/photo`:null);
+  if (photoEl && photoUrl) { photoEl.src=photoUrl; photoEl.style.display='block'; if(placeholder) placeholder.style.display='none'; photoEl.onerror=()=>{photoEl.style.display='none';if(placeholder)placeholder.style.display='flex';};} 
+  else { if(photoEl) photoEl.style.display='none'; if(placeholder) placeholder.style.display='flex'; }
   document.getElementById('drvAcceptedOverlay').classList.add('show');
 }
 
 function onDriverAcceptedOK() {
-  showStatusDriverAssignedLocked();
-  initPaymentSection();
-  document.getElementById('paySection').classList.add('show');
-  setTimeout(() => {
-    document.getElementById('paySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 350);
+  showStatusDriverAssignedLocked(); initPaymentSection(); document.getElementById('paySection').classList.add('show');
+  setTimeout(() => { document.getElementById('paySection').scrollIntoView({behavior:'smooth',block:'start'}); }, 350);
 }
 
 // ============================================================
 // AUTH
 // ============================================================
 function switchAuthTab(tab) {
-  document.getElementById('auth-login').style.display = tab === 'login' ? '' : 'none';
-  document.getElementById('auth-reg').style.display = tab === 'reg' ? '' : 'none';
-  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
-  document.getElementById('tab-reg').classList.toggle('active', tab === 'reg');
+  document.getElementById('auth-login').style.display = tab==='login'?'':'none';
+  document.getElementById('auth-reg').style.display = tab==='reg'?'':'none';
+  document.getElementById('tab-login').classList.toggle('active',tab==='login');
+  document.getElementById('tab-reg').classList.toggle('active',tab==='reg');
 }
-
-function togglePw(id) {
-  const el = document.getElementById(id);
-  el.type = el.type === 'password' ? 'text' : 'password';
-}
+function togglePw(id) { const el=document.getElementById(id); el.type=el.type==='password'?'text':'password'; }
 
 async function driverLogin() {
-  const username = document.getElementById('loginPhone').value.trim();
-  const pw = document.getElementById('loginPw').value;
-  if (!username || !pw) { alert('मोबाइल नंबर और पासवर्ड डालें।'); return; }
+  const username=document.getElementById('loginPhone').value.trim(); const pw=document.getElementById('loginPw').value;
+  if(!username||!pw){alert('मोबाइल नंबर और पासवर्ड डालें।');return;}
   try {
-    const res = await fetch(`${API}/api/drivers/login`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password: pw, fcmToken: localStorage.getItem("fcmToken") })
-    });
-    if (!res.ok) { const err = await res.json(); alert('लॉगिन नहीं हुआ: ' + (err.error || 'गलत नंबर या पासवर्ड')); return; }
-    loggedInDriver = await res.json();
-    localStorage.setItem('bs_driver', JSON.stringify(loggedInDriver));
-    document.getElementById('drvName').textContent = loggedInDriver.name;
-    document.getElementById('drvId').textContent = 'ID: ' + loggedInDriver.driverId;
+    const res=await fetch(`${API}/api/drivers/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password:pw,fcmToken:localStorage.getItem("fcmToken")})});
+    if(!res.ok){const err=await res.json();alert('लॉगिन नहीं हुआ: '+(err.error||'गलत नंबर या पासवर्ड'));return;}
+    loggedInDriver=await res.json(); localStorage.setItem('bs_driver',JSON.stringify(loggedInDriver));
+    document.getElementById('drvName').textContent=loggedInDriver.name; document.getElementById('drvId').textContent='ID: '+loggedInDriver.driverId;
     goTo('pg-drv-dash'); loadPendingBookings();
-  } catch(e) { alert('सर्वर से जुड़ नहीं पाया।'); }
+  } catch(e){alert('सर्वर से जुड़ नहीं पाया।');}
 }
 
 function onRegPhotoSelected(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const wrap = document.getElementById('regPhotoPreviewWrap');
-  const img = document.getElementById('regPhotoPreview');
-  const name = document.getElementById('regPhotoName');
-  const label = document.getElementById('regPhotoLabel');
-  img.src = URL.createObjectURL(file);
-  name.textContent = '✅ ' + file.name;
-  wrap.style.display = 'flex'; wrap.style.alignItems = 'center'; wrap.style.gap = '10px';
-  label.style.borderColor = 'var(--green)'; label.style.background = 'var(--green-bg)';
+  const file=input.files[0]; if(!file) return;
+  const wrap=document.getElementById('regPhotoPreviewWrap'); const img=document.getElementById('regPhotoPreview');
+  const name=document.getElementById('regPhotoName'); const label=document.getElementById('regPhotoLabel');
+  img.src=URL.createObjectURL(file); name.textContent='✅ '+file.name;
+  wrap.style.display='flex'; wrap.style.alignItems='center'; wrap.style.gap='10px';
+  label.style.borderColor='var(--green)'; label.style.background='var(--green-bg)';
 }
 
 async function driverRegister() {
-  const name = document.getElementById('regName').value.trim();
-  const mobile = document.getElementById('regPhone').value.trim();
-  const pw = document.getElementById('regPw').value;
-  const licenceNo = document.getElementById('regId').value.trim();
-  const photoFile = document.getElementById('regPhoto').files[0];
-  if (name.length < 2 || mobile.length < 10 || !pw) { alert('नाम, मोबाइल और पासवर्ड सही भरें।'); return; }
-  if (!photoFile) { alert('अपनी फ़ोटो लगाना जरूरी है 📷'); return; }
-  const payload = { name, mobile, address: 'Not provided', aadhaarNumber: '0000-0000-0000', licenceNumber: licenceNo || 'NOT-PROVIDED', username: mobile, password: pw };
+  const name=document.getElementById('regName').value.trim(); const mobile=document.getElementById('regPhone').value.trim();
+  const pw=document.getElementById('regPw').value; const licenceNo=document.getElementById('regId').value.trim();
+  const photoFile=document.getElementById('regPhoto').files[0];
+  if(name.length<2||mobile.length<10||!pw){alert('नाम, मोबाइल और पासवर्ड सही भरें।');return;}
+  if(!photoFile){alert('अपनी फ़ोटो लगाना जरूरी है 📷');return;}
+  const payload={name,mobile,address:'Not provided',aadhaarNumber:'0000-0000-0000',licenceNumber:licenceNo||'NOT-PROVIDED',username:mobile,password:pw};
   try {
-    const res = await fetch(`${API}/api/drivers/register`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-    if (!res.ok) { const err = await res.json(); alert('रजिस्टर नहीं हुआ: ' + (err.error || 'कुछ गड़बड़ हुई')); return; }
-    loggedInDriver = await res.json();
-    localStorage.setItem('bs_driver', JSON.stringify(loggedInDriver));
+    const res=await fetch(`${API}/api/drivers/register`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!res.ok){const err=await res.json();alert('रजिस्टर नहीं हुआ: '+(err.error||'कुछ गड़बड़ हुई'));return;}
+    loggedInDriver=await res.json(); localStorage.setItem('bs_driver',JSON.stringify(loggedInDriver));
     try {
-      const photoForm = new FormData();
-      photoForm.append('photo', photoFile);
-      await fetch(`${API}/api/drivers/${loggedInDriver.driverId}/upload-photo`, { method: 'POST', body: photoForm });
-      loggedInDriver.photoUrl = URL.createObjectURL(photoFile);
-    } catch(pe) { console.warn('Photo upload fail:', pe); loggedInDriver.photoUrl = null; }
-    document.getElementById('drvName').textContent = loggedInDriver.name;
-    document.getElementById('drvId').textContent = 'ID: ' + loggedInDriver.driverId;
+      const photoForm=new FormData(); photoForm.append('photo',photoFile);
+      await fetch(`${API}/api/drivers/${loggedInDriver.driverId}/upload-photo`,{method:'POST',body:photoForm});
+      loggedInDriver.photoUrl=URL.createObjectURL(photoFile);
+    } catch(pe){loggedInDriver.photoUrl=null;}
+    document.getElementById('drvName').textContent=loggedInDriver.name; document.getElementById('drvId').textContent='ID: '+loggedInDriver.driverId;
     goTo('pg-drv-dash'); loadPendingBookings();
-  } catch(e) { alert('सर्वर से जुड़ नहीं पाया।'); }
+  } catch(e){alert('सर्वर से जुड़ नहीं पाया।');}
 }
 
 // ============================================================
@@ -1739,157 +1505,93 @@ async function driverRegister() {
 // ============================================================
 async function loadPendingBookings() {
   try {
-    const res = await fetch(`${API}/api/bookings?status=PENDING`);
-    const bookings = await res.json();
-    const container = document.getElementById('drv-new');
-    container.querySelectorAll('.req-card').forEach(c => c.remove());
-    if (bookings.length === 0) { document.getElementById('noReqMsg').style.display = ''; return; }
-    document.getElementById('noReqMsg').style.display = 'none';
-    bookings.forEach(b => {
-      const card = document.createElement('div');
-      card.className = 'req-card';
-      card.innerHTML = `
-        <div class="req-head"><span class="req-badge">🆕 नई</span><span class="req-time">${b.id}</span></div>
-        <div class="req-body">
-          <div class="route">
-            <div class="rpt"><div class="rdot from"></div><div class="rtxt"><h4>${b.pickupLocation}</h4><p>यहाँ से उठाना है</p></div></div>
-            <div class="rline" style="margin-left:4.5px"></div>
-            <div class="rpt"><div class="rdot to"></div><div class="rtxt"><h4>${b.dropLocation}</h4><p>यहाँ पहुँचाना है</p></div></div>
-          </div>
-          <div class="chips"><div class="chip">📅 ${b.startDate}</div><div class="chip">📆 ${b.endDate} तक</div></div>
-          <div class="cust-strip"><div class="cm">सवारी</div><div class="cl">📱 ${b.customerMobile}</div></div>
-          <div class="req-btns">
-            <button class="btn btn-red-o" style="font-size:13px;padding:11px" onclick="declineReq(this,'${b.id}')">❌ नहीं जाना</button>
-            <button class="btn btn-green" style="font-size:13px;padding:11px" onclick="acceptReq(this,'${b.id}')">✅ मंजूर है</button>
-          </div>
-        </div>`;
-      container.insertBefore(card, document.getElementById('noReqMsg'));
+    const res=await fetch(`${API}/api/bookings?status=PENDING`); const bookings=await res.json();
+    const container=document.getElementById('drv-new'); container.querySelectorAll('.req-card').forEach(c=>c.remove());
+    if(bookings.length===0){document.getElementById('noReqMsg').style.display='';return;}
+    document.getElementById('noReqMsg').style.display='none';
+    bookings.forEach(b=>{
+      const card=document.createElement('div'); card.className='req-card';
+      card.innerHTML=`<div class="req-head"><span class="req-badge">🆕 नई</span><span class="req-time">${b.id}</span></div><div class="req-body"><div class="route"><div class="rpt"><div class="rdot from"></div><div class="rtxt"><h4>${b.pickupLocation}</h4><p>यहाँ से उठाना है</p></div></div><div class="rline" style="margin-left:4.5px"></div><div class="rpt"><div class="rdot to"></div><div class="rtxt"><h4>${b.dropLocation}</h4><p>यहाँ पहुँचाना है</p></div></div></div><div class="chips"><div class="chip">📅 ${b.startDate}</div><div class="chip">📆 ${b.endDate} तक</div></div><div class="cust-strip"><div class="cm">सवारी</div><div class="cl">📱 ${b.customerMobile}</div></div><div class="req-btns"><button class="btn btn-red-o" style="font-size:13px;padding:11px" onclick="declineReq(this,'${b.id}')">❌ नहीं जाना</button><button class="btn btn-green" style="font-size:13px;padding:11px" onclick="acceptReq(this,'${b.id}')">✅ मंजूर है</button></div></div>`;
+      container.insertBefore(card,document.getElementById('noReqMsg'));
     });
-  } catch(e) { console.error('Bookings load nahi hui:', e); }
+  } catch(e){}
 }
 
-function dTab(btn, tabId) {
-  document.querySelectorAll('.dtab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  ['drv-new','drv-active','drv-history'].forEach(id => {
-    document.getElementById(id).style.display = id === tabId ? '' : 'none';
-  });
-  if (tabId === 'drv-new') loadPendingBookings();
-  if (tabId === 'drv-active') loadDriverActiveBookings();
-  if (tabId === 'drv-history') loadDriverHistory();
+function dTab(btn,tabId) {
+  document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active')); btn.classList.add('active');
+  ['drv-new','drv-active','drv-history'].forEach(id=>{ document.getElementById(id).style.display=id===tabId?'':'none'; });
+  if(tabId==='drv-new') loadPendingBookings();
+  if(tabId==='drv-active') loadDriverActiveBookings();
+  if(tabId==='drv-history') loadDriverHistory();
 }
 
-async function acceptReq(btn, bookingId) {
-  if (!loggedInDriver) { alert('पहले लॉगिन करें!'); return; }
+async function acceptReq(btn,bookingId) {
+  if(!loggedInDriver){alert('पहले लॉगिन करें!');return;}
   try {
-    const res = await fetch(`${API}/api/bookings/${bookingId}/accept`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ driverId: loggedInDriver.driverId })
-    });
-    if (!res.ok) { const err = await res.json(); alert('मंजूर नहीं हुआ: ' + (err.error || 'कुछ गड़बड़ हुई')); return; }
-    const card = btn.closest('.req-card');
-    card.querySelector('.req-badge').textContent = '✅ मंजूर हो गई';
-    card.querySelector('.req-badge').style.background = 'var(--green)';
-    btn.textContent = '✅ मंजूर हो गई'; btn.disabled = true;
-    card.querySelector('.btn-red-o').style.display = 'none';
-    alert('सवारी ' + bookingId + ' मंजूर हो गई! 🎉');
-  } catch(e) { alert('सर्वर से जुड़ नहीं पाया।'); }
+    const res=await fetch(`${API}/api/bookings/${bookingId}/accept`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({driverId:loggedInDriver.driverId})});
+    if(!res.ok){const err=await res.json();alert('मंजूर नहीं हुआ: '+(err.error||'कुछ गड़बड़ हुई'));return;}
+    const card=btn.closest('.req-card'); card.querySelector('.req-badge').textContent='✅ मंजूर हो गई'; card.querySelector('.req-badge').style.background='var(--green)';
+    btn.textContent='✅ मंजूर हो गई'; btn.disabled=true; card.querySelector('.btn-red-o').style.display='none';
+    alert('सवारी '+bookingId+' मंजूर हो गई! 🎉');
+  } catch(e){alert('सर्वर से जुड़ नहीं पाया।');}
 }
 
-function declineReq(btn, bookingId) {
-  const card = btn.closest('.req-card');
-  card.style.opacity = '0.4'; btn.textContent = '❌ मना किया'; btn.disabled = true;
-  card.querySelector('.btn-green').style.display = 'none';
+function declineReq(btn,bookingId) {
+  const card=btn.closest('.req-card'); card.style.opacity='0.4'; btn.textContent='❌ मना किया'; btn.disabled=true; card.querySelector('.btn-green').style.display='none';
 }
 
 async function loadDriverActiveBookings() {
-  if (!loggedInDriver) return;
-  const list = document.getElementById('drv-active-list');
-  const empty = document.getElementById('drv-active-empty');
+  if(!loggedInDriver) return;
+  const list=document.getElementById('drv-active-list'); const empty=document.getElementById('drv-active-empty');
   try {
-    const res = await fetch(`${API}/api/bookings/driver/${loggedInDriver.driverId}/active`);
-    const data = await res.json();
-    list.querySelectorAll('.active-booking-card').forEach(c => c.remove());
-    if (!data.length) { empty.style.display = ''; return; }
-    empty.style.display = 'none';
-    data.forEach(b => {
-      const card = document.createElement('div');
-      card.className = 'active-booking-card req-card';
-      card.style.marginBottom = '14px';
-      card.innerHTML = `
-        <div class="req-head"><span class="req-badge" style="background:var(--green)">✅ चालू सवारी</span><span class="req-time">${b.id}</span></div>
-        <div class="req-body">
-          <div class="route">
-            <div class="rpt"><div class="rdot from"></div><div class="rtxt"><h4>${b.pickupLocation}</h4></div></div>
-            <div class="rline" style="margin-left:4.5px"></div>
-            <div class="rpt"><div class="rdot to"></div><div class="rtxt"><h4>${b.dropLocation}</h4></div></div>
-          </div>
-          <div class="chips"><div class="chip">📅 ${b.startDate}</div><div class="chip">🏁 ${b.endDate}</div><div class="chip">📱 ${b.customerMobile}</div></div>
-          ${b.totalAmount ? `<div class="chip" style="margin:8px 0;background:var(--green-bg);color:var(--green);font-weight:600">💰 ₹${b.totalAmount.toLocaleString('en-IN')}</div>` : ''}
-          <div class="req-btns" style="margin-top:10px">
-            <button class="btn btn-green btn-full" style="font-size:14px;padding:13px" onclick="completeRide('${b.id}', this)">🏁 सवारी पूरी हुई</button>
-          </div>
-        </div>`;
-      list.insertBefore(card, empty);
+    const res=await fetch(`${API}/api/bookings/driver/${loggedInDriver.driverId}/active`); const data=await res.json();
+    list.querySelectorAll('.active-booking-card').forEach(c=>c.remove());
+    if(!data.length){empty.style.display='';return;} empty.style.display='none';
+    data.forEach(b=>{
+      const card=document.createElement('div'); card.className='active-booking-card req-card'; card.style.marginBottom='14px';
+      card.innerHTML=`<div class="req-head"><span class="req-badge" style="background:var(--green)">✅ चालू सवारी</span><span class="req-time">${b.id}</span></div><div class="req-body"><div class="route"><div class="rpt"><div class="rdot from"></div><div class="rtxt"><h4>${b.pickupLocation}</h4></div></div><div class="rline" style="margin-left:4.5px"></div><div class="rpt"><div class="rdot to"></div><div class="rtxt"><h4>${b.dropLocation}</h4></div></div></div><div class="chips"><div class="chip">📅 ${b.startDate}</div><div class="chip">🏁 ${b.endDate}</div><div class="chip">📱 ${b.customerMobile}</div></div>${b.totalAmount?`<div class="chip" style="margin:8px 0;background:var(--green-bg);color:var(--green);font-weight:600">💰 ₹${b.totalAmount.toLocaleString('en-IN')}</div>`:''}<div class="req-btns" style="margin-top:10px"><button class="btn btn-green btn-full" style="font-size:14px;padding:13px" onclick="completeRide('${b.id}', this)">🏁 सवारी पूरी हुई</button></div></div>`;
+      list.insertBefore(card,empty);
     });
-  } catch(e) { console.error('Active bookings load error:', e); }
+  } catch(e){}
 }
 
-async function completeRide(bookingId, btn) {
-  if (!loggedInDriver) { alert('पहले लॉगिन करें!'); return; }
-  if (!confirm('क्या आप पक्का बोल रहे हैं? सवारी पूरी हुई?')) return;
-  btn.disabled = true; btn.textContent = '⏳ रुकें...';
+async function completeRide(bookingId,btn) {
+  if(!loggedInDriver){alert('पहले लॉगिन करें!');return;}
+  if(!confirm('क्या आप पक्का बोल रहे हैं? सवारी पूरी हुई?')) return;
+  btn.disabled=true; btn.textContent='⏳ रुकें...';
   try {
-    const res = await fetch(`${API}/api/bookings/${bookingId}/complete`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ driverId: loggedInDriver.driverId })
-    });
-    if (!res.ok) { const err = await res.json(); alert('गड़बड़ हुई: ' + (err.error || 'पूरी नहीं हुई')); btn.disabled = false; btn.textContent = '🏁 सवारी पूरी हुई'; return; }
-    const card = btn.closest('.active-booking-card');
-    if (card) card.remove();
-    const listEl = document.getElementById('drv-active-list');
-    if (!listEl.querySelectorAll('.active-booking-card').length) document.getElementById('drv-active-empty').style.display = '';
+    const res=await fetch(`${API}/api/bookings/${bookingId}/complete`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({driverId:loggedInDriver.driverId})});
+    if(!res.ok){const err=await res.json();alert('गड़बड़ हुई: '+(err.error||'पूरी नहीं हुई'));btn.disabled=false;btn.textContent='🏁 सवारी पूरी हुई';return;}
+    const card=btn.closest('.active-booking-card'); if(card) card.remove();
+    const listEl=document.getElementById('drv-active-list'); if(!listEl.querySelectorAll('.active-booking-card').length) document.getElementById('drv-active-empty').style.display='';
     alert('✅ सवारी पूरी हो गई!');
-  } catch(e) { alert('सर्वर से जुड़ नहीं पाया।'); btn.disabled = false; btn.textContent = '🏁 सवारी पूरी हुई'; }
+  } catch(e){alert('सर्वर से जुड़ नहीं पाया।');btn.disabled=false;btn.textContent='🏁 सवारी पूरी हुई';}
 }
 
 async function loadDriverHistory() {
-  if (!loggedInDriver) return;
-  const list = document.getElementById('drv-history-list');
-  const empty = document.getElementById('drv-history-empty');
+  if(!loggedInDriver) return;
+  const list=document.getElementById('drv-history-list'); const empty=document.getElementById('drv-history-empty');
   try {
-    const res = await fetch(`${API}/api/bookings/driver/${loggedInDriver.driverId}/history`);
-    const data = await res.json();
-    list.querySelectorAll('.history-card').forEach(c => c.remove());
-    if (!data.length) { empty.style.display = ''; return; }
-    empty.style.display = 'none';
-    data.forEach(b => {
-      const card = document.createElement('div');
-      card.className = 'history-card icard';
-      card.style.marginBottom = '12px';
-      card.innerHTML = `
-        <div class="icard-head" style="display:flex;justify-content:space-between;align-items:center"><span>📋 ${b.id}</span><span style="font-size:11px;background:var(--green-bg);color:var(--green);padding:3px 8px;border-radius:12px;font-weight:600">✅ पूरी हुई</span></div>
-        <div class="irow"><div class="irow-ico">📍</div><div><div class="irow-lbl">Pickup</div><div class="irow-val">${b.pickupLocation}</div></div></div>
-        <div class="irow"><div class="irow-ico">🏁</div><div><div class="irow-lbl">Drop</div><div class="irow-val">${b.dropLocation}</div></div></div>
-        <div class="irow"><div class="irow-ico">📅</div><div><div class="irow-lbl">तारीख</div><div class="irow-val">${b.startDate} → ${b.endDate}</div></div></div>
-        ${b.totalAmount ? `<div class="irow"><div class="irow-ico">💰</div><div><div class="irow-lbl">कुल किराया</div><div class="irow-val" style="color:var(--green);font-weight:700">₹${b.totalAmount.toLocaleString('en-IN')}</div></div></div>` : ''}`;
-      list.insertBefore(card, empty);
+    const res=await fetch(`${API}/api/bookings/driver/${loggedInDriver.driverId}/history`); const data=await res.json();
+    list.querySelectorAll('.history-card').forEach(c=>c.remove());
+    if(!data.length){empty.style.display='';return;} empty.style.display='none';
+    data.forEach(b=>{
+      const card=document.createElement('div'); card.className='history-card icard'; card.style.marginBottom='12px';
+      card.innerHTML=`<div class="icard-head" style="display:flex;justify-content:space-between;align-items:center"><span>📋 ${b.id}</span><span style="font-size:11px;background:var(--green-bg);color:var(--green);padding:3px 8px;border-radius:12px;font-weight:600">✅ पूरी हुई</span></div><div class="irow"><div class="irow-ico">📍</div><div><div class="irow-lbl">Pickup</div><div class="irow-val">${b.pickupLocation}</div></div></div><div class="irow"><div class="irow-ico">🏁</div><div><div class="irow-lbl">Drop</div><div class="irow-val">${b.dropLocation}</div></div></div><div class="irow"><div class="irow-ico">📅</div><div><div class="irow-lbl">तारीख</div><div class="irow-val">${b.startDate} → ${b.endDate}</div></div></div>${b.totalAmount?`<div class="irow"><div class="irow-ico">💰</div><div><div class="irow-lbl">कुल किराया</div><div class="irow-val" style="color:var(--green);font-weight:700">₹${b.totalAmount.toLocaleString('en-IN')}</div></div></div>`:''}`;
+      list.insertBefore(card,empty);
     });
-  } catch(e) { console.error('History load error:', e); }
+  } catch(e){}
 }
 
 function toggleOnline(el) {
-  const dot = document.getElementById('onlineDot');
-  const txt = document.getElementById('onlineTxt');
-  if (el.checked) { dot.classList.add('on'); txt.textContent = 'ऑनलाइन — सवारी आ सकती है'; loadPendingBookings(); }
-  else { dot.classList.remove('on'); txt.textContent = 'ऑफलाइन'; }
+  const dot=document.getElementById('onlineDot'); const txt=document.getElementById('onlineTxt');
+  if(el.checked){dot.classList.add('on');txt.textContent='ऑनलाइन — सवारी आ सकती है';loadPendingBookings();}
+  else{dot.classList.remove('on');txt.textContent='ऑफलाइन';}
 }
 
 function copyUPI() {
-  const upiId = '9536671722@okptaxis';
-  navigator.clipboard.writeText(upiId)
-    .then(() => alert('UPI ID copy ho gayi! ✅\n' + upiId))
-    .catch(() => alert('Manually type karein: ' + upiId));
+  const upiId='9536671722@okptaxis';
+  navigator.clipboard.writeText(upiId).then(()=>alert('UPI ID copy ho gayi! ✅\n'+upiId)).catch(()=>alert('Manually type karein: '+upiId));
 }
 
 // ============================================================
@@ -1898,306 +1600,206 @@ function copyUPI() {
 function calculateAdvance(total) { return 150; }
 
 async function initPaymentSection() {
-  const total = currentFareData ? (currentFareData.grandTotal || 0) : 0;
-  const advance = calculateAdvance(total);
-  const remaining = total - advance;
-
-  document.getElementById('adv-total').textContent = '₹' + total;
-  document.getElementById('adv-advance').textContent = '₹' + advance;
-  document.getElementById('adv-remaining').textContent = '₹' + remaining;
-  document.getElementById('adv-msg-amount').textContent = '₹' + advance;
-  document.getElementById('pay-upi-amount').textContent = '₹' + advance;
-  document.getElementById('step3-amount').textContent = '₹' + advance;
-
-  if (currentBookingId) {
-    try {
-      await fetch(`${API}/api/bookings/${currentBookingId}/set-fare`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ totalAmount: total })
-      });
-    } catch(e) { console.warn('Set fare error:', e); }
+  const total=currentFareData?(currentFareData.grandTotal||0):0;
+  const advance=calculateAdvance(total); const remaining=total-advance;
+  document.getElementById('adv-total').textContent='₹'+total;
+  document.getElementById('adv-advance').textContent='₹'+advance;
+  document.getElementById('adv-remaining').textContent='₹'+remaining;
+  document.getElementById('adv-msg-amount').textContent='₹'+advance;
+  document.getElementById('pay-upi-amount').textContent='₹'+advance;
+  document.getElementById('step3-amount').textContent='₹'+advance;
+  if(currentBookingId) {
+    try { await fetch(`${API}/api/bookings/${currentBookingId}/set-fare`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({totalAmount:total})}); } catch(e){}
   }
 }
 
 function onScreenshotSelected(input) {
-  const file = input.files[0];
-  if (!file) return;
+  const file=input.files[0]; if(!file) return;
   document.getElementById('screenshotUploadBox').classList.add('has-file');
-  const preview = document.getElementById('screenshotPreview');
-  preview.src = URL.createObjectURL(file);
-  preview.classList.add('show');
-  const fname = document.getElementById('uploadFilename');
-  fname.textContent = '✅ ' + file.name;
-  fname.classList.add('show');
+  const preview=document.getElementById('screenshotPreview'); preview.src=URL.createObjectURL(file); preview.classList.add('show');
+  const fname=document.getElementById('uploadFilename'); fname.textContent='✅ '+file.name; fname.classList.add('show');
 }
 
 async function submitPaymentProof() {
-  const fileInput = document.getElementById('screenshotInput');
-  if (!fileInput.files || fileInput.files.length === 0) { alert('Pehle payment screenshot choose karein 📷'); return; }
-
-  const btn = document.getElementById('submitProofBtn');
-  btn.disabled = true; btn.textContent = '⏳ Upload ho rahi hai...';
-
-  const formData = new FormData();
-  formData.append('screenshot', fileInput.files[0]);
-
+  const fileInput=document.getElementById('screenshotInput');
+  if(!fileInput.files||fileInput.files.length===0){alert('Pehle payment screenshot choose karein 📷');return;}
+  const btn=document.getElementById('submitProofBtn'); btn.disabled=true; btn.textContent='⏳ Upload ho rahi hai...';
+  const formData=new FormData(); formData.append('screenshot',fileInput.files[0]);
   try {
-    const res = await fetch(`${API}/api/bookings/${currentBookingId}/upload-screenshot`, { method: 'POST', body: formData });
-    if (!res.ok) {
-      const errData = await res.json().catch(() => ({}));
-      alert('Upload fail: ' + (errData.error || 'Server error'));
-      btn.disabled = false; btn.textContent = '📤 Submit Payment Proof';
-      return;
-    }
-    // Update session state
-    saveSession({ status: 'SCREENSHOT_UPLOADED' });
-    updateHomeResumeCard(getSession());
-    showPendingVerification();
-    startPollingForVerification();
-  } catch(e) {
-    alert('Network error. Dobara try karein.');
-    btn.disabled = false; btn.textContent = '📤 Submit Payment Proof';
-  }
+    const res=await fetch(`${API}/api/bookings/${currentBookingId}/upload-screenshot`,{method:'POST',body:formData});
+    if(!res.ok){const errData=await res.json().catch(()=>({}));alert('Upload fail: '+(errData.error||'Server error'));btn.disabled=false;btn.textContent='📤 Submit Payment Proof';return;}
+    saveSession({status:'SCREENSHOT_UPLOADED'}); updateHomeResumeCard(getSession()); showPendingVerification(); startPollingForVerification();
+  } catch(e){alert('Network error. Dobara try karein.');btn.disabled=false;btn.textContent='📤 Submit Payment Proof';}
 }
 
 function showPendingVerification() {
-  document.getElementById('payCard').style.display = 'none';
-  document.getElementById('pendingVerifyBanner').classList.add('show');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('payCard').style.display='none'; document.getElementById('pendingVerifyBanner').classList.add('show'); window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function startPollingForVerification() {
-  if (verifyPollingInterval) clearInterval(verifyPollingInterval);
-  verifyPollingInterval = setInterval(async () => {
+  if(verifyPollingInterval) clearInterval(verifyPollingInterval);
+  verifyPollingInterval=setInterval(async()=>{
     try {
-      const res = await fetch(`${API}/api/bookings/${currentBookingId}`);
-      if (!res.ok) return;
-      const data = await res.json();
-      if (data.paymentStatus === 'VERIFIED') {
-        clearInterval(verifyPollingInterval); verifyPollingInterval = null;
-        // Mark as CONFIRMED in session
-        saveSession({ status: 'CONFIRMED' });
-        localStorage.setItem('bs_confirmedBookingId', currentBookingId);
-        localStorage.removeItem('bs_pendingBookingId');
-        updateHomeResumeCard(getSession());
-        showRideConfirmed(data);
+      const res=await fetch(`${API}/api/bookings/${currentBookingId}`); if(!res.ok) return;
+      const data=await res.json();
+      if(data.paymentStatus==='VERIFIED'){
+        clearInterval(verifyPollingInterval); verifyPollingInterval=null;
+        saveSession({status:'CONFIRMED'}); localStorage.setItem('bs_confirmedBookingId',currentBookingId); localStorage.removeItem('bs_pendingBookingId');
+        updateHomeResumeCard(getSession()); showRideConfirmed(data);
       }
-    } catch(e) { console.warn('Verify polling error:', e); }
-  }, 5000);
+    } catch(e){}
+  },5000);
 }
 
-// ============================================================
-// RIDE CONFIRMED
-// ============================================================
 function showRideConfirmed(bookingData) {
-  document.getElementById('pendingVerifyBanner').classList.remove('show');
-  document.getElementById('payCard').style.display = 'none';
-
-  const total = currentFareData ? currentFareData.grandTotal : 0;
-  const advance = calculateAdvance(total);
-  const remaining = bookingData?.remainingCashAmount ?? (total - advance);
-  document.getElementById('rc-remaining').textContent = remaining;
-
+  document.getElementById('pendingVerifyBanner').classList.remove('show'); document.getElementById('payCard').style.display='none';
+  const total=currentFareData?currentFareData.grandTotal:0; const advance=calculateAdvance(total);
+  const remaining=bookingData?.remainingCashAmount??(total-advance);
+  document.getElementById('rc-remaining').textContent=remaining;
   document.getElementById('rideConfirmedBanner').classList.add('show');
-
-  const banner = document.getElementById('statusBanner');
-  banner.className = 'sbanner confirmed';
-  document.getElementById('statusSpinner').style.display = 'none';
-  document.getElementById('statusTitle').textContent = '🚗 Ride Confirmed!';
-  document.getElementById('statusMsg').textContent = 'Driver Se contact kre. Shubh Yatra! 🙏';
-  document.getElementById('bookingCode').textContent = (currentBookingId || '') + ' ✅';
-  document.getElementById('driverLockedBox').style.display = 'none';
-  document.getElementById('cancelBtn').style.display = 'none';
-
-  if (bookingData?.driver) {
-    const d = bookingData.driver;
-    document.getElementById('sc-drvName').textContent = d.name || '—';
-    document.getElementById('sc-drvMobile').textContent = d.mobile || d.phone || '—';
-    document.getElementById('sc-drvLicence').textContent = d.licenceNumber || d.licence || '—';
-    document.getElementById('drvConfirmedCard').classList.add('show');
-    showDriverRevealedSection(d);
+  const banner=document.getElementById('statusBanner'); banner.className='sbanner confirmed';
+  document.getElementById('statusSpinner').style.display='none';
+  document.getElementById('statusTitle').textContent='🚗 Ride Confirmed!';
+  document.getElementById('statusMsg').textContent='Driver Se contact kre. Shubh Yatra! 🙏';
+  document.getElementById('bookingCode').textContent=(currentBookingId||'')+' ✅';
+  document.getElementById('driverLockedBox').style.display='none'; document.getElementById('cancelBtn').style.display='none';
+  if(bookingData?.driver){
+    const d=bookingData.driver;
+    document.getElementById('sc-drvName').textContent=d.name||'—';
+    document.getElementById('sc-drvMobile').textContent=d.mobile||d.phone||'—';
+    document.getElementById('sc-drvLicence').textContent=d.licenceNumber||d.licence||'—';
+    document.getElementById('drvConfirmedCard').classList.add('show'); showDriverRevealedSection(d);
   }
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function showDriverRevealedSection(driver) {
-  let revealCard = document.getElementById('driverRevealCard');
-  if (!revealCard) {
-    revealCard = document.createElement('div');
-    revealCard.id = 'driverRevealCard';
-    revealCard.style.cssText = 'background:linear-gradient(135deg,#F0FDF6,#E8F5EE);border:2px solid var(--green);border-radius:var(--r);padding:16px;margin-bottom:14px;animation:fadeIn .3s ease;';
-    revealCard.innerHTML = `
-      <div style="font-family:'Baloo 2';font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px">🎉 Payment Confirmed — Aapka Driver</div>
-      <div style="text-align:center;margin-bottom:12px">
-        <img id="reveal-drvPhoto" src="" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--green);display:none;margin:0 auto 6px">
-        <div id="reveal-drvPhotoPlaceholder" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-3));display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 6px">👨‍✈️</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,143,60,.15)"><span style="font-size:16px">👤</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Driver ka Naam</div><div id="reveal-drvName" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div>
-      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,143,60,.15)"><span style="font-size:16px">📱</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Mobile Number</div><div id="reveal-drvMobile" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div>
-      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,143,60,.15)"><span style="font-size:16px">🪪</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Licence Number</div><div id="reveal-drvLicence" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div>
-      <div style="display:flex;align-items:center;gap:10px;padding:8px 0"><span style="font-size:16px">🚗</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Vehicle</div><div id="reveal-drvVehicle" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div>
-      <div style="background:#E8F5E9;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:12.5px;color:#1B5E20;line-height:1.6;text-align:center">
-        📞 Ab aap driver se seedha baat kar sakte hain.<br>
-        <strong>Baaki ₹<span id="reveal-cashAmount">—</span> driver ko CASH mein dein.</strong>
-      </div>`;
-    const paySection = document.getElementById('paySection');
-    const confirmedBanner = document.getElementById('rideConfirmedBanner');
-    if (confirmedBanner?.nextSibling) paySection.insertBefore(revealCard, confirmedBanner.nextSibling);
-    else if (paySection) paySection.appendChild(revealCard);
+  let revealCard=document.getElementById('driverRevealCard');
+  if(!revealCard){
+    revealCard=document.createElement('div'); revealCard.id='driverRevealCard';
+    revealCard.style.cssText='background:linear-gradient(135deg,#F0FDF6,#E8F5EE);border:2px solid var(--green);border-radius:var(--r);padding:16px;margin-bottom:14px;animation:fadeIn .3s ease;';
+    revealCard.innerHTML=`<div style="font-family:'Baloo 2';font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px">🎉 Payment Confirmed — Aapka Driver</div><div style="text-align:center;margin-bottom:12px"><img id="reveal-drvPhoto" src="" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--green);display:none;margin:0 auto 6px"><div id="reveal-drvPhotoPlaceholder" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-3));display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 6px">👨‍✈️</div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,143,60,.15)"><span style="font-size:16px">👤</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Driver ka Naam</div><div id="reveal-drvName" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,143,60,.15)"><span style="font-size:16px">📱</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Mobile Number</div><div id="reveal-drvMobile" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,143,60,.15)"><span style="font-size:16px">🪪</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Licence Number</div><div id="reveal-drvLicence" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0"><span style="font-size:16px">🚗</span><div><div style="font-size:10.5px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.3px">Vehicle</div><div id="reveal-drvVehicle" style="font-size:15px;color:var(--text-1);font-weight:700;margin-top:2px">—</div></div></div><div style="background:#E8F5E9;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:12.5px;color:#1B5E20;line-height:1.6;text-align:center">📞 Ab aap driver se seedha baat kar sakte hain.<br><strong>Baaki ₹<span id="reveal-cashAmount">—</span> driver ko CASH mein dein.</strong></div>`;
+    const paySection=document.getElementById('paySection'); const confirmedBanner=document.getElementById('rideConfirmedBanner');
+    if(confirmedBanner?.nextSibling) paySection.insertBefore(revealCard,confirmedBanner.nextSibling); else if(paySection) paySection.appendChild(revealCard);
   }
-  document.getElementById('reveal-drvName').textContent = driver.name || '—';
-  document.getElementById('reveal-drvMobile').textContent = driver.mobile || driver.phone || '—';
-  document.getElementById('reveal-drvLicence').textContent = driver.licenceNumber || driver.licence || '—';
-  document.getElementById('reveal-drvVehicle').textContent = driver.vehicle || driver.vehicleNumber || 'Uplabdh nahi';
-  const cashEl = document.getElementById('reveal-cashAmount');
-  if (cashEl && currentFareData) cashEl.textContent = (currentFareData.grandTotal - calculateAdvance(currentFareData.grandTotal)).toLocaleString('en-IN');
-  const photoEl = document.getElementById('reveal-drvPhoto');
-  const placeholder = document.getElementById('reveal-drvPhotoPlaceholder');
-  const photoUrl = driver.photoUrl || (driver.driverId ? `${API}/api/drivers/${driver.driverId}/photo` : null);
-  if (photoEl && photoUrl) {
-    photoEl.src = photoUrl; photoEl.style.display = 'block';
-    if (placeholder) placeholder.style.display = 'none';
-    photoEl.onerror = () => { photoEl.style.display = 'none'; if (placeholder) placeholder.style.display = 'flex'; };
-  }
+  document.getElementById('reveal-drvName').textContent=driver.name||'—';
+  document.getElementById('reveal-drvMobile').textContent=driver.mobile||driver.phone||'—';
+  document.getElementById('reveal-drvLicence').textContent=driver.licenceNumber||driver.licence||'—';
+  document.getElementById('reveal-drvVehicle').textContent=driver.vehicle||driver.vehicleNumber||'Uplabdh nahi';
+  const cashEl=document.getElementById('reveal-cashAmount'); if(cashEl&&currentFareData) cashEl.textContent=(currentFareData.grandTotal-calculateAdvance(currentFareData.grandTotal)).toLocaleString('en-IN');
+  const photoEl=document.getElementById('reveal-drvPhoto'); const placeholder=document.getElementById('reveal-drvPhotoPlaceholder');
+  const photoUrl=driver.photoUrl||(driver.driverId?`${API}/api/drivers/${driver.driverId}/photo`:null);
+  if(photoEl&&photoUrl){photoEl.src=photoUrl;photoEl.style.display='block';if(placeholder)placeholder.style.display='none';photoEl.onerror=()=>{photoEl.style.display='none';if(placeholder)placeholder.style.display='flex';};}
 }
 
-function showRideCompletePopup() {
-  document.getElementById('rideCompleteOverlay').classList.add('show');
-}
+function showRideCompletePopup() { document.getElementById('rideCompleteOverlay').classList.add('show'); }
 
 // ============================================================
-// MY BOOKING — shows active booking regardless of payment state
+// MY BOOKING
 // ============================================================
 function openMyBooking() {
-  const session = getSession();
-
-  // If no session or session completed/cancelled — show empty
-  if (!session || !isSessionActive(session)) {
+  const session=getSession();
+  if(!session||!isSessionActive(session)){
     goTo('pg-my-booking');
-    document.getElementById('mb-loading').style.display = 'none';
-    document.getElementById('mb-content').style.display = 'none';
-    document.getElementById('mb-error').style.display = 'none';
-    document.getElementById('mb-empty').style.display = 'block';
-    return;
+    document.getElementById('mb-loading').style.display='none'; document.getElementById('mb-content').style.display='none';
+    document.getElementById('mb-error').style.display='none'; document.getElementById('mb-empty').style.display='block'; return;
   }
-
-  goTo('pg-my-booking');
-  fetchAndShowMyBooking(session.bookingId);
+  goTo('pg-my-booking'); fetchAndShowMyBooking(session.bookingId);
 }
 
 async function fetchAndShowMyBooking(bookingId) {
-  document.getElementById('mb-loading').style.display = 'block';
-  document.getElementById('mb-content').style.display = 'none';
-  document.getElementById('mb-empty').style.display = 'none';
-  document.getElementById('mb-error').style.display = 'none';
-
+  document.getElementById('mb-loading').style.display='block'; document.getElementById('mb-content').style.display='none';
+  document.getElementById('mb-empty').style.display='none'; document.getElementById('mb-error').style.display='none';
   try {
-    const res = await fetch(`${API}/api/bookings/${bookingId}`);
-    if (!res.ok) throw new Error('not found');
-    const data = await res.json();
-    document.getElementById('mb-loading').style.display = 'none';
-
-    if (data.status === 'COMPLETED' || data.status === 'CANCELLED') {
-      clearAllBookingState();
-      document.getElementById('mb-empty').style.display = 'block';
-      return;
-    }
-
+    const res=await fetch(`${API}/api/bookings/${bookingId}`); if(!res.ok) throw new Error('not found');
+    const data=await res.json(); document.getElementById('mb-loading').style.display='none';
+    if(data.status==='COMPLETED'||data.status==='CANCELLED'){clearAllBookingState();document.getElementById('mb-empty').style.display='block';return;}
     showMyBookingContent(data);
-  } catch(e) {
-    document.getElementById('mb-loading').style.display = 'none';
-    document.getElementById('mb-error').style.display = 'block';
-  }
+  } catch(e){document.getElementById('mb-loading').style.display='none';document.getElementById('mb-error').style.display='block';}
 }
 
 function showMyBookingContent(data) {
-  document.getElementById('mb-content').style.display = 'block';
-  document.getElementById('mb-code').textContent = data.id || '—';
-  document.getElementById('mb-pickup').textContent = data.pickupLocation || '—';
-  document.getElementById('mb-drop').textContent = data.dropLocation || '—';
-  document.getElementById('mb-start').textContent = data.startDate || '—';
-  document.getElementById('mb-end').textContent = data.endDate || '—';
-  document.getElementById('mb-total').textContent = data.totalAmount ? '₹' + data.totalAmount.toLocaleString('en-IN') : '—';
-
-  const statusEl = document.getElementById('mb-status');
-  const payStatus = data.paymentStatus;
-  let statusLabel, statusClass;
-
-  if (data.status === 'PENDING') {
-    statusLabel = '⏳ Driver Dhundh Raha Hai'; statusClass = 'mb-badge-pending';
-    document.getElementById('mb-pay-status').textContent = '— Abhi payment nahi';
-  } else if (data.status === 'ACCEPTED' && payStatus === 'VERIFIED') {
-    statusLabel = '✅ Ride Confirmed'; statusClass = 'mb-badge-confirmed';
-    document.getElementById('mb-pay-status').textContent = '✅ Payment Verified';
-  } else if (data.status === 'ACCEPTED' && payStatus === 'SCREENSHOT_UPLOADED') {
-    statusLabel = '📋 Screenshot Verify Ho Raha Hai'; statusClass = 'mb-badge-accepted';
-    document.getElementById('mb-pay-status').textContent = '⏳ Verification Pending';
-  } else if (data.status === 'ACCEPTED') {
-    statusLabel = '✅ Driver Mila — Payment Baaki'; statusClass = 'mb-badge-accepted';
-    document.getElementById('mb-pay-status').textContent = '⚠️ Advance Baaki Hai';
-  } else {
-    statusLabel = data.status; statusClass = 'mb-badge-pending';
-    document.getElementById('mb-pay-status').textContent = payStatus || '—';
-  }
-
-  statusEl.textContent = statusLabel;
-  statusEl.className = 'mb-status-badge ' + statusClass;
-
-  // Show driver ONLY if payment verified
-  const drvSection = document.getElementById('mb-driver-section');
-  if (data.driver && payStatus === 'VERIFIED') {
-    drvSection.style.display = 'block';
-    document.getElementById('mb-drv-name').textContent = data.driver.name || '—';
-    document.getElementById('mb-drv-mobile').textContent = data.driver.mobile || '—';
-    document.getElementById('mb-drv-licence').textContent = data.driver.licenceNumber || data.driver.licence || '—';
-    const mbPhoto = document.getElementById('mb-drv-photo');
-    const mbPlaceholder = document.getElementById('mb-drv-photo-placeholder');
-    const photoUrl = data.driver.photoUrl || (data.driver.driverId ? `${API}/api/drivers/${data.driver.driverId}/photo` : null);
-    if (photoUrl) {
-      mbPhoto.src = photoUrl; mbPhoto.style.display = 'block'; mbPlaceholder.style.display = 'none';
-      mbPhoto.onerror = () => { mbPhoto.style.display = 'none'; mbPlaceholder.style.display = 'flex'; };
-    } else {
-      mbPhoto.style.display = 'none'; mbPlaceholder.style.display = 'flex';
-    }
-  } else {
-    drvSection.style.display = 'none';
-  }
+  document.getElementById('mb-content').style.display='block';
+  document.getElementById('mb-code').textContent=data.id||'—';
+  document.getElementById('mb-pickup').textContent=data.pickupLocation||'—';
+  document.getElementById('mb-drop').textContent=data.dropLocation||'—';
+  document.getElementById('mb-start').textContent=data.startDate||'—';
+  document.getElementById('mb-end').textContent=data.endDate||'—';
+  document.getElementById('mb-total').textContent=data.totalAmount?'₹'+data.totalAmount.toLocaleString('en-IN'):'—';
+  const statusEl=document.getElementById('mb-status'); const payStatus=data.paymentStatus;
+  let statusLabel,statusClass;
+  if(data.status==='PENDING'){statusLabel='⏳ Driver Dhundh Raha Hai';statusClass='mb-badge-pending';document.getElementById('mb-pay-status').textContent='— Abhi payment nahi';}
+  else if(data.status==='ACCEPTED'&&payStatus==='VERIFIED'){statusLabel='✅ Ride Confirmed';statusClass='mb-badge-confirmed';document.getElementById('mb-pay-status').textContent='✅ Payment Verified';}
+  else if(data.status==='ACCEPTED'&&payStatus==='SCREENSHOT_UPLOADED'){statusLabel='📋 Screenshot Verify Ho Raha Hai';statusClass='mb-badge-accepted';document.getElementById('mb-pay-status').textContent='⏳ Verification Pending';}
+  else if(data.status==='ACCEPTED'){statusLabel='✅ Driver Mila — Payment Baaki';statusClass='mb-badge-accepted';document.getElementById('mb-pay-status').textContent='⚠️ Advance Baaki Hai';}
+  else{statusLabel=data.status;statusClass='mb-badge-pending';document.getElementById('mb-pay-status').textContent=payStatus||'—';}
+  statusEl.textContent=statusLabel; statusEl.className='mb-status-badge '+statusClass;
+  const drvSection=document.getElementById('mb-driver-section');
+  if(data.driver&&payStatus==='VERIFIED'){
+    drvSection.style.display='block';
+    document.getElementById('mb-drv-name').textContent=data.driver.name||'—';
+    document.getElementById('mb-drv-mobile').textContent=data.driver.mobile||'—';
+    document.getElementById('mb-drv-licence').textContent=data.driver.licenceNumber||data.driver.licence||'—';
+    const mbPhoto=document.getElementById('mb-drv-photo'); const mbPlaceholder=document.getElementById('mb-drv-photo-placeholder');
+    const photoUrl=data.driver.photoUrl||(data.driver.driverId?`${API}/api/drivers/${data.driver.driverId}/photo`:null);
+    if(photoUrl){mbPhoto.src=photoUrl;mbPhoto.style.display='block';mbPlaceholder.style.display='none';mbPhoto.onerror=()=>{mbPhoto.style.display='none';mbPlaceholder.style.display='flex';};}
+    else{mbPhoto.style.display='none';mbPlaceholder.style.display='flex';}
+  } else { drvSection.style.display='none'; }
 }
 
 // ============================================================
-// APP INIT — runs on every page load
+// APP INIT — HASH-AWARE (FIX)
 // ============================================================
 window.addEventListener('DOMContentLoaded', () => {
-  // Set defaults
   const today = new Date().toISOString().split('T')[0];
   const tripDateEl = document.getElementById('tripDate');
   const tripTimeEl = document.getElementById('tripTime');
   if (tripDateEl) tripDateEl.value = today;
   if (tripTimeEl) tripTimeEl.value = '08:00';
 
-  // Show restore splash then check session
-  document.getElementById('pg-restore').style.display = 'flex';
-  document.getElementById('pg-restore').classList.add('active');
-  document.querySelectorAll('.page:not(#pg-restore)').forEach(p => p.classList.remove('active'));
+  const hashPage = getHashPage();
 
-  // Small delay for UX (shows the splash briefly before immediate redirect)
-  setTimeout(() => {
-    checkAndRestoreSession().then(() => {
-      // After restore check, update home card if on home
-      const session = getSession();
-      if (session && isSessionActive(session)) {
-        updateHomeResumeCard(session);
-        // Show toast after a moment if user lands on home
-        
-      }
-    });
-  }, 600);
+  if (hashPage) {
+    // ★ Hash present hai — restore splash bilkul mat dikhao
+    //   seedha 50ms mein correct page open karo
+    document.getElementById('pg-restore').style.display = 'none';
+    document.getElementById('pg-restore').classList.remove('active');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    setTimeout(() => {
+      checkAndRestoreSession().then(() => {
+        const session = getSession();
+        if (session && isSessionActive(session)) updateHomeResumeCard(session);
+      });
+    }, 50);
+  } else {
+    // No hash — normal restore splash flow
+    document.getElementById('pg-restore').style.display = 'flex';
+    document.getElementById('pg-restore').classList.add('active');
+    document.querySelectorAll('.page:not(#pg-restore)').forEach(p => p.classList.remove('active'));
+    setTimeout(() => {
+      checkAndRestoreSession().then(() => {
+        const session = getSession();
+        if (session && isSessionActive(session)) updateHomeResumeCard(session);
+      });
+    }, 600);
+  }
 });
 
-// Also update resume card whenever home is navigated to
-const _origGoTo = goTo;
-// Ensure home card updates on navigation
+// ★ hashchange listener — browser back/forward aur admin sidebar
+//   navigation dono handle karta hai
+window.addEventListener('hashchange', () => {
+  const hashPage = getHashPage();
+  if (!hashPage) return;
+  if (hashPage === 'pg-my-booking') {
+    openMyBooking();
+  } else if (hashPage === 'pg-drv-dash') {
+    goTo(loggedInDriver ? 'pg-drv-dash' : 'pg-drv-auth');
+  } else {
+    goTo(hashPage);
+  }
+  const session = getSession();
+  if (session && isSessionActive(session)) updateHomeResumeCard(session);
+});
 
 </script>
 </body>

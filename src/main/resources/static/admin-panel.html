@@ -29,11 +29,9 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 #loginPage::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(232,96,10,.22) 0%,transparent 65%);border-radius:50%}
 #loginPage::after{content:'';position:absolute;bottom:-60px;left:-60px;width:250px;height:250px;background:radial-gradient(circle,rgba(15,143,60,.15) 0%,transparent 65%);border-radius:50%}
 
-/* LOGIN PAGE KA MENU BTN - sirf loginPage ke andar */
 #loginPage .menu-btn{position:absolute;top:16px;right:16px;z-index:10;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background var(--dur)}
 #loginPage .menu-btn:hover{background:rgba(255,255,255,.25)}
 
-/* TOPBAR KA MENU BTN - alag class, position:absolute nahi */
 .topbar-menu-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--dur);margin-left:auto;}
 .topbar-menu-btn:hover{background:rgba(255,255,255,.25)}
 
@@ -61,8 +59,8 @@ body{font-family:'Noto Sans',sans-serif;background:var(--bg);color:var(--text-1)
 .login-notice{background:var(--navy-light);border-radius:var(--r-sm);padding:10px 12px;font-size:11.5px;color:var(--text-2);margin-top:14px;display:flex;gap:7px;align-items:flex-start}
 .login-footer{text-align:center;color:var(--text-3);font-size:10.5px;margin-top:16px}
 
-.login-sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:499}
-.login-sb-overlay.show{display:block}
+.login-sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:499;pointer-events:none}
+.login-sb-overlay.show{display:block;pointer-events:auto}
 .login-sidebar{position:fixed;top:0;right:-300px;width:280px;height:100%;background:#fff;z-index:500;box-shadow:-8px 0 32px rgba(15,31,92,.2);transition:right .3s var(--ease);display:flex;flex-direction:column}
 .login-sidebar.open{right:0}
 .lsb-head{background:var(--navy);padding:18px 16px;display:flex;align-items:center;justify-content:space-between}
@@ -330,10 +328,10 @@ td.muted{color:var(--text-3);font-size:11.5px}
   </div>
   <div class="lsb-body">
     <div class="lsb-section">Navigation</div>
-    <div class="lsb-item" onclick="goHome()"><div class="lsb-item-ico">🏠</div><span class="lsb-item-label">Home</span></div>
-    <div class="lsb-item" onclick="goHome()"><div class="lsb-item-ico">🚗</div><span class="lsb-item-label">Driver Book Karein</span></div>
-    <div class="lsb-item" onclick="goHome()"><div class="lsb-item-ico">🪪</div><span class="lsb-item-label">ड्राइवर पैनल</span></div>
-    <div class="lsb-item" onclick="goHome()"><div class="lsb-item-ico">📋</div><span class="lsb-item-label">My Booking</span></div>
+    <div class="lsb-item" onclick="navigateToPage('bharat-sarthi-frontend.html')"><div class="lsb-item-ico">🏠</div><span class="lsb-item-label">Home</span></div>
+    <div class="lsb-item" onclick="navigateToPage('bharat-sarthi-frontend.html#pg-book')"><div class="lsb-item-ico">🚗</div><span class="lsb-item-label">Driver Book Karein</span></div>
+    <div class="lsb-item" onclick="navigateToPage('bharat-sarthi-frontend.html#pg-drv-auth')"><div class="lsb-item-ico">🪪</div><span class="lsb-item-label">ड्राइवर पैनल</span></div>
+    <div class="lsb-item" onclick="navigateToPage('bharat-sarthi-frontend.html#pg-my-booking')"><div class="lsb-item-ico">📋</div><span class="lsb-item-label">My Booking</span></div>
   </div>
 </div>
 
@@ -355,12 +353,11 @@ td.muted{color:var(--text-3);font-size:11.5px}
     </div>
     <div class="sb-footer">
       <div class="sb-admin-row"><div class="sb-avatar">👑</div><div><div class="sb-admin-name" id="sb-adminFullName">Super Admin</div><div class="sb-admin-role">System Administrator</div></div></div>
-      <button class="sb-home" onclick="goHome()">🏠 Back to Home</button>
+      <button class="sb-home" onclick="navigateToPage('bharat-sarthi-frontend.html')">🏠 Back to Home</button>
       <button class="sb-logout" onclick="doLogout()">🚪 Logout</button>
     </div>
   </nav>
 
-  <!-- TOPBAR: right side menu btn add kiya - class hai topbar-menu-btn -->
   <div class="topbar">
     <button class="topbar-ham" onclick="openDashboardSidebar()">☰</button>
     <div class="topbar-logo">🛡️</div>
@@ -428,9 +425,40 @@ td.muted{color:var(--text-3);font-size:11.5px}
 const API = 'https://bharat-sarthi-clean.onrender.com';
 let adminSession = null, allBookingsData = [], allDriversData = [], currentRejectId = null, bookingMap = {};
 
-function goHome() { window.location.href = 'bharat-sarthi-frontend.html'; }
+// =============================================
+// FIX: navigateToPage — sidebar pehle band,
+//      phir 250ms baad correct URL pe jaao
+// =============================================
+function navigateToPage(url) {
+  // Step 1: sidebar aur overlay band karo
+  var sidebar = document.getElementById('loginSidebar');
+  var overlay = document.getElementById('loginSbOverlay');
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) {
+    overlay.classList.remove('show');
+    // Overlay invisible hone ke baad clicks capture na kare
+    overlay.style.pointerEvents = 'none';
+  }
+  // Body overflow reset
+  document.body.style.overflow = '';
+
+  // Step 2: 250ms baad navigate karo (sidebar close animation complete ho jaye)
+  setTimeout(function() {
+    window.location.href = url;
+  }, 250);
+}
+
+function goHome() {
+  navigateToPage('bharat-sarthi-frontend.html');
+}
+
 function openLoginSidebar() {
-  const body = document.getElementById('loginSidebar').querySelector('.lsb-body');
+  var overlay = document.getElementById('loginSbOverlay');
+  var body = document.getElementById('loginSidebar').querySelector('.lsb-body');
+
+  // Overlay ko phir se active karo (pointer-events wapas set karo)
+  if (overlay) overlay.style.pointerEvents = '';
+
   if (adminSession) {
     body.innerHTML = `
       <div class="lsb-section">Dashboard Menu</div>
@@ -450,32 +478,50 @@ function openLoginSidebar() {
         <div class="lsb-item-ico">💰</div><span class="lsb-item-label">Commission</span>
       </div>
       <div class="lsb-section" style="margin-top:8px">Account</div>
-      <div class="lsb-item" onclick="goHome()">
+      <div class="lsb-item" onclick="navigateToPage('bharat-sarthi-frontend.html')">
         <div class="lsb-item-ico">🏠</div><span class="lsb-item-label">Home</span>
       </div>
       <div class="lsb-item" onclick="doLogout();closeLoginSidebar()">
         <div class="lsb-item-ico">🚪</div><span class="lsb-item-label">Logout</span>
       </div>`;
   } else {
-    body.innerHTML = `
-      <div class="lsb-section">Navigation</div>
-      <div class="lsb-item" onclick="window.location.href='bharat-sarthi-frontend.html'">
-        <div class="lsb-item-ico">🏠</div><span class="lsb-item-label">Home</span>
-      </div>
-      <div class="lsb-item" onclick="window.location.href='bharat-sarthi-frontend.html#pg-book'">
-        <div class="lsb-item-ico">🚗</div><span class="lsb-item-label">Driver Book Karein</span>
-      </div>
-      <div class="lsb-item" onclick="window.location.href='bharat-sarthi-frontend.html#pg-drv-auth'">
-        <div class="lsb-item-ico">🪪</div><span class="lsb-item-label">ड्राइवर पैनल</span>
-      </div>
-      <div class="lsb-item" onclick="window.location.href='bharat-sarthi-frontend.html#pg-my-booking'">
-        <div class="lsb-item-ico">📋</div><span class="lsb-item-label">My Booking</span>
-      </div>`;
+    // innerHTML mein # wale URLs quote-nesting se truncate ho jaate the
+    // isliye DOM createElement use kar rahe hain — bilkul safe aur exact URLs
+    body.innerHTML = '';
+
+    var navItems = [
+      { ico: '🏠', label: 'Home',              url: 'bharat-sarthi-frontend.html' },
+      { ico: '🚗', label: 'Driver Book Karein', url: 'bharat-sarthi-frontend.html#pg-book' },
+      { ico: '🪪', label: 'ड्राइवर पैनल',      url: 'bharat-sarthi-frontend.html#pg-drv-auth' },
+      { ico: '📋', label: 'My Booking',         url: 'bharat-sarthi-frontend.html#pg-my-booking' }
+    ];
+
+    var section = document.createElement('div');
+    section.className = 'lsb-section';
+    section.textContent = 'Navigation';
+    body.appendChild(section);
+
+    navItems.forEach(function(item) {
+      var div = document.createElement('div');
+      div.className = 'lsb-item';
+      div.innerHTML = '<div class="lsb-item-ico">' + item.ico + '</div><span class="lsb-item-label">' + item.label + '</span>';
+      // URL ko data attribute mein store karo — onclick mein directly nahi
+      div.setAttribute('data-nav-url', item.url);
+      div.addEventListener('click', function() {
+        navigateToPage(this.getAttribute('data-nav-url'));
+      });
+      body.appendChild(div);
+    });
   }
   document.getElementById('loginSidebar').classList.add('open');
   document.getElementById('loginSbOverlay').classList.add('show');
 }
-function closeLoginSidebar() { document.getElementById('loginSidebar').classList.remove('open'); document.getElementById('loginSbOverlay').classList.remove('show'); }
+
+function closeLoginSidebar() {
+  document.getElementById('loginSidebar').classList.remove('open');
+  document.getElementById('loginSbOverlay').classList.remove('show');
+}
+
 function openDashboardSidebar() { document.getElementById('dashSidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('show'); }
 function closeDashboardSidebar() { document.getElementById('dashSidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('show'); }
 
