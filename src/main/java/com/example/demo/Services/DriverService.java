@@ -80,44 +80,50 @@ public class DriverService {
 
     // ── Photo Upload ──────────────────────────────────
     // Photo disk pe save karo, path DB mein store karo
-    
     @Transactional
-    public String saveDriverPhoto(String driverId, MultipartFile photo) throws IOException, InterruptedException {
+    public String saveDriverPhoto(String driverId, MultipartFile photo) throws IOException {
         Driver d = driverRepo.findByDriverId(driverId)
                 .orElseThrow(() -> new RuntimeException("Driver nahi mila: " + driverId));
 
-        // Base64 banao
-        String base64Image = java.util.Base64.getEncoder()
-                .encodeToString(photo.getBytes());
+        // Folder banao
+        File dir = new File("uploads/driver-photos/");
+        if (!dir.exists()) dir.mkdirs();
 
-        // Imgur pe upload karo
-        java.net.http.HttpClient client = java.net.http.HttpClient.newHttpClient();
-        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
-                .uri(java.net.URI.create("https://api.imgur.com/3/image"))
-                .header("Authorization", "Client-ID YOUR_IMGUR_CLIENT_ID")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(java.net.http.HttpRequest.BodyPublishers.ofString("image=" + base64Image))
-                .build();
+        // Unique filename — driverId + UUID + extension
+        String origName = photo.getOriginalFilename();
+        String ext = (origName != null && origName.contains("."))
+                ? origName.substring(origName.lastIndexOf(".")).toLowerCase()
+                : ".jpg";
+        // Sirf allowed extensions
+        if (!ext.equals(".jpg") && !ext.equals(".jpeg") && !ext.equals(".png") && !ext.equals(".webp")) {
+            ext = ".jpg";
+        }
+        String fileName = driverId + "_" + UUID.randomUUID().toString().substring(0, 8) + ext;
+        Path filePath = Paths.get("uploads/driver-photos/" + fileName);
 
-        java.net.http.HttpResponse<String> response = client.send(request,
-                java.net.http.HttpResponse.BodyHandlers.ofString());
+        // Purani photo delete karo (agar thi)
+        if (d.getPhotoPath() != null) {
+            try {
+                Files.deleteIfExists(Paths.get(d.getPhotoPath()));
+            } catch (Exception ignored) {}
+        }
 
-        // URL nikalo
-        org.json.JSONObject json = new org.json.JSONObject(response.body());
-        String photoUrl = json.getJSONObject("data").getString("link");
+        // Naya file save karo
+        Files.write(filePath, photo.getBytes());
 
-        d.setPhotoPath(photoUrl);
+        // DB mein path save karo
+        d.setPhotoPath(filePath.toString());
         driverRepo.save(d);
-        return photoUrl;
+
+        return "/api/drivers/" + driverId + "/photo";
     }
 
     // ── Get Photo Path ────────────────────────────────
     // Controller ko absolute path deta hai file serve karne ke liye
- // ✅ Yeh karo
     public Path getDriverPhotoPath(String driverId) {
         Driver d = driverRepo.findByDriverId(driverId).orElse(null);
         if (d == null || d.getPhotoPath() == null) return null;
-        return Paths.get(d.getPhotoPath().replace("\\", "/")).toAbsolutePath();
+        return Paths.get(d.getPhotoPath()).toAbsolutePath();
     }
 
     // ── Helper: Driver → LoginResponse ───────────────

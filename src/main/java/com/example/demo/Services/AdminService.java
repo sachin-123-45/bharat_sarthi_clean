@@ -146,7 +146,11 @@ public class AdminService {
             m.put("lastSeen",      d.getLastSeen());
             
             
-            m.put("photoUrl", d.getPhotoPath());
+            
+            // Yeh line add karo — baaki sab lines ke saath
+               m.put("photoUrl", d.getPhotoPath() != null 
+                   ? "/api/drivers/" + d.getDriverId() + "/photo" 
+                   : null);
             long bookingCount = bookingRepo.findByDriver_DriverIdOrderByCreatedAtDesc(d.getDriverId()).size();
             m.put("totalBookings", bookingCount);
             double driverBookingCommission = bookingRepo
