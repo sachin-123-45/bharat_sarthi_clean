@@ -147,10 +147,9 @@ public class AdminService {
             
             
             
-            // Yeh line add karo — baaki sab lines ke saath
-               m.put("photoUrl", d.getPhotoPath() != null 
-                   ? "/api/drivers/" + d.getDriverId() + "/photo" 
-                   : null);
+            m.put("photoUrl", d.getPhotoPath() != null
+            	    ? "https://bharat-sarthi-clean.onrender.com/api/drivers/" + d.getDriverId() + "/photo"
+            	    : null);
             long bookingCount = bookingRepo.findByDriver_DriverIdOrderByCreatedAtDesc(d.getDriverId()).size();
             m.put("totalBookings", bookingCount);
             double driverBookingCommission = bookingRepo

@@ -138,10 +138,12 @@ d.setPhotoPath("uploads/driver-photos/" + fileName);
         r.setLicence(d.getLicenceNumber());
         r.setOnline(d.isOnline());
         
+        
      // ✅ Yeh karo — full URL
         r.setPhotoUrl(d.getPhotoPath() != null
                 ? "https://bharat-sarthi-clean.onrender.com/api/drivers/" + d.getDriverId() + "/photo"
                 : null);
+        return r;
     }
     
     
