@@ -111,8 +111,8 @@ public class DriverService {
         // Naya file save karo
         Files.write(filePath, photo.getBytes());
 
-        // DB mein path save karo
-        d.setPhotoPath(filePath.toString());
+
+d.setPhotoPath("uploads/driver-photos/" + fileName);
         driverRepo.save(d);
 
         return "/api/drivers/" + driverId + "/photo";
